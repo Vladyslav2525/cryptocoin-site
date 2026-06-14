@@ -1,12 +1,58 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import { GROWTH_CYCLE_STEPS } from "@/lib/site-content";
 
 export function GrowthCycleSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const firstRow = GROWTH_CYCLE_STEPS.slice(0, 2);
   const secondRow = GROWTH_CYCLE_STEPS.slice(2, 4);
   const finalStep = GROWTH_CYCLE_STEPS[4];
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setActiveStep(0);
+        }
+      },
+      {
+        threshold: 0.35,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveStep((current) => (current + 1) % GROWTH_CYCLE_STEPS.length);
+    }, 1100);
+
+    return () => window.clearInterval(interval);
+  }, [isVisible]);
 
   return (
-    <section id="growth-cycle" className="relative py-20 sm:py-24 lg:py-28">
+    <section
+      id="growth-cycle"
+      ref={sectionRef}
+      className="relative py-20 sm:py-24 lg:py-28"
+    >
       <div className="section-shell">
         <div className="mx-auto max-w-6xl">
           <span className="section-kicker">Closed-loop value model</span>
@@ -26,7 +72,12 @@ export function GrowthCycleSection() {
             <div className="grid grid-cols-[minmax(0,1fr)_96px_minmax(0,1fr)] items-stretch gap-6">
               {firstRow.map((step, index) => (
                 <div key={step.title} className="contents">
-                  <article className="grid-card min-h-[240px] break-words">
+                  <article
+                    className={cn(
+                      "grid-card min-h-[240px] break-words cycle-step",
+                      activeStep === index && "cycle-step-active",
+                    )}
+                  >
                     <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
                       Step {index + 1}
                     </div>
@@ -36,9 +87,7 @@ export function GrowthCycleSection() {
                     <p className="text-base leading-8 text-white/72">{step.body}</p>
                   </article>
                   {index === 0 ? (
-                    <div className="flow-arrow">
-                      <span className="flow-arrow-icon">→</span>
-                    </div>
+                    <div className="flow-connector" />
                   ) : null}
                 </div>
               ))}
@@ -49,7 +98,12 @@ export function GrowthCycleSection() {
             </div>
 
             <div className="grid grid-cols-[minmax(0,1fr)_96px_minmax(0,1fr)] items-stretch gap-6">
-              <article className="grid-card order-3 min-h-[240px] break-words">
+              <article
+                className={cn(
+                  "grid-card order-3 min-h-[240px] break-words cycle-step",
+                  activeStep === 3 && "cycle-step-active",
+                )}
+              >
                 <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
                   Step 4
                 </div>
@@ -61,11 +115,14 @@ export function GrowthCycleSection() {
                 </p>
               </article>
 
-              <div className="flow-arrow order-2">
-                <span className="flow-arrow-icon flow-arrow-icon-reverse">←</span>
-              </div>
+              <div className="flow-connector order-2" />
 
-              <article className="grid-card order-1 min-h-[240px] break-words">
+              <article
+                className={cn(
+                  "grid-card order-1 min-h-[240px] break-words cycle-step",
+                  activeStep === 2 && "cycle-step-active",
+                )}
+              >
                 <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
                   Step 3
                 </div>
@@ -83,7 +140,12 @@ export function GrowthCycleSection() {
             </div>
 
             <div className="mx-auto max-w-[calc(50%-1.5rem)]">
-              <article className="grid-card min-h-[220px] break-words">
+              <article
+                className={cn(
+                  "grid-card min-h-[220px] break-words cycle-step",
+                  activeStep === 4 && "cycle-step-active",
+                )}
+              >
                 <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
                   Step 5
                 </div>
@@ -97,7 +159,13 @@ export function GrowthCycleSection() {
 
           <div className="hidden gap-5 md:grid lg:hidden md:grid-cols-2">
             {GROWTH_CYCLE_STEPS.map((step, index) => (
-              <article key={step.title} className="grid-card min-h-[220px] break-words">
+              <article
+                key={step.title}
+                className={cn(
+                  "grid-card min-h-[220px] break-words cycle-step",
+                  activeStep === index && "cycle-step-active",
+                )}
+              >
                 <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
                   Step {index + 1}
                 </div>
@@ -114,7 +182,12 @@ export function GrowthCycleSection() {
           <div className="space-y-4 md:hidden">
             {GROWTH_CYCLE_STEPS.map((step, index) => (
               <div key={step.title} className="flex flex-col items-center">
-                <article className="grid-card w-full break-words">
+                <article
+                  className={cn(
+                    "grid-card w-full break-words cycle-step",
+                    activeStep === index && "cycle-step-active",
+                  )}
+                >
                   <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
                     Step {index + 1}
                   </div>
@@ -124,9 +197,7 @@ export function GrowthCycleSection() {
                   <p className="text-sm leading-7 text-white/72">{step.body}</p>
                 </article>
                 {index < GROWTH_CYCLE_STEPS.length - 1 ? (
-                  <div className="flow-arrow flow-arrow-vertical h-16">
-                    <span className="flow-arrow-icon">↓</span>
-                  </div>
+                  <div className="flow-connector flow-connector-vertical h-16" />
                 ) : null}
               </div>
             ))}

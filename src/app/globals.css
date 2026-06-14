@@ -85,16 +85,35 @@ body::before {
   backdrop-filter: blur(18px);
 }
 
-.flow-arrow {
+.cycle-step {
+  transition:
+    border-color 420ms ease,
+    box-shadow 420ms ease,
+    transform 420ms ease,
+    background-color 420ms ease;
+}
+
+.cycle-step-active {
+  border-color: rgba(243, 217, 161, 0.55);
+  background:
+    linear-gradient(180deg, rgba(243, 217, 161, 0.12), rgba(255, 255, 255, 0.03)),
+    var(--panel);
+  box-shadow:
+    0 0 0 1px rgba(243, 217, 161, 0.12),
+    0 24px 90px rgba(0, 0, 0, 0.42),
+    0 0 40px rgba(212, 177, 106, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.flow-connector {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(243, 217, 161, 0.95);
-  filter: drop-shadow(0 0 12px rgba(212, 177, 106, 0.35));
 }
 
-.flow-arrow::before {
+.flow-connector::before {
   position: absolute;
   inset: auto 0;
   height: 2px;
@@ -102,15 +121,14 @@ body::before {
     90deg,
     transparent 0%,
     rgba(243, 217, 161, 0.2) 15%,
-    rgba(243, 217, 161, 0.95) 50%,
+    rgba(243, 217, 161, 0.76) 50%,
     rgba(243, 217, 161, 0.2) 85%,
     transparent 100%
   );
   content: "";
-  animation: arrow-pulse 2.4s linear infinite;
 }
 
-.flow-arrow-vertical::before {
+.flow-connector-vertical::before {
   inset: 0 auto;
   width: 2px;
   height: 100%;
@@ -118,21 +136,10 @@ body::before {
     180deg,
     transparent 0%,
     rgba(243, 217, 161, 0.2) 15%,
-    rgba(243, 217, 161, 0.95) 50%,
+    rgba(243, 217, 161, 0.76) 50%,
     rgba(243, 217, 161, 0.2) 85%,
     transparent 100%
   );
-}
-
-.flow-arrow-icon {
-  position: relative;
-  z-index: 1;
-  font-size: 1.75rem;
-  animation: arrow-drift 1.8s ease-in-out infinite;
-}
-
-.flow-arrow-icon-reverse {
-  animation-name: arrow-drift-reverse;
 }
 
 .hero-video-frame {
@@ -197,64 +204,8 @@ body::before {
   border-bottom-right-radius: 999px;
 }
 
-@keyframes arrow-pulse {
-  0% {
-    opacity: 0.4;
-    transform: scaleX(0.92);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  100% {
-    opacity: 0.4;
-    transform: scaleX(0.92);
-  }
-}
-
-@keyframes arrow-drift {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(6px);
-  }
-}
-
-@keyframes arrow-drift-reverse {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-6px);
-  }
-}
-
-@keyframes arrow-drift-vertical {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .flow-arrow::before,
-  .flow-arrow-icon {
-    animation: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .flow-arrow-icon {
-    animation-name: arrow-drift-vertical;
   }
 }
