@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { HERO_PHRASES } from "@/lib/site-content";
 
-const typingDelay = 92;
-const deletingDelay = 42;
-const phrasePause = 2800;
+const typingDelay = 108;
+const phrasePause = 3600;
+const phraseSwitchDelay = 260;
 
 export function TypewriterHero() {
   const phrases = useMemo(() => HERO_PHRASES, []);
@@ -18,41 +18,38 @@ export function TypewriterHero() {
   );
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isSwitching, setIsSwitching] = useState(false);
 
   useEffect(() => {
     const currentPhrase = phrases[phraseIndex] ?? "";
 
-    if (!isDeleting && displayedText === currentPhrase) {
+    if (displayedText === currentPhrase && !isSwitching) {
       const pauseTimeout = window.setTimeout(() => {
-        setIsDeleting(true);
+        setIsSwitching(true);
       }, phrasePause);
 
       return () => window.clearTimeout(pauseTimeout);
     }
 
-    if (isDeleting && displayedText.length === 0) {
-      const resetTimeout = window.setTimeout(() => {
-        setIsDeleting(false);
+    if (isSwitching) {
+      const switchTimeout = window.setTimeout(() => {
+        setDisplayedText("");
         setPhraseIndex((current) => (current + 1) % phrases.length);
-      }, 0);
+        setIsSwitching(false);
+      }, phraseSwitchDelay);
 
-      return () => window.clearTimeout(resetTimeout);
+      return () => window.clearTimeout(switchTimeout);
     }
 
     const timeout = window.setTimeout(
       () => {
-        setDisplayedText((current) =>
-          isDeleting
-            ? current.slice(0, -1)
-            : currentPhrase.slice(0, current.length + 1),
-        );
+        setDisplayedText((current) => currentPhrase.slice(0, current.length + 1));
       },
-      isDeleting ? deletingDelay : typingDelay,
+      typingDelay,
     );
 
     return () => window.clearTimeout(timeout);
-  }, [displayedText, isDeleting, phraseIndex, phrases]);
+  }, [displayedText, isSwitching, phraseIndex, phrases]);
 
   return (
     <div className="mx-auto grid w-full max-w-5xl text-center">
@@ -63,7 +60,11 @@ export function TypewriterHero() {
         {longestPhrase}
         <span className="ml-1 inline-block">|</span>
       </h1>
-      <h1 className="headline-gradient row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl xl:text-7xl">
+      <h1
+        className={`headline-gradient row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] transition-opacity duration-300 sm:text-5xl lg:text-6xl xl:text-7xl ${
+          isSwitching ? "opacity-0" : "opacity-100"
+        }`}
+      >
         {displayedText}
         <span className="ml-1 inline-block animate-pulse text-white/90">|</span>
       </h1>

@@ -9,12 +9,32 @@ export function HeroSection() {
       <DottedSurface />
       <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_26%),linear-gradient(180deg,rgba(4,5,11,0.2),rgba(4,5,11,0.92)_70%,rgba(4,5,11,1))]" />
 
-      <div className="section-shell flex min-h-screen flex-col justify-center py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 text-center sm:gap-10">
-          <span className="section-kicker">
-            Real-world asset concept · Live transparency · 24/7
-          </span>
+      <div className="section-shell flex min-h-screen flex-col py-10 sm:py-12 lg:py-14">
+        <div className="flex justify-center pb-10 sm:pb-12">
+          <nav className="glass-panel flex w-full max-w-fit flex-wrap items-center justify-center gap-2 rounded-full px-3 py-3 sm:px-4">
+            <a
+              href="#philosophy"
+              className="rounded-full border border-white/10 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-white/90 sm:px-5"
+            >
+              Философия
+            </a>
+            <a
+              href="#growth-cycle"
+              className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 sm:px-5"
+            >
+              Цикл роста
+            </a>
+            <a
+              href="#faq"
+              className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 sm:px-5"
+            >
+              FAQ
+            </a>
+          </nav>
+        </div>
 
+        <div className="flex flex-1 flex-col justify-center">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 text-center sm:gap-10">
           <TypewriterHero />
 
           <p className="max-w-3xl text-base leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
@@ -22,6 +42,10 @@ export function HeroSection() {
             видимости резервов и экономической модели, которая связывает токен
             с реальными активами и реальным денежным потоком.
           </p>
+
+          <span className="section-kicker">
+            Real-world asset concept · Live transparency · 24/7
+          </span>
 
           <div className="hero-video-frame glass-panel w-full overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5">
             <div className="mb-3 flex items-center justify-between gap-3 px-2 py-1 text-left text-xs uppercase tracking-[0.24em] text-white/58 sm:px-3">
@@ -78,6 +102,7 @@ export function HeroSection() {
               Посмотреть цикл роста
             </a>
           </div>
+        </div>
         </div>
       </div>
     </section>
