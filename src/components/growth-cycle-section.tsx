@@ -69,57 +69,30 @@ export function GrowthCycleSection() {
           </div>
 
           <div className="hidden lg:block">
-            <div className="grid grid-cols-[minmax(0,1fr)_96px_minmax(0,1fr)] items-stretch gap-6">
+            <div className="grid grid-cols-2 items-stretch gap-6">
               {firstRow.map((step, index) => (
-                <div key={step.title} className="contents">
-                  <article
-                    className={cn(
-                      "grid-card min-h-[240px] break-words cycle-step",
-                      activeStep === index && "cycle-step-active",
-                    )}
-                  >
-                    <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
-                      Step {index + 1}
-                    </div>
-                    <h3 className="mb-4 text-2xl font-semibold tracking-[-0.03em] text-white">
-                      {step.title}
-                    </h3>
-                    <p className="text-base leading-8 text-white/72">{step.body}</p>
-                  </article>
-                  {index === 0 ? (
-                    <div className="flow-connector" />
-                  ) : null}
-                </div>
+                <article
+                  key={step.title}
+                  className={cn(
+                    "grid-card min-h-[240px] break-words cycle-step",
+                    activeStep === index && "cycle-step-active",
+                  )}
+                >
+                  <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
+                    Step {index + 1}
+                  </div>
+                  <h3 className="mb-4 text-2xl font-semibold tracking-[-0.03em] text-white">
+                    {step.title}
+                  </h3>
+                  <p className="text-base leading-8 text-white/72">{step.body}</p>
+                </article>
               ))}
             </div>
 
-            <div className="flex justify-end pr-[calc(50%-3rem)]">
-              <div className="snake-turn snake-turn-right mt-3 mb-3 h-20 w-28" />
-            </div>
-
-            <div className="grid grid-cols-[minmax(0,1fr)_96px_minmax(0,1fr)] items-stretch gap-6">
+            <div className="mt-6 grid grid-cols-2 items-stretch gap-6">
               <article
                 className={cn(
-                  "grid-card order-3 min-h-[240px] break-words cycle-step",
-                  activeStep === 3 && "cycle-step-active",
-                )}
-              >
-                <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
-                  Step 4
-                </div>
-                <h3 className="mb-4 text-2xl font-semibold tracking-[-0.03em] text-white">
-                  {secondRow[1]?.title}
-                </h3>
-                <p className="text-base leading-8 text-white/72">
-                  {secondRow[1]?.body}
-                </p>
-              </article>
-
-              <div className="flow-connector order-2" />
-
-              <article
-                className={cn(
-                  "grid-card order-1 min-h-[240px] break-words cycle-step",
+                  "grid-card min-h-[240px] break-words cycle-step",
                   activeStep === 2 && "cycle-step-active",
                 )}
               >
@@ -133,13 +106,26 @@ export function GrowthCycleSection() {
                   {secondRow[0]?.body}
                 </p>
               </article>
+
+              <article
+                className={cn(
+                  "grid-card min-h-[240px] break-words cycle-step",
+                  activeStep === 3 && "cycle-step-active",
+                )}
+              >
+                <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
+                  Step 4
+                </div>
+                <h3 className="mb-4 text-2xl font-semibold tracking-[-0.03em] text-white">
+                  {secondRow[1]?.title}
+                </h3>
+                <p className="text-base leading-8 text-white/72">
+                  {secondRow[1]?.body}
+                </p>
+              </article>
             </div>
 
-            <div className="flex justify-start pl-[calc(50%-3rem)]">
-              <div className="snake-turn snake-turn-left mt-3 mb-3 h-20 w-28" />
-            </div>
-
-            <div className="mx-auto max-w-[calc(50%-1.5rem)]">
+            <div className="mx-auto mt-6 max-w-[calc(50%-0.75rem)]">
               <article
                 className={cn(
                   "grid-card min-h-[220px] break-words cycle-step",
@@ -196,9 +182,6 @@ export function GrowthCycleSection() {
                   </h3>
                   <p className="text-sm leading-7 text-white/72">{step.body}</p>
                 </article>
-                {index < GROWTH_CYCLE_STEPS.length - 1 ? (
-                  <div className="flow-connector flow-connector-vertical h-16" />
-                ) : null}
               </div>
             ))}
           </div>
