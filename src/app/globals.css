@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  --background: #04050b;
+  --foreground: #f8fafc;
+  --muted-foreground: #b8c0cf;
+  --panel: rgba(10, 14, 24, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --panel-strong: rgba(255, 255, 255, 0.14);
+  --gold-soft: #d4b16a;
+  --gold-bright: #f3d9a1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  background:
+    radial-gradient(circle at top, rgba(212, 177, 106, 0.18), transparent 34%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 25%),
+    linear-gradient(180deg, rgba(5, 6, 10, 0.86), rgba(4, 5, 11, 0.98));
+  content: "";
+}
+
+::selection {
+  background: rgba(243, 217, 161, 0.24);
+}
+
+.section-shell {
+  @apply relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.glass-panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+}
+
+.section-kicker {
+  @apply mb-4 inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em];
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(248, 250, 252, 0.74);
+}
+
+.headline-gradient {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 62%,
+    #d7d9de 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-card {
+  @apply rounded-3xl p-6 sm:p-7;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+}
+
+.flow-arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(243, 217, 161, 0.95);
+  filter: drop-shadow(0 0 12px rgba(212, 177, 106, 0.35));
+}
+
+.flow-arrow::before {
+  position: absolute;
+  inset: auto 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(243, 217, 161, 0.2) 15%,
+    rgba(243, 217, 161, 0.95) 50%,
+    rgba(243, 217, 161, 0.2) 85%,
+    transparent 100%
+  );
+  content: "";
+  animation: arrow-pulse 2.4s linear infinite;
+}
+
+.flow-arrow-vertical::before {
+  inset: 0 auto;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(243, 217, 161, 0.2) 15%,
+    rgba(243, 217, 161, 0.95) 50%,
+    rgba(243, 217, 161, 0.2) 85%,
+    transparent 100%
+  );
+}
+
+.flow-arrow-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 1.75rem;
+  animation: arrow-drift 1.8s ease-in-out infinite;
+}
+
+.hero-video-frame {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    linear-gradient(135deg, rgba(212, 177, 106, 0.12), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--panel-strong);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+@keyframes arrow-pulse {
+  0% {
+    opacity: 0.4;
+    transform: scaleX(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scaleX(0.92);
+  }
+}
+
+@keyframes arrow-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes arrow-drift-vertical {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .flow-arrow::before,
+  .flow-arrow-icon {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .flow-arrow-icon {
+    animation-name: arrow-drift-vertical;
+  }
+}
