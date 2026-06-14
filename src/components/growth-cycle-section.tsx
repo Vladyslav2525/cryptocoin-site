@@ -42,7 +42,7 @@ export function GrowthCycleSection() {
 
     const interval = window.setInterval(() => {
       setActiveStep((current) => (current + 1) % GROWTH_CYCLE_STEPS.length);
-    }, 1100);
+    }, 2200);
 
     return () => window.clearInterval(interval);
   }, [isVisible]);

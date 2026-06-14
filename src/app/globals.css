@@ -76,10 +76,10 @@ body {
 
 .cycle-step {
   transition:
-    border-color 420ms ease,
-    box-shadow 420ms ease,
-    transform 420ms ease,
-    background-color 420ms ease;
+    border-color 600ms ease,
+    box-shadow 600ms ease,
+    transform 600ms ease,
+    background-color 600ms ease;
 }
 
 .cycle-step-active {
