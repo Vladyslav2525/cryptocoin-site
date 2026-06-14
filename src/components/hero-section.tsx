@@ -18,9 +18,9 @@ export function HeroSection() {
           <TypewriterHero />
 
           <p className="max-w-3xl text-base leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
-            Концепция сайта строится вокруг физического обеспечения, прямой
-            видимости резервов и экономической модели, которая связывает токен с
-            реальными активами и реальным денежным потоком.
+            Концепция проекта строится вокруг физического обеспечения, прямой
+            видимости резервов и экономической модели, которая связывает токен
+            с реальными активами и реальным денежным потоком.
           </p>
 
           <div className="hero-video-frame glass-panel w-full overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5">

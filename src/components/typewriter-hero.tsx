@@ -3,12 +3,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { HERO_PHRASES } from "@/lib/site-content";
 
-const typingDelay = 58;
-const deletingDelay = 34;
-const phrasePause = 1600;
+const typingDelay = 92;
+const deletingDelay = 42;
+const phrasePause = 2800;
 
 export function TypewriterHero() {
   const phrases = useMemo(() => HERO_PHRASES, []);
+  const longestPhrase = useMemo(
+    () =>
+      phrases.reduce((longest, phrase) =>
+        phrase.length > longest.length ? phrase : longest,
+      ),
+    [phrases],
+  );
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -48,8 +55,15 @@ export function TypewriterHero() {
   }, [displayedText, isDeleting, phraseIndex, phrases]);
 
   return (
-    <div className="mx-auto max-w-5xl text-center">
-      <h1 className="headline-gradient text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl xl:text-7xl">
+    <div className="mx-auto grid w-full max-w-5xl text-center">
+      <h1
+        aria-hidden="true"
+        className="pointer-events-none invisible row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl xl:text-7xl"
+      >
+        {longestPhrase}
+        <span className="ml-1 inline-block">|</span>
+      </h1>
+      <h1 className="headline-gradient row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl xl:text-7xl">
         {displayedText}
         <span className="ml-1 inline-block animate-pulse text-white/90">|</span>
       </h1>
