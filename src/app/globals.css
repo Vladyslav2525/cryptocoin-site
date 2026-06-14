@@ -29,17 +29,6 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -20;
-  background:
-    radial-gradient(circle at top, rgba(212, 177, 106, 0.18), transparent 34%),
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 25%),
-    linear-gradient(180deg, rgba(5, 6, 10, 0.86), rgba(4, 5, 11, 0.98));
-  content: "";
-}
-
 ::selection {
   background: rgba(243, 217, 161, 0.24);
 }
