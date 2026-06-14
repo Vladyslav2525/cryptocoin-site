@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { HERO_PHRASES } from "@/lib/site-content";
 
-const typingDelay = 108;
-const phrasePause = 3600;
-const phraseSwitchDelay = 260;
+const typingDelay = 132;
+const phrasePause = 4300;
+const phraseSwitchDelay = 620;
 
 export function TypewriterHero() {
   const phrases = useMemo(() => HERO_PHRASES, []);
@@ -61,12 +61,12 @@ export function TypewriterHero() {
         <span className="ml-1 inline-block">|</span>
       </h1>
       <h1
-        className={`headline-gradient row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] transition-opacity duration-300 sm:text-5xl lg:text-6xl xl:text-7xl ${
+        className={`headline-gradient row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] transition-opacity duration-500 sm:text-5xl lg:text-6xl xl:text-7xl ${
           isSwitching ? "opacity-0" : "opacity-100"
         }`}
       >
         {displayedText}
-        <span className="ml-1 inline-block animate-pulse text-white/90">|</span>
+        <span className="ml-1 inline-block text-white/90">|</span>
       </h1>
     </div>
   );
