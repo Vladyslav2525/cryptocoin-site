@@ -55,13 +55,13 @@ export function TypewriterHero() {
     <div className="mx-auto grid w-full max-w-5xl text-center">
       <h1
         aria-hidden="true"
-        className="pointer-events-none invisible row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl xl:text-7xl"
+        className="pointer-events-none invisible row-start-1 col-start-1 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-4xl lg:text-5xl xl:text-6xl"
       >
         {longestPhrase}
         <span className="ml-1 inline-block">|</span>
       </h1>
       <h1
-        className={`headline-gradient row-start-1 col-start-1 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] transition-opacity duration-500 sm:text-5xl lg:text-6xl xl:text-7xl ${
+        className={`headline-gradient row-start-1 col-start-1 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] transition-opacity duration-500 sm:text-4xl lg:text-5xl xl:text-6xl ${
           isSwitching ? "opacity-0" : "opacity-100"
         }`}
       >
