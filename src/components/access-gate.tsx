@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent, ReactNode } from "react";
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type AccessGateProps = {
   children: ReactNode;
@@ -12,38 +12,6 @@ const defaultHash =
 const passwordSalt = "cryptocoin-site";
 const storageKey = "cryptocoin-site-access-granted";
 const accessEventName = "cryptocoin-site-access-change";
-
-function subscribeToAccessStore(callback: () => void) {
-  if (typeof window === "undefined") {
-    return () => undefined;
-  }
-
-  const handleStorage = (event: StorageEvent) => {
-    if (event.key === storageKey) {
-      callback();
-    }
-  };
-
-  const handleAccessEvent = () => {
-    callback();
-  };
-
-  window.addEventListener("storage", handleStorage);
-  window.addEventListener(accessEventName, handleAccessEvent);
-
-  return () => {
-    window.removeEventListener("storage", handleStorage);
-    window.removeEventListener(accessEventName, handleAccessEvent);
-  };
-}
-
-function getAccessSnapshot() {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  return window.localStorage.getItem(storageKey) === "true";
-}
 
 async function hashValue(value: string) {
   const encoded = new TextEncoder().encode(value);
@@ -58,15 +26,37 @@ export function AccessGate({ children }: AccessGateProps) {
     () => process.env.NEXT_PUBLIC_SITE_PASSWORD_HASH ?? defaultHash,
     [],
   );
-  const persistedAccess = useSyncExternalStore(
-    subscribeToAccessStore,
-    getAccessSnapshot,
-    () => null,
-  );
+  const [persistedAccess, setPersistedAccess] = useState(false);
   const [sessionUnlocked, setSessionUnlocked] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const unlocked = sessionUnlocked || persistedAccess === true;
+
+  useEffect(() => {
+    const syncAccessState = () => {
+      setPersistedAccess(window.localStorage.getItem(storageKey) === "true");
+    };
+
+    syncAccessState();
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === storageKey) {
+        syncAccessState();
+      }
+    };
+
+    const handleAccessEvent = () => {
+      syncAccessState();
+    };
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(accessEventName, handleAccessEvent);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener(accessEventName, handleAccessEvent);
+    };
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -83,16 +73,6 @@ export function AccessGate({ children }: AccessGateProps) {
     setSessionUnlocked(true);
     setPassword("");
   };
-
-  if (persistedAccess === null && !sessionUnlocked) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[var(--background)] text-white">
-        <div className="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white/72">
-          Загрузка защищенного режима…
-        </div>
-      </div>
-    );
-  }
 
   if (unlocked) {
     return <>{children}</>;
