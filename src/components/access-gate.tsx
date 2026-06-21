@@ -26,11 +26,16 @@ export function AccessGate({ children }: AccessGateProps) {
     () => process.env.NEXT_PUBLIC_SITE_PASSWORD_HASH ?? defaultHash,
     [],
   );
-  const [persistedAccess, setPersistedAccess] = useState(false);
+  const [persistedAccess, setPersistedAccess] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return window.localStorage.getItem(storageKey) === "true";
+  });
   const [sessionUnlocked, setSessionUnlocked] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const isClient = typeof window !== "undefined";
   const unlocked = sessionUnlocked || persistedAccess === true;
 
   useEffect(() => {
@@ -58,10 +63,6 @@ export function AccessGate({ children }: AccessGateProps) {
       window.removeEventListener(accessEventName, handleAccessEvent);
     };
   }, []);
-
-  if (!isClient) {
-    return null;
-  }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
