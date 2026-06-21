@@ -1,14 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useEffect, useRef } from "react";
 
 const modalStateKey = "cryptocoin-site-subscribe-modal-state";
 const defaultEmailOctopusEmbedScriptSrc =
@@ -28,12 +20,7 @@ function markSubscribed() {
 }
 
 export function FirstVisitSubscribeModal() {
-  const preloadHostRef = useRef<HTMLDivElement | null>(null);
-  const visibleHostRef = useRef<HTMLDivElement | null>(null);
-  const mountedFormRef = useRef<HTMLDivElement | null>(null);
-  const openTimerRef = useRef<number | null>(null);
-  const [open, setOpen] = useState(false);
-  const [formReady, setFormReady] = useState(false);
+  const scriptHostRef = useRef<HTMLDivElement | null>(null);
 
   const emailOctopusEmbedScriptSrc =
     process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC?.trim() ||
@@ -41,141 +28,46 @@ export function FirstVisitSubscribeModal() {
   const emailOctopusEmbedFormId =
     process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID?.trim() ||
     defaultEmailOctopusEmbedFormId;
-  const isEmailOctopusConfigured = Boolean(
-    emailOctopusEmbedScriptSrc && emailOctopusEmbedFormId,
-  );
 
   useEffect(() => {
-    if (!isEmailOctopusConfigured || hasSubscribed()) {
+    if (!scriptHostRef.current || hasSubscribed()) {
       return;
     }
 
-    openTimerRef.current = window.setTimeout(() => {
-      setOpen(true);
-    }, 0);
-
-    return () => {
-      if (openTimerRef.current !== null) {
-        window.clearTimeout(openTimerRef.current);
-      }
-    };
-  }, [isEmailOctopusConfigured]);
-
-  useEffect(() => {
-    if (!isEmailOctopusConfigured || !preloadHostRef.current) {
+    const scriptHost = scriptHostRef.current;
+    if (scriptHost.querySelector(`script[data-form="${emailOctopusEmbedFormId}"]`)) {
       return;
     }
 
-    const preloadHost = preloadHostRef.current;
-    const findPreparedForm = () => {
-      const preparedForm = preloadHost.querySelector(
-        `[data-form="${emailOctopusEmbedFormId}"] .eo-form-wrapper`,
+    const successObserver = new MutationObserver(() => {
+      const successMessage = document.querySelector(
+        `[data-form="${emailOctopusEmbedFormId}"] .emailoctopus-success-message`,
       );
 
-      if (preparedForm instanceof HTMLDivElement) {
-        mountedFormRef.current = preparedForm;
-        setFormReady(true);
-
-        const successMessage = preparedForm.querySelector(
-          ".emailoctopus-success-message",
-        );
-
-        if (successMessage instanceof HTMLElement) {
-          const successObserver = new MutationObserver(() => {
-            if ((successMessage.textContent ?? "").trim().length > 0) {
-              markSubscribed();
-            }
-          });
-
-          successObserver.observe(successMessage, {
-            childList: true,
-            subtree: true,
-            characterData: true,
-          });
-
-          return () => successObserver.disconnect();
-        }
-      }
-
-      return undefined;
-    };
-
-    const cleanupPreparedForm = findPreparedForm();
-    if (cleanupPreparedForm) {
-      return cleanupPreparedForm;
-    }
-
-    const observer = new MutationObserver(() => {
-      const cleanup = findPreparedForm();
-      if (cleanup) {
-        observer.disconnect();
+      if (
+        successMessage instanceof HTMLElement &&
+        (successMessage.textContent ?? "").trim().length > 0
+      ) {
+        markSubscribed();
       }
     });
 
-    observer.observe(preloadHost, { childList: true, subtree: true });
+    successObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
 
-    if (!preloadHost.querySelector(`script[data-form="${emailOctopusEmbedFormId}"]`)) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = emailOctopusEmbedScriptSrc;
-      script.dataset.form = emailOctopusEmbedFormId;
-      preloadHost.appendChild(script);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [
-    emailOctopusEmbedFormId,
-    emailOctopusEmbedScriptSrc,
-    isEmailOctopusConfigured,
-  ]);
-
-  useEffect(() => {
-    const preparedForm = mountedFormRef.current;
-    const visibleHost = visibleHostRef.current;
-    const preloadHost = preloadHostRef.current;
-
-    if (!open || !preparedForm || !visibleHost || !preloadHost) {
-      return;
-    }
-
-    visibleHost.appendChild(preparedForm);
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = emailOctopusEmbedScriptSrc;
+    script.dataset.form = emailOctopusEmbedFormId;
+    scriptHost.appendChild(script);
 
     return () => {
-      preloadHost.appendChild(preparedForm);
+      successObserver.disconnect();
     };
-  }, [formReady, open]);
+  }, [emailOctopusEmbedFormId, emailOctopusEmbedScriptSrc]);
 
-  if (!isEmailOctopusConfigured) {
-    return null;
-  }
-
-  return (
-    <>
-      <div ref={preloadHostRef} className="hidden" aria-hidden="true" />
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.98)] p-6 text-white sm:max-w-[400px]">
-          <DialogHeader className="space-y-3">
-            <DialogTitle className="text-2xl tracking-[-0.04em] text-white">
-              Подписка на обновления
-            </DialogTitle>
-            <DialogDescription className="text-sm leading-7 text-white/70">
-              Оставьте email, чтобы получать новости проекта и будущие анонсы.
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-            {!formReady ? (
-              <div className="flex min-h-[120px] items-center justify-center">
-                <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-white/70" />
-              </div>
-            ) : null}
-            <div ref={visibleHostRef} className={formReady ? "" : "hidden"} />
-          </div>
-        </DialogContent>
-      </Dialog>
-    </>
-  );
+  return <div ref={scriptHostRef} className="hidden" aria-hidden="true" />;
 }
