@@ -201,22 +201,14 @@ export function FirstVisitSubscribeModal() {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.97)] text-white sm:max-w-[400px]">
-        <DialogHeader className="space-y-3">
-          <span className="section-kicker mb-0 w-fit self-center sm:self-start">
-            Project updates
-          </span>
-          <DialogTitle className="text-2xl tracking-[-0.04em] text-white sm:text-3xl">
-            Получайте обновления проекта
-          </DialogTitle>
-          <DialogDescription className="text-sm leading-7 text-white/70 sm:text-base">
-            Подпишитесь, чтобы первыми получать новости проекта, обновления и
-            будущие анонсы на email.
-          </DialogDescription>
+      <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.98)] p-0 text-white sm:max-w-[400px]">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Подписка на обновления проекта</DialogTitle>
+          <DialogDescription>Форма подписки EmailOctopus.</DialogDescription>
         </DialogHeader>
 
         {submitState === "success" ? (
-          <div className="space-y-4">
+          <div className="space-y-4 p-6">
             <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-4 text-sm leading-7 text-emerald-50">
               Подписка сохранена. Этот адрес теперь будет доступен в EmailOctopus
               для дальнейших рассылок и welcome-письма.
@@ -232,31 +224,18 @@ export function FirstVisitSubscribeModal() {
             </DialogFooter>
           </div>
         ) : isEmailOctopusEmbedConfigured ? (
-          <div className="space-y-4">
-            <div className="rounded-xl border border-white/10 bg-white/4 px-4 py-3 text-sm leading-7 text-white/68">
-              Ниже загружается встроенная форма EmailOctopus с полем для ввода
-              email и отправкой подписки.
-            </div>
+          <div className="min-h-[280px] p-6 pt-12">
             <div className="rounded-xl border border-white/10 bg-black/20 p-4">
               {!embedLoaded ? (
-                <div className="pb-3 text-sm text-white/58">
-                  Загружаем форму подписки...
+                <div className="flex min-h-[120px] items-center justify-center">
+                  <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-white/70" />
                 </div>
               ) : null}
               <div ref={embedContainerRef} className="min-h-[120px]" />
             </div>
-            <DialogFooter>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="w-full rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
-              >
-                Закрыть
-              </button>
-            </DialogFooter>
           </div>
         ) : (
-          <>
+          <div className="p-6 pt-12">
             <form
               action={emailOctopusFormAction}
               method="POST"
@@ -324,7 +303,7 @@ export function FirstVisitSubscribeModal() {
               className="hidden"
               onLoad={markSubscribed}
             />
-          </>
+          </div>
         )}
       </DialogContent>
     </Dialog>
