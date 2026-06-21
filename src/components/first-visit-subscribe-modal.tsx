@@ -18,7 +18,7 @@ const defaultEmailOctopusEmailFieldName = "field_0";
 const defaultEmailOctopusHoneypotName =
   "hpc4b27b6e-eb38-11e9-be00-06b4694bee2a";
 
-type ModalState = "dismissed" | "subscribed";
+type ModalState = "subscribed";
 
 function readSavedModalState() {
   if (typeof window === "undefined") {
@@ -26,7 +26,12 @@ function readSavedModalState() {
   }
 
   const value = window.localStorage.getItem(modalStateKey);
-  return value === "dismissed" || value === "subscribed" ? value : null;
+  if (value === "dismissed") {
+    window.localStorage.removeItem(modalStateKey);
+    return null;
+  }
+
+  return value === "subscribed" ? value : null;
 }
 
 function saveModalState(value: ModalState) {
@@ -101,10 +106,6 @@ export function FirstVisitSubscribeModal() {
   }, [isEmailOctopusConfigured]);
 
   const handleOpenChange = (nextOpen: boolean) => {
-    if (!nextOpen && submitState !== "success") {
-      saveModalState("dismissed");
-    }
-
     setOpen(nextOpen);
   };
 
