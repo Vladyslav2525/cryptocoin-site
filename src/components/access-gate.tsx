@@ -30,6 +30,7 @@ export function AccessGate({ children }: AccessGateProps) {
   const [sessionUnlocked, setSessionUnlocked] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const isClient = typeof window !== "undefined";
   const unlocked = sessionUnlocked || persistedAccess === true;
 
   useEffect(() => {
@@ -57,6 +58,10 @@ export function AccessGate({ children }: AccessGateProps) {
       window.removeEventListener(accessEventName, handleAccessEvent);
     };
   }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
