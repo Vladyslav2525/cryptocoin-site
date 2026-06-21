@@ -1,96 +1,52 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 
 const modalStateKey = "cryptocoin-site-subscribe-modal-state";
-const defaultEmailOctopusFormAction =
-  "https://eocampaign1.com/form/477f6b8e-6d52-11f1-bc9a-17c7d72d96de";
-const defaultEmailOctopusEmailFieldName = "field_0";
-const defaultEmailOctopusHoneypotName =
-  "hpc4b27b6e-eb38-11e9-be00-06b4694bee2a";
+const defaultEmailOctopusEmbedScriptSrc =
+  "https://eocampaign1.com/form/477f6b8e-6d52-11f1-bc9a-17c7d72d96de.js";
+const defaultEmailOctopusEmbedFormId = "477f6b8e-6d52-11f1-bc9a-17c7d72d96de";
 
-type ModalState = "subscribed";
-
-function readSavedModalState() {
+function hasSubscribed() {
   if (typeof window === "undefined") {
-    return null;
+    return false;
   }
 
-  const value = window.localStorage.getItem(modalStateKey);
-  if (value === "dismissed") {
-    window.localStorage.removeItem(modalStateKey);
-    return null;
-  }
-
-  return value === "subscribed" ? value : null;
+  return window.localStorage.getItem(modalStateKey) === "subscribed";
 }
 
-function saveModalState(value: ModalState) {
-  window.localStorage.setItem(modalStateKey, value);
-}
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-function parseHiddenFields(rawValue: string | undefined) {
-  if (!rawValue) {
-    return [];
-  }
-
-  try {
-    const parsedValue = JSON.parse(rawValue) as Record<string, string>;
-    return Object.entries(parsedValue).filter(
-      (entry): entry is [string, string] =>
-        typeof entry[0] === "string" && typeof entry[1] === "string",
-    );
-  } catch (error) {
-    console.error(
-      "Failed to parse NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON",
-      error,
-    );
-    return [];
-  }
+function markSubscribed() {
+  window.localStorage.setItem(modalStateKey, "subscribed");
 }
 
 export function FirstVisitSubscribeModal() {
+  const preloadHostRef = useRef<HTMLDivElement | null>(null);
+  const visibleHostRef = useRef<HTMLDivElement | null>(null);
+  const mountedFormRef = useRef<HTMLDivElement | null>(null);
   const openTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success">(
-    "idle",
-  );
+  const [formReady, setFormReady] = useState(false);
 
-  const emailOctopusFormAction =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION?.trim() ||
-    defaultEmailOctopusFormAction;
-  const emailOctopusEmailFieldName =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME?.trim() ||
-    defaultEmailOctopusEmailFieldName;
-  const emailOctopusHoneypotName =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_HONEYPOT_NAME?.trim() ||
-    defaultEmailOctopusHoneypotName;
-  const hiddenFields = useMemo(
-    () =>
-      parseHiddenFields(
-        process.env.NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON,
-      ),
-    [],
+  const emailOctopusEmbedScriptSrc =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC?.trim() ||
+    defaultEmailOctopusEmbedScriptSrc;
+  const emailOctopusEmbedFormId =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID?.trim() ||
+    defaultEmailOctopusEmbedFormId;
+  const isEmailOctopusConfigured = Boolean(
+    emailOctopusEmbedScriptSrc && emailOctopusEmbedFormId,
   );
-  const isEmailOctopusConfigured = Boolean(emailOctopusFormAction);
 
   useEffect(() => {
-    if (!isEmailOctopusConfigured || readSavedModalState()) {
+    if (!isEmailOctopusConfigured || hasSubscribed()) {
       return;
     }
 
@@ -105,128 +61,121 @@ export function FirstVisitSubscribeModal() {
     };
   }, [isEmailOctopusConfigured]);
 
-  const handleOpenChange = (nextOpen: boolean) => {
-    setOpen(nextOpen);
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const trimmedEmail = email.trim();
-    if (!isValidEmail(trimmedEmail)) {
-      setError("Введите корректный email для подписки.");
+  useEffect(() => {
+    if (!isEmailOctopusConfigured || !preloadHostRef.current) {
       return;
     }
 
-    setError("");
-    setSubmitState("submitting");
+    const preloadHost = preloadHostRef.current;
+    const findPreparedForm = () => {
+      const preparedForm = preloadHost.querySelector(
+        `[data-form="${emailOctopusEmbedFormId}"] .eo-form-wrapper`,
+      );
 
-    try {
-      const formData = new FormData();
-      formData.set(emailOctopusEmailFieldName, trimmedEmail);
-      formData.set(emailOctopusHoneypotName, "");
+      if (preparedForm instanceof HTMLDivElement) {
+        mountedFormRef.current = preparedForm;
+        setFormReady(true);
 
-      hiddenFields.forEach(([fieldName, fieldValue]) => {
-        formData.set(fieldName, fieldValue);
-      });
+        const successMessage = preparedForm.querySelector(
+          ".emailoctopus-success-message",
+        );
 
-      const response = await fetch(emailOctopusFormAction, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        body: formData,
-      });
+        if (successMessage instanceof HTMLElement) {
+          const successObserver = new MutationObserver(() => {
+            if ((successMessage.textContent ?? "").trim().length > 0) {
+              markSubscribed();
+            }
+          });
 
-      const result = (await response.json()) as {
-        success?: boolean;
-        error?: { code?: string };
-      };
+          successObserver.observe(successMessage, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+          });
 
-      if (result.success) {
-        saveModalState("subscribed");
-        setSubmitState("success");
-        setEmail("");
-        return;
+          return () => successObserver.disconnect();
+        }
       }
 
-      setSubmitState("idle");
-      setError("Подписка не прошла. Проверьте email и попробуйте снова.");
-    } catch (submitError) {
-      console.error("EmailOctopus subscribe failed", submitError);
-      setSubmitState("idle");
-      setError("Не удалось отправить форму. Попробуйте ещё раз.");
+      return undefined;
+    };
+
+    const cleanupPreparedForm = findPreparedForm();
+    if (cleanupPreparedForm) {
+      return cleanupPreparedForm;
     }
-  };
+
+    const observer = new MutationObserver(() => {
+      const cleanup = findPreparedForm();
+      if (cleanup) {
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(preloadHost, { childList: true, subtree: true });
+
+    if (!preloadHost.querySelector(`script[data-form="${emailOctopusEmbedFormId}"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = emailOctopusEmbedScriptSrc;
+      script.dataset.form = emailOctopusEmbedFormId;
+      preloadHost.appendChild(script);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [
+    emailOctopusEmbedFormId,
+    emailOctopusEmbedScriptSrc,
+    isEmailOctopusConfigured,
+  ]);
+
+  useEffect(() => {
+    const preparedForm = mountedFormRef.current;
+    const visibleHost = visibleHostRef.current;
+    const preloadHost = preloadHostRef.current;
+
+    if (!open || !preparedForm || !visibleHost || !preloadHost) {
+      return;
+    }
+
+    visibleHost.appendChild(preparedForm);
+
+    return () => {
+      preloadHost.appendChild(preparedForm);
+    };
+  }, [formReady, open]);
 
   if (!isEmailOctopusConfigured) {
     return null;
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.98)] p-6 text-white sm:max-w-[400px]">
-        <DialogHeader className="space-y-3">
-          <DialogTitle className="text-2xl tracking-[-0.04em] text-white">
-            Подписка на обновления
-          </DialogTitle>
-          <DialogDescription className="text-sm leading-7 text-white/70">
-            Оставьте email, чтобы получать новости проекта и будущие анонсы.
-          </DialogDescription>
-        </DialogHeader>
+    <>
+      <div ref={preloadHostRef} className="hidden" aria-hidden="true" />
 
-        {submitState === "success" ? (
-          <div className="space-y-4">
-            <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-4 text-sm leading-7 text-emerald-50">
-              Спасибо. Подписка оформлена успешно.
-            </div>
-            <DialogFooter>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 sm:w-auto"
-              >
-                Закрыть
-              </button>
-            </DialogFooter>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.98)] p-6 text-white sm:max-w-[400px]">
+          <DialogHeader className="space-y-3">
+            <DialogTitle className="text-2xl tracking-[-0.04em] text-white">
+              Подписка на обновления
+            </DialogTitle>
+            <DialogDescription className="text-sm leading-7 text-white/70">
+              Оставьте email, чтобы получать новости проекта и будущие анонсы.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="rounded-xl border border-white/10 bg-black/20 p-4">
+            {!formReady ? (
+              <div className="flex min-h-[120px] items-center justify-center">
+                <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-white/70" />
+              </div>
+            ) : null}
+            <div ref={visibleHostRef} className={formReady ? "" : "hidden"} />
           </div>
-        ) : (
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <label className="block space-y-2">
-              <span className="text-sm font-medium text-white/82">Email</span>
-              <input
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                className="w-full rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-white outline-none transition placeholder:text-white/28 focus:border-[rgba(243,217,161,0.42)]"
-                placeholder="you@example.com"
-                autoComplete="email"
-                required
-              />
-            </label>
-
-            {error ? <p className="text-sm text-red-300">{error}</p> : null}
-
-            <DialogFooter>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="w-full rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
-              >
-                Позже
-              </button>
-              <button
-                type="submit"
-                disabled={submitState === "submitting"}
-                className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 disabled:cursor-not-allowed disabled:bg-white/70 sm:w-auto"
-              >
-                {submitState === "submitting"
-                  ? "Отправляем..."
-                  : "Подписаться"}
-              </button>
-            </DialogFooter>
-          </form>
-        )}
-      </DialogContent>
-    </Dialog>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
