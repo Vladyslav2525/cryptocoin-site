@@ -39,29 +39,23 @@ The site can show an EmailOctopus-powered subscription modal on the first visit
 after the password gate is passed.
 
 Because this project is exported as a static site for GitHub Pages, the
-EmailOctopus integration must use a **static-safe hosted form flow** or the
-official embed script:
+EmailOctopus integration now uses a **static-safe direct form POST**:
 
-1. Create an EmailOctopus hosted or embedded signup form.
-2. If you use the official embed script, copy the script `src` and `data-form`
-   values.
-3. If you use the raw hosted form HTML instead, copy the form `action` URL and
-   hidden fields.
+1. Open the EmailOctopus embed script or hosted form config.
+2. Use the direct form action URL, email field name and honeypot field name.
+3. If the form includes extra hidden fields, copy them into JSON.
 4. Set the matching environment variables before building:
 
 ```bash
-NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC="https://eocampaign1.com/form/your-form-id.js"
-NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID="your-form-id"
-NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION="https://emailoctopus.com/lists/.../forms/embedded/..."
-NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME="email"
-NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON='{"list":"your-list-id"}'
+NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION="https://eocampaign1.com/form/your-form-id"
+NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME="field_0"
+NEXT_PUBLIC_EMAILOCTOPUS_HONEYPOT_NAME="hpxxxxxxxx"
+NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON='{}'
 ```
 
 Notes:
 
 - The modal appears only once per browser via `localStorage`.
-- The project currently includes a working fallback to the provided
-  EmailOctopus embed script for immediate testing.
 - Email addresses are sent directly to EmailOctopus, so no private API key is
   exposed in the static frontend.
 - Do **not** place a private EmailOctopus API key into `NEXT_PUBLIC_*`

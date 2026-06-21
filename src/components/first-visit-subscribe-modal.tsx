@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
   Dialog,
@@ -12,9 +12,11 @@ import {
 } from "@/components/ui/dialog";
 
 const modalStateKey = "cryptocoin-site-subscribe-modal-state";
-const defaultEmailOctopusEmbedScriptSrc =
-  "https://eocampaign1.com/form/477f6b8e-6d52-11f1-bc9a-17c7d72d96de.js";
-const defaultEmailOctopusEmbedFormId = "477f6b8e-6d52-11f1-bc9a-17c7d72d96de";
+const defaultEmailOctopusFormAction =
+  "https://eocampaign1.com/form/477f6b8e-6d52-11f1-bc9a-17c7d72d96de";
+const defaultEmailOctopusEmailFieldName = "field_0";
+const defaultEmailOctopusHoneypotName =
+  "hpc4b27b6e-eb38-11e9-be00-06b4694bee2a";
 
 type ModalState = "dismissed" | "subscribed";
 
@@ -56,29 +58,23 @@ function parseHiddenFields(rawValue: string | undefined) {
 }
 
 export function FirstVisitSubscribeModal() {
-  const iframeName = useId().replace(/:/g, "");
-  const embedContainerRef = useRef<HTMLDivElement | null>(null);
   const openTimerRef = useRef<number | null>(null);
-  const submitStartedRef = useRef(false);
-  const fallbackTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
-  const [embedLoaded, setEmbedLoaded] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success">(
     "idle",
   );
 
-  const emailOctopusEmbedScriptSrc =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC?.trim() ||
-    defaultEmailOctopusEmbedScriptSrc;
-  const emailOctopusEmbedFormId =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID?.trim() ||
-    defaultEmailOctopusEmbedFormId;
   const emailOctopusFormAction =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION?.trim() ?? "";
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION?.trim() ||
+    defaultEmailOctopusFormAction;
   const emailOctopusEmailFieldName =
-    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME?.trim() || "email";
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME?.trim() ||
+    defaultEmailOctopusEmailFieldName;
+  const emailOctopusHoneypotName =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_HONEYPOT_NAME?.trim() ||
+    defaultEmailOctopusHoneypotName;
   const hiddenFields = useMemo(
     () =>
       parseHiddenFields(
@@ -86,12 +82,7 @@ export function FirstVisitSubscribeModal() {
       ),
     [],
   );
-  const isEmailOctopusEmbedConfigured = Boolean(
-    emailOctopusEmbedScriptSrc && emailOctopusEmbedFormId,
-  );
-  const isEmailOctopusHostedFormConfigured = Boolean(emailOctopusFormAction);
-  const isEmailOctopusConfigured =
-    isEmailOctopusEmbedConfigured || isEmailOctopusHostedFormConfigured;
+  const isEmailOctopusConfigured = Boolean(emailOctopusFormAction);
 
   useEffect(() => {
     if (!isEmailOctopusConfigured || readSavedModalState()) {
@@ -109,63 +100,6 @@ export function FirstVisitSubscribeModal() {
     };
   }, [isEmailOctopusConfigured]);
 
-  useEffect(() => {
-    if (!open || !isEmailOctopusEmbedConfigured || !embedContainerRef.current) {
-      return;
-    }
-
-    const container = embedContainerRef.current;
-    const markReady = () => {
-      if ((container.textContent ?? "").trim().length > 0 || container.childElementCount > 1) {
-        setEmbedLoaded(true);
-      }
-    };
-
-    const observer = new MutationObserver(markReady);
-    observer.observe(container, { childList: true, subtree: true });
-
-    if (container.childElementCount === 0) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = emailOctopusEmbedScriptSrc;
-      script.dataset.form = emailOctopusEmbedFormId;
-      script.onload = () => {
-        window.setTimeout(markReady, 200);
-      };
-      container.appendChild(script);
-    } else {
-      markReady();
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [
-    emailOctopusEmbedFormId,
-    emailOctopusEmbedScriptSrc,
-    isEmailOctopusEmbedConfigured,
-    open,
-  ]);
-
-  useEffect(() => {
-    return () => {
-      if (fallbackTimerRef.current !== null) {
-        window.clearTimeout(fallbackTimerRef.current);
-      }
-    };
-  }, []);
-
-  const markSubscribed = () => {
-    if (!submitStartedRef.current) {
-      return;
-    }
-
-    submitStartedRef.current = false;
-    saveModalState("subscribed");
-    setSubmitState("success");
-    setError("");
-  };
-
   const handleOpenChange = (nextOpen: boolean) => {
     if (!nextOpen && submitState !== "success") {
       saveModalState("dismissed");
@@ -174,25 +108,53 @@ export function FirstVisitSubscribeModal() {
     setOpen(nextOpen);
   };
 
-  const handleSubmit = () => {
-    if (!isValidEmail(email.trim())) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const trimmedEmail = email.trim();
+    if (!isValidEmail(trimmedEmail)) {
       setError("Введите корректный email для подписки.");
-      return false;
+      return;
     }
 
     setError("");
     setSubmitState("submitting");
-    submitStartedRef.current = true;
 
-    if (fallbackTimerRef.current !== null) {
-      window.clearTimeout(fallbackTimerRef.current);
+    try {
+      const formData = new FormData();
+      formData.set(emailOctopusEmailFieldName, trimmedEmail);
+      formData.set(emailOctopusHoneypotName, "");
+
+      hiddenFields.forEach(([fieldName, fieldValue]) => {
+        formData.set(fieldName, fieldValue);
+      });
+
+      const response = await fetch(emailOctopusFormAction, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        body: formData,
+      });
+
+      const result = (await response.json()) as {
+        success?: boolean;
+        error?: { code?: string };
+      };
+
+      if (result.success) {
+        saveModalState("subscribed");
+        setSubmitState("success");
+        setEmail("");
+        return;
+      }
+
+      setSubmitState("idle");
+      setError("Подписка не прошла. Проверьте email и попробуйте снова.");
+    } catch (submitError) {
+      console.error("EmailOctopus subscribe failed", submitError);
+      setSubmitState("idle");
+      setError("Не удалось отправить форму. Попробуйте ещё раз.");
     }
-
-    fallbackTimerRef.current = window.setTimeout(() => {
-      markSubscribed();
-    }, 1600);
-
-    return true;
   };
 
   if (!isEmailOctopusConfigured) {
@@ -201,17 +163,20 @@ export function FirstVisitSubscribeModal() {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.98)] p-0 text-white sm:max-w-[400px]">
-        <DialogHeader className="sr-only">
-          <DialogTitle>Подписка на обновления проекта</DialogTitle>
-          <DialogDescription>Форма подписки EmailOctopus.</DialogDescription>
+      <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.98)] p-6 text-white sm:max-w-[400px]">
+        <DialogHeader className="space-y-3">
+          <DialogTitle className="text-2xl tracking-[-0.04em] text-white">
+            Подписка на обновления
+          </DialogTitle>
+          <DialogDescription className="text-sm leading-7 text-white/70">
+            Оставьте email, чтобы получать новости проекта и будущие анонсы.
+          </DialogDescription>
         </DialogHeader>
 
         {submitState === "success" ? (
-          <div className="space-y-4 p-6">
+          <div className="space-y-4">
             <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-4 text-sm leading-7 text-emerald-50">
-              Подписка сохранена. Этот адрес теперь будет доступен в EmailOctopus
-              для дальнейших рассылок и welcome-письма.
+              Спасибо. Подписка оформлена успешно.
             </div>
             <DialogFooter>
               <button
@@ -219,91 +184,46 @@ export function FirstVisitSubscribeModal() {
                 onClick={() => setOpen(false)}
                 className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 sm:w-auto"
               >
-                Продолжить
+                Закрыть
               </button>
             </DialogFooter>
           </div>
-        ) : isEmailOctopusEmbedConfigured ? (
-          <div className="min-h-[280px] p-6 pt-12">
-            <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-              {!embedLoaded ? (
-                <div className="flex min-h-[120px] items-center justify-center">
-                  <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-white/70" />
-                </div>
-              ) : null}
-              <div ref={embedContainerRef} className="min-h-[120px]" />
-            </div>
-          </div>
         ) : (
-          <div className="p-6 pt-12">
-            <form
-              action={emailOctopusFormAction}
-              method="POST"
-              target={iframeName}
-              className="space-y-4"
-              onSubmit={(event) => {
-                if (!handleSubmit()) {
-                  event.preventDefault();
-                }
-              }}
-            >
-              <label className="block space-y-2">
-                <span className="text-sm font-medium text-white/82">Email</span>
-                <input
-                  type="email"
-                  name={emailOctopusEmailFieldName}
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  className="w-full rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-white outline-none transition placeholder:text-white/28 focus:border-[rgba(243,217,161,0.42)]"
-                  placeholder="you@example.com"
-                  autoComplete="email"
-                  required
-                />
-              </label>
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <label className="block space-y-2">
+              <span className="text-sm font-medium text-white/82">Email</span>
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                className="w-full rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-white outline-none transition placeholder:text-white/28 focus:border-[rgba(243,217,161,0.42)]"
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+              />
+            </label>
 
-              {hiddenFields.map(([fieldName, fieldValue]) => (
-                <input
-                  key={fieldName}
-                  type="hidden"
-                  name={fieldName}
-                  value={fieldValue}
-                />
-              ))}
+            {error ? <p className="text-sm text-red-300">{error}</p> : null}
 
-              <p className="text-xs leading-6 text-white/45">
-                После настройки welcome-автоматизации в EmailOctopus новые
-                подписчики будут автоматически получать приветственное письмо.
-              </p>
-
-              {error ? <p className="text-sm text-red-300">{error}</p> : null}
-
-              <DialogFooter>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="w-full rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
-                >
-                  Позже
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitState === "submitting"}
-                  className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 disabled:cursor-not-allowed disabled:bg-white/70 sm:w-auto"
-                >
-                  {submitState === "submitting"
-                    ? "Отправляем..."
-                    : "Подписаться на обновления"}
-                </button>
-              </DialogFooter>
-            </form>
-
-            <iframe
-              title="EmailOctopus subscription target"
-              name={iframeName}
-              className="hidden"
-              onLoad={markSubscribed}
-            />
-          </div>
+            <DialogFooter>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="w-full rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
+              >
+                Позже
+              </button>
+              <button
+                type="submit"
+                disabled={submitState === "submitting"}
+                className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 disabled:cursor-not-allowed disabled:bg-white/70 sm:w-auto"
+              >
+                {submitState === "submitting"
+                  ? "Отправляем..."
+                  : "Подписаться"}
+              </button>
+            </DialogFooter>
+          </form>
         )}
       </DialogContent>
     </Dialog>
