@@ -62,6 +62,7 @@ export function FirstVisitSubscribeModal() {
   const submitStartedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [embedLoaded, setEmbedLoaded] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success">(
@@ -113,15 +114,32 @@ export function FirstVisitSubscribeModal() {
       return;
     }
 
-    if (embedContainerRef.current.childElementCount > 0) {
-      return;
+    const container = embedContainerRef.current;
+    const markReady = () => {
+      if ((container.textContent ?? "").trim().length > 0 || container.childElementCount > 1) {
+        setEmbedLoaded(true);
+      }
+    };
+
+    const observer = new MutationObserver(markReady);
+    observer.observe(container, { childList: true, subtree: true });
+
+    if (container.childElementCount === 0) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = emailOctopusEmbedScriptSrc;
+      script.dataset.form = emailOctopusEmbedFormId;
+      script.onload = () => {
+        window.setTimeout(markReady, 200);
+      };
+      container.appendChild(script);
+    } else {
+      markReady();
     }
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = emailOctopusEmbedScriptSrc;
-    script.dataset.form = emailOctopusEmbedFormId;
-    embedContainerRef.current.appendChild(script);
+    return () => {
+      observer.disconnect();
+    };
   }, [
     emailOctopusEmbedFormId,
     emailOctopusEmbedScriptSrc,
@@ -183,31 +201,31 @@ export function FirstVisitSubscribeModal() {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-w-[calc(100%-2rem)] border-white/10 bg-[rgba(10,14,24,0.97)] text-white sm:max-w-[400px]">
         <DialogHeader className="space-y-3">
           <span className="section-kicker mb-0 w-fit self-center sm:self-start">
             Project updates
           </span>
-          <DialogTitle className="text-2xl tracking-[-0.04em] sm:text-3xl">
-            Получайте обновления проекта на email
+          <DialogTitle className="text-2xl tracking-[-0.04em] text-white sm:text-3xl">
+            Получайте обновления проекта
           </DialogTitle>
           <DialogDescription className="text-sm leading-7 text-white/70 sm:text-base">
-            Подпишитесь один раз, чтобы узнавать о новых этапах проекта, запуске
-            обновлений и будущих анонсах напрямую на почту.
+            Подпишитесь, чтобы первыми получать новости проекта, обновления и
+            будущие анонсы на email.
           </DialogDescription>
         </DialogHeader>
 
         {submitState === "success" ? (
           <div className="space-y-4">
-            <div className="rounded-[1.5rem] border border-emerald-400/30 bg-emerald-400/10 px-4 py-4 text-sm leading-7 text-emerald-50">
-              Подписка сохранена. Теперь этот адрес будет доступен в EmailOctopus
-              для будущих рассылок и welcome-письма в следующей итерации.
+            <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-4 text-sm leading-7 text-emerald-50">
+              Подписка сохранена. Этот адрес теперь будет доступен в EmailOctopus
+              для дальнейших рассылок и welcome-письма.
             </div>
             <DialogFooter>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 sm:w-auto"
+                className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 sm:w-auto"
               >
                 Продолжить
               </button>
@@ -215,20 +233,23 @@ export function FirstVisitSubscribeModal() {
           </div>
         ) : isEmailOctopusEmbedConfigured ? (
           <div className="space-y-4">
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/4 px-4 py-4 text-sm leading-7 text-white/68">
-              Форма загружается напрямую через EmailOctopus. Подписчики будут
-              сохраняться в вашем списке без использования приватного API-ключа в
-              коде сайта.
+            <div className="rounded-xl border border-white/10 bg-white/4 px-4 py-3 text-sm leading-7 text-white/68">
+              Ниже загружается встроенная форма EmailOctopus с полем для ввода
+              email и отправкой подписки.
             </div>
-            <div
-              ref={embedContainerRef}
-              className="min-h-[220px] rounded-[1.5rem] border border-white/10 bg-black/20 p-3"
-            />
+            <div className="rounded-xl border border-white/10 bg-black/20 p-4">
+              {!embedLoaded ? (
+                <div className="pb-3 text-sm text-white/58">
+                  Загружаем форму подписки...
+                </div>
+              ) : null}
+              <div ref={embedContainerRef} className="min-h-[120px]" />
+            </div>
             <DialogFooter>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="w-full rounded-2xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
+                className="w-full rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
               >
                 Закрыть
               </button>
@@ -254,7 +275,7 @@ export function FirstVisitSubscribeModal() {
                   name={emailOctopusEmailFieldName}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="w-full rounded-2xl border border-white/12 bg-black/30 px-4 py-3 text-white outline-none transition placeholder:text-white/28 focus:border-[rgba(243,217,161,0.42)]"
+                  className="w-full rounded-xl border border-white/12 bg-black/30 px-4 py-3 text-white outline-none transition placeholder:text-white/28 focus:border-[rgba(243,217,161,0.42)]"
                   placeholder="you@example.com"
                   autoComplete="email"
                   required
@@ -281,14 +302,14 @@ export function FirstVisitSubscribeModal() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="w-full rounded-2xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
+                  className="w-full rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
                 >
                   Позже
                 </button>
                 <button
                   type="submit"
                   disabled={submitState === "submitting"}
-                  className="w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 disabled:cursor-not-allowed disabled:bg-white/70 sm:w-auto"
+                  className="w-full rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 disabled:cursor-not-allowed disabled:bg-white/70 sm:w-auto"
                 >
                   {submitState === "submitting"
                     ? "Отправляем..."
