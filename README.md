@@ -27,6 +27,8 @@ Copy `.env.example` if you want to override defaults:
 - `NEXT_PUBLIC_YOUTUBE_EMBED_URL`
 - `NEXT_PUBLIC_SITE_PASSWORD_HASH`
 - `NEXT_PUBLIC_BASE_PATH`
+- `NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC`
+- `NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID`
 - `NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION`
 - `NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME`
 - `NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON`
@@ -37,14 +39,19 @@ The site can show an EmailOctopus-powered subscription modal on the first visit
 after the password gate is passed.
 
 Because this project is exported as a static site for GitHub Pages, the
-EmailOctopus integration must use a **static-safe hosted form flow**:
+EmailOctopus integration must use a **static-safe hosted form flow** or the
+official embed script:
 
 1. Create an EmailOctopus hosted or embedded signup form.
-2. Open the generated embed code and copy the form `action` URL.
-3. Copy any required hidden form fields from the embed code into JSON.
-4. Set these environment variables before building:
+2. If you use the official embed script, copy the script `src` and `data-form`
+   values.
+3. If you use the raw hosted form HTML instead, copy the form `action` URL and
+   hidden fields.
+4. Set the matching environment variables before building:
 
 ```bash
+NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC="https://eocampaign1.com/form/your-form-id.js"
+NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID="your-form-id"
 NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION="https://emailoctopus.com/lists/.../forms/embedded/..."
 NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME="email"
 NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON='{"list":"your-list-id"}'
@@ -53,6 +60,8 @@ NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON='{"list":"your-list-id"}'
 Notes:
 
 - The modal appears only once per browser via `localStorage`.
+- The project currently includes a working fallback to the provided
+  EmailOctopus embed script for immediate testing.
 - Email addresses are sent directly to EmailOctopus, so no private API key is
   exposed in the static frontend.
 - Do **not** place a private EmailOctopus API key into `NEXT_PUBLIC_*`

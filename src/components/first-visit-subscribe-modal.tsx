@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/dialog";
 
 const modalStateKey = "cryptocoin-site-subscribe-modal-state";
+const defaultEmailOctopusEmbedScriptSrc =
+  "https://eocampaign1.com/form/477f6b8e-6d52-11f1-bc9a-17c7d72d96de.js";
+const defaultEmailOctopusEmbedFormId = "477f6b8e-6d52-11f1-bc9a-17c7d72d96de";
 
 type ModalState = "dismissed" | "subscribed";
 
@@ -54,6 +57,7 @@ function parseHiddenFields(rawValue: string | undefined) {
 
 export function FirstVisitSubscribeModal() {
   const iframeName = useId().replace(/:/g, "");
+  const embedContainerRef = useRef<HTMLDivElement | null>(null);
   const openTimerRef = useRef<number | null>(null);
   const submitStartedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
@@ -64,6 +68,12 @@ export function FirstVisitSubscribeModal() {
     "idle",
   );
 
+  const emailOctopusEmbedScriptSrc =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_SCRIPT_SRC?.trim() ||
+    defaultEmailOctopusEmbedScriptSrc;
+  const emailOctopusEmbedFormId =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMBED_FORM_ID?.trim() ||
+    defaultEmailOctopusEmbedFormId;
   const emailOctopusFormAction =
     process.env.NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION?.trim() ?? "";
   const emailOctopusEmailFieldName =
@@ -75,7 +85,12 @@ export function FirstVisitSubscribeModal() {
       ),
     [],
   );
-  const isEmailOctopusConfigured = Boolean(emailOctopusFormAction);
+  const isEmailOctopusEmbedConfigured = Boolean(
+    emailOctopusEmbedScriptSrc && emailOctopusEmbedFormId,
+  );
+  const isEmailOctopusHostedFormConfigured = Boolean(emailOctopusFormAction);
+  const isEmailOctopusConfigured =
+    isEmailOctopusEmbedConfigured || isEmailOctopusHostedFormConfigured;
 
   useEffect(() => {
     if (!isEmailOctopusConfigured || readSavedModalState()) {
@@ -92,6 +107,27 @@ export function FirstVisitSubscribeModal() {
       }
     };
   }, [isEmailOctopusConfigured]);
+
+  useEffect(() => {
+    if (!open || !isEmailOctopusEmbedConfigured || !embedContainerRef.current) {
+      return;
+    }
+
+    if (embedContainerRef.current.childElementCount > 0) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = emailOctopusEmbedScriptSrc;
+    script.dataset.form = emailOctopusEmbedFormId;
+    embedContainerRef.current.appendChild(script);
+  }, [
+    emailOctopusEmbedFormId,
+    emailOctopusEmbedScriptSrc,
+    isEmailOctopusEmbedConfigured,
+    open,
+  ]);
 
   useEffect(() => {
     return () => {
@@ -174,6 +210,27 @@ export function FirstVisitSubscribeModal() {
                 className="w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/92 sm:w-auto"
               >
                 Продолжить
+              </button>
+            </DialogFooter>
+          </div>
+        ) : isEmailOctopusEmbedConfigured ? (
+          <div className="space-y-4">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/4 px-4 py-4 text-sm leading-7 text-white/68">
+              Форма загружается напрямую через EmailOctopus. Подписчики будут
+              сохраняться в вашем списке без использования приватного API-ключа в
+              коде сайта.
+            </div>
+            <div
+              ref={embedContainerRef}
+              className="min-h-[220px] rounded-[1.5rem] border border-white/10 bg-black/20 p-3"
+            />
+            <DialogFooter>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="w-full rounded-2xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/76 transition hover:bg-white/10 sm:w-auto"
+              >
+                Закрыть
               </button>
             </DialogFooter>
           </div>
