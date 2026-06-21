@@ -1,3 +1,19 @@
+type SiteLinkVariant = "ghost" | "secondary" | "primary";
+
+type SiteLink = {
+  label: string;
+  href: string;
+  variant: SiteLinkVariant;
+};
+
+type NavLink = SiteLink & {
+  variant: "ghost";
+};
+
+type CtaLink = SiteLink & {
+  variant: "secondary" | "primary";
+};
+
 export const HERO_PHRASES = [
   "Хватит инвестировать в пустоту. Реальное золото 24/7 в прямом эфире.",
   "Твой портал из крипты в реальный мир. Токен с физическим обеспечением.",
@@ -115,8 +131,15 @@ export const FAQ_ITEMS = [
   },
 ];
 
-export const FOOTER_LINKS = [
-  { label: "Философия", href: "#philosophy" },
-  { label: "Цикл роста", href: "#growth-cycle" },
-  { label: "FAQ", href: "#faq" },
+export const NAV_LINKS: NavLink[] = [
+  { label: "Философия", href: "#philosophy", variant: "ghost" },
+  { label: "Цикл роста", href: "#growth-cycle", variant: "ghost" },
+  { label: "FAQ", href: "#faq", variant: "ghost" },
 ];
+
+export const CTA_LINKS: CtaLink[] = [
+  { label: "Обратная связь", href: "/404", variant: "secondary" },
+  { label: "Купить токен", href: "/404", variant: "primary" },
+];
+
+export const FOOTER_LINKS: SiteLink[] = [...NAV_LINKS, ...CTA_LINKS];

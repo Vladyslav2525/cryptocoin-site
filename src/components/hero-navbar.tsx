@@ -1,17 +1,24 @@
 "use client";
 
+import { CTA_LINKS, NAV_LINKS } from "@/lib/site-content";
 import Link from "next/link";
 import React, { useState } from "react";
-
-const navLinksData = [
-  { label: "Философия", href: "#philosophy" },
-  { label: "Цикл роста", href: "#growth-cycle" },
-  { label: "FAQ", href: "#faq" },
-];
 
 export function HeroNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const headerShapeClass = isOpen ? "rounded-[1.75rem]" : "rounded-full";
+  const ctaClassNames = {
+    secondary:
+      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
+    primary:
+      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
+  } as const;
+  const mobileCtaClassNames = {
+    secondary:
+      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-3 text-center text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
+    primary:
+      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
+  } as const;
 
   const logoElement = (
     <div className="relative flex h-5 w-5 items-center justify-center">
@@ -40,7 +47,7 @@ export function HeroNavbar() {
         </div>
 
         <nav className="hidden items-center gap-3 sm:flex">
-          {navLinksData.map((link) => (
+          {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -59,18 +66,15 @@ export function HeroNavbar() {
         </nav>
 
         <div className="hidden items-center gap-2 sm:flex">
-          <Link
-            href="/404"
-            className="rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white"
-          >
-            Обратная связь
-          </Link>
-          <Link
-            href="/404"
-            className="rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]"
-          >
-            Покупка токена
-          </Link>
+          {CTA_LINKS.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={ctaClassNames[link.variant]}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         <button
@@ -119,7 +123,7 @@ export function HeroNavbar() {
         }`}
       >
         <nav className="flex flex-col items-center gap-4 border-t border-white/8 pt-4">
-          {navLinksData.map((link) => (
+          {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -130,20 +134,16 @@ export function HeroNavbar() {
             </a>
           ))}
           <div className="mt-2 flex w-full flex-col gap-3">
-            <Link
-              href="/404"
-              className="rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-3 text-center text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white"
-              onClick={() => setIsOpen(false)}
-            >
-              Обратная связь
-            </Link>
-            <Link
-              href="/404"
-              className="rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Покупка токена
-            </Link>
+            {CTA_LINKS.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={mobileCtaClassNames[link.variant]}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </nav>
       </div>

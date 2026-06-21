@@ -4,8 +4,18 @@ import {
   ROADMAP_STEPS,
   SUPPORT_PANELS,
 } from "@/lib/site-content";
+import Link from "next/link";
 
 export function SupportSections() {
+  const footerLinkClassNames = {
+    ghost:
+      "rounded-full border border-white/10 px-4 py-2 text-sm text-white/68 transition hover:bg-white/6 hover:text-white",
+    secondary:
+      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-2 text-sm font-medium text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
+    primary:
+      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-2 text-sm font-semibold text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
+  } as const;
+
   return (
     <>
       <section className="relative py-20 sm:py-24 lg:py-28">
@@ -96,21 +106,17 @@ export function SupportSections() {
               <div className="text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
                 CryptoCoin
               </div>
-              <p className="mt-2 max-w-2xl text-sm leading-7 text-white/52">
-                Концепт премиального landing page для проекта, который строится
-                вокруг физического обеспечения, прозрачности и реальной экономики.
-              </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
               {FOOTER_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
-                  className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/68 transition hover:bg-white/6 hover:text-white"
+                  className={footerLinkClassNames[link.variant]}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
