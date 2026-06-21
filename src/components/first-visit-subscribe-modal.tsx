@@ -44,7 +44,10 @@ function parseHiddenFields(rawValue: string | undefined) {
         typeof entry[0] === "string" && typeof entry[1] === "string",
     );
   } catch (error) {
-    console.error("Failed to parse NEXT_PUBLIC_BREVO_HIDDEN_FIELDS_JSON", error);
+    console.error(
+      "Failed to parse NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON",
+      error,
+    );
     return [];
   }
 }
@@ -61,17 +64,21 @@ export function FirstVisitSubscribeModal() {
     "idle",
   );
 
-  const brevoFormAction = process.env.NEXT_PUBLIC_BREVO_FORM_ACTION?.trim() ?? "";
-  const brevoEmailFieldName =
-    process.env.NEXT_PUBLIC_BREVO_EMAIL_FIELD_NAME?.trim() || "EMAIL";
+  const emailOctopusFormAction =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_FORM_ACTION?.trim() ?? "";
+  const emailOctopusEmailFieldName =
+    process.env.NEXT_PUBLIC_EMAILOCTOPUS_EMAIL_FIELD_NAME?.trim() || "email";
   const hiddenFields = useMemo(
-    () => parseHiddenFields(process.env.NEXT_PUBLIC_BREVO_HIDDEN_FIELDS_JSON),
+    () =>
+      parseHiddenFields(
+        process.env.NEXT_PUBLIC_EMAILOCTOPUS_HIDDEN_FIELDS_JSON,
+      ),
     [],
   );
-  const isBrevoConfigured = Boolean(brevoFormAction);
+  const isEmailOctopusConfigured = Boolean(emailOctopusFormAction);
 
   useEffect(() => {
-    if (!isBrevoConfigured || readSavedModalState()) {
+    if (!isEmailOctopusConfigured || readSavedModalState()) {
       return;
     }
 
@@ -84,7 +91,7 @@ export function FirstVisitSubscribeModal() {
         window.clearTimeout(openTimerRef.current);
       }
     };
-  }, [isBrevoConfigured]);
+  }, [isEmailOctopusConfigured]);
 
   useEffect(() => {
     return () => {
@@ -134,7 +141,7 @@ export function FirstVisitSubscribeModal() {
     return true;
   };
 
-  if (!isBrevoConfigured) {
+  if (!isEmailOctopusConfigured) {
     return null;
   }
 
@@ -157,8 +164,8 @@ export function FirstVisitSubscribeModal() {
         {submitState === "success" ? (
           <div className="space-y-4">
             <div className="rounded-[1.5rem] border border-emerald-400/30 bg-emerald-400/10 px-4 py-4 text-sm leading-7 text-emerald-50">
-              Подписка сохранена. Теперь этот адрес можно использовать в Brevo для
-              будущих рассылок и welcome-письма в следующей итерации.
+              Подписка сохранена. Теперь этот адрес будет доступен в EmailOctopus
+              для будущих рассылок и welcome-письма в следующей итерации.
             </div>
             <DialogFooter>
               <button
@@ -173,7 +180,7 @@ export function FirstVisitSubscribeModal() {
         ) : (
           <>
             <form
-              action={brevoFormAction}
+              action={emailOctopusFormAction}
               method="POST"
               target={iframeName}
               className="space-y-4"
@@ -187,7 +194,7 @@ export function FirstVisitSubscribeModal() {
                 <span className="text-sm font-medium text-white/82">Email</span>
                 <input
                   type="email"
-                  name={brevoEmailFieldName}
+                  name={emailOctopusEmailFieldName}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   className="w-full rounded-2xl border border-white/12 bg-black/30 px-4 py-3 text-white outline-none transition placeholder:text-white/28 focus:border-[rgba(243,217,161,0.42)]"
@@ -207,8 +214,8 @@ export function FirstVisitSubscribeModal() {
               ))}
 
               <p className="text-xs leading-6 text-white/45">
-                После настройки welcome-автоматизации в Brevo новые подписчики будут
-                автоматически получать приветственное письмо.
+                После настройки welcome-автоматизации в EmailOctopus новые
+                подписчики будут автоматически получать приветственное письмо.
               </p>
 
               {error ? <p className="text-sm text-red-300">{error}</p> : null}
@@ -234,7 +241,7 @@ export function FirstVisitSubscribeModal() {
             </form>
 
             <iframe
-              title="Brevo subscription target"
+              title="EmailOctopus subscription target"
               name={iframeName}
               className="hidden"
               onLoad={markSubscribed}
