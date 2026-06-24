@@ -37,6 +37,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full bg-[var(--background)] text-[var(--foreground)]">
+        <div className="bg-aurora" aria-hidden="true" />
         <Providers>{children}</Providers>
       </body>
     </html>

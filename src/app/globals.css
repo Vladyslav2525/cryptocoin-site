@@ -33,6 +33,38 @@ body {
   background: rgba(243, 217, 161, 0.24);
 }
 
+/* ── Animated background gradient ────────────────────────────── */
+@keyframes gradient-drift {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(212, 177, 106, 0.065) 38%,
+    rgba(212, 177, 106, 0.04) 55%,
+    rgba(52, 211, 153, 0.018) 68%,
+    transparent 100%
+  );
+  background-size: 280% 280%;
+  animation: gradient-drift 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-aurora {
+    animation: none;
+    background: transparent;
+  }
+}
+/* ─────────────────────────────────────────────────────────────── */
+
 .section-shell {
   @apply relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
 }
@@ -110,3 +142,4 @@ body {
     scroll-behavior: auto;
   }
 }
+
