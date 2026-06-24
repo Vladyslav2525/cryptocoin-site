@@ -1,24 +1,40 @@
 "use client";
 
-import { CTA_LINKS, NAV_LINKS } from "@/lib/site-content";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { useLocale, useTranslations } from "@/lib/language-context";
 import Link from "next/link";
 import React, { useState } from "react";
 
 export function HeroNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { locale } = useLocale();
+  const t = useTranslations();
   const headerShapeClass = isOpen ? "rounded-[1.75rem]" : "rounded-full";
+
   const ctaClassNames = {
     secondary:
       "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
     primary:
       "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
   } as const;
+
   const mobileCtaClassNames = {
     secondary:
       "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-3 text-center text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
     primary:
       "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
   } as const;
+
+  const navLinks = [
+    { label: t.nav.philosophy, href: "#philosophy" },
+    { label: t.nav.growthCycle, href: "#growth-cycle" },
+    { label: t.nav.faq, href: "#faq" },
+  ];
+
+  const ctaLinks: { label: string; href: string; variant: "secondary" | "primary" }[] = [
+    { label: t.nav.contact, href: "/404", variant: "secondary" },
+    { label: t.nav.buyToken, href: "/404", variant: "primary" },
+  ];
 
   const logoElement = (
     <div className="relative flex h-5 w-5 items-center justify-center">
@@ -47,7 +63,7 @@ export function HeroNavbar() {
         </div>
 
         <nav className="hidden items-center gap-3 sm:flex">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -66,7 +82,8 @@ export function HeroNavbar() {
         </nav>
 
         <div className="hidden items-center gap-2 sm:flex">
-          {CTA_LINKS.map((link) => (
+          <LanguageSwitcher />
+          {ctaLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
@@ -119,11 +136,11 @@ export function HeroNavbar() {
 
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out sm:hidden ${
-          isOpen ? "max-h-80 pt-4 opacity-100" : "pointer-events-none max-h-0 pt-0 opacity-0"
+          isOpen ? "max-h-96 pt-4 opacity-100" : "pointer-events-none max-h-0 pt-0 opacity-0"
         }`}
       >
         <nav className="flex flex-col items-center gap-4 border-t border-white/8 pt-4">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -133,8 +150,11 @@ export function HeroNavbar() {
               {link.label}
             </a>
           ))}
-          <div className="mt-2 flex w-full flex-col gap-3">
-            {CTA_LINKS.map((link) => (
+          <div className="mt-1">
+            <LanguageSwitcher />
+          </div>
+          <div className="mt-1 flex w-full flex-col gap-3">
+            {ctaLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -150,3 +170,4 @@ export function HeroNavbar() {
     </header>
   );
 }
+

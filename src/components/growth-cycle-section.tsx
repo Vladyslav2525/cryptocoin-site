@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { GROWTH_CYCLE_STEPS } from "@/lib/site-content";
+import { useTranslations } from "@/lib/language-context";
 
 export function GrowthCycleSection() {
+  const t = useTranslations();
+  const steps = t.growthCycle.steps;
   const sectionRef = useRef<HTMLElement>(null);
-  const firstRow = GROWTH_CYCLE_STEPS.slice(0, 2);
-  const secondRow = GROWTH_CYCLE_STEPS.slice(2, 4);
-  const finalStep = GROWTH_CYCLE_STEPS[4];
+  const firstRow = steps.slice(0, 2);
+  const secondRow = steps.slice(2, 4);
+  const finalStep = steps[4];
   const [isVisible, setIsVisible] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
 
@@ -41,11 +43,11 @@ export function GrowthCycleSection() {
     }
 
     const interval = window.setInterval(() => {
-      setActiveStep((current) => (current + 1) % GROWTH_CYCLE_STEPS.length);
+      setActiveStep((current) => (current + 1) % steps.length);
     }, 2200);
 
     return () => window.clearInterval(interval);
-  }, [isVisible]);
+  }, [isVisible, steps.length]);
 
   return (
     <section
@@ -55,16 +57,14 @@ export function GrowthCycleSection() {
     >
       <div className="section-shell">
         <div className="mx-auto max-w-6xl">
-          <span className="section-kicker">Closed-loop value model</span>
+          <span className="section-kicker">{t.growthCycle.kicker}</span>
 
           <div className="mb-10 max-w-4xl space-y-5">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
-              Как это работает: Замкнутый цикл роста
+              {t.growthCycle.title}
             </h2>
             <p className="text-base leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
-              Схема ниже показывает, как физическое обеспечение, развитие
-              проекта и доход из реального мира формируют цикл, который должен
-              укреплять общую стоимость проекта.
+              {t.growthCycle.description}
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export function GrowthCycleSection() {
           </div>
 
           <div className="hidden gap-5 md:grid lg:hidden md:grid-cols-2">
-            {GROWTH_CYCLE_STEPS.map((step, index) => (
+            {steps.map((step, index) => (
               <article
                 key={step.title}
                 className={cn(
@@ -166,7 +166,7 @@ export function GrowthCycleSection() {
           </div>
 
           <div className="space-y-4 md:hidden">
-            {GROWTH_CYCLE_STEPS.map((step, index) => (
+            {steps.map((step, index) => (
               <div key={step.title} className="flex flex-col items-center">
                 <article
                   className={cn(

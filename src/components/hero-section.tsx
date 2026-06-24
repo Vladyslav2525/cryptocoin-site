@@ -1,9 +1,14 @@
+"use client";
+
 import { HeroNavbar } from "@/components/hero-navbar";
 import { TypewriterHero } from "@/components/typewriter-hero";
+import { useTranslations } from "@/lib/language-context";
 
 const youtubeEmbedUrl = process.env.NEXT_PUBLIC_YOUTUBE_EMBED_URL;
 
 export function HeroSection() {
+  const t = useTranslations();
+
   return (
     <section className="relative min-h-screen overflow-hidden">
       <HeroNavbar />
@@ -14,9 +19,7 @@ export function HeroSection() {
               <TypewriterHero />
 
               <p className="max-w-3xl text-base leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
-                Концепция проекта строится вокруг физического обеспечения, прямой
-                видимости резервов и экономической модели, которая связывает токен
-                с реальными активами и реальным денежным потоком.
+                {t.hero.description}
               </p>
 
               <span className="section-kicker">
@@ -48,18 +51,14 @@ export function HeroSection() {
                   ) : (
                     <div className="flex h-full flex-col items-center justify-center gap-4 px-6 text-center">
                       <span className="rounded-full border border-[rgba(243,217,161,0.3)] bg-[rgba(243,217,161,0.08)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--gold-bright)]">
-                        YouTube placeholder
+                        {t.hero.videoPlaceholderLabel}
                       </span>
                       <div className="space-y-3">
                         <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
-                          Здесь будет размещено окно прямой трансляции золота и
-                          сопутствующих документов
+                          {t.hero.videoPlaceholderTitle}
                         </h2>
                         <p className="mx-auto max-w-3xl text-sm leading-7 text-white/64 sm:text-base">
-                          Контейнер уже подготовлен под крупную адаптивную трансляцию
-                          практически на всю полезную ширину первого экрана. После
-                          добавления YouTube embed URL сюда автоматически встанет
-                          живое видео.
+                          {t.hero.videoPlaceholderBody}
                         </p>
                       </div>
                     </div>
@@ -72,13 +71,13 @@ export function HeroSection() {
                   href="#philosophy"
                   className="rounded-full border border-white/14 bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/92"
                 >
-                  Изучить философию
+                  {t.hero.explorePhilosophy}
                 </a>
                 <a
                   href="#growth-cycle"
                   className="rounded-full border border-white/14 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
-                  Посмотреть цикл роста
+                  {t.hero.viewGrowthCycle}
                 </a>
               </div>
             </div>
@@ -87,3 +86,4 @@ export function HeroSection() {
     </section>
   );
 }
+

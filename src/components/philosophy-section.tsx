@@ -1,25 +1,27 @@
-import { PHILOSOPHY_BLOCKS } from "@/lib/site-content";
+"use client";
+
+import { useTranslations } from "@/lib/language-context";
 
 export function PhilosophySection() {
+  const t = useTranslations();
+
   return (
     <section id="philosophy" className="relative py-20 sm:py-24 lg:py-28">
       <div className="section-shell">
         <div className="mx-auto max-w-6xl">
-          <span className="section-kicker">Project philosophy</span>
+          <span className="section-kicker">{t.philosophy.kicker}</span>
 
           <div className="mb-10 max-w-4xl space-y-5">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
-              Наша философия: Мост между двумя мирами
+              {t.philosophy.title}
             </h2>
             <p className="max-w-3xl text-base leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
-              Этот блок объясняет не просто продукт, а логику доверия:
-              почему токен должен быть связан с физической реальностью, а не
-              только с верой рынка.
+              {t.philosophy.description}
             </p>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-2">
-            {PHILOSOPHY_BLOCKS.map((block) => (
+            {t.philosophy.blocks.map((block) => (
               <article key={block.title} className="grid-card">
                 <h3 className="mb-4 text-xl font-semibold tracking-[-0.03em] text-white">
                   {block.title}
@@ -37,3 +39,4 @@ export function PhilosophySection() {
     </section>
   );
 }
+

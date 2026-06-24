@@ -1,73 +1,67 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { HERO_PHRASES } from "@/lib/site-content";
+import { useTranslations } from "@/lib/language-context";
 
-const typingDelay = 132;
-const phrasePause = 4300;
-const phraseSwitchDelay = 620;
+const phraseDuration = 3800; // how long each phrase is visible
+const fadeOutDuration = 700; // ms, must match CSS transition
 
 export function TypewriterHero() {
-  const phrases = useMemo(() => HERO_PHRASES, []);
+  const t = useTranslations();
+  const phrases = t.hero.phrases as readonly string[];
+
   const longestPhrase = useMemo(
     () =>
-      phrases.reduce((longest, phrase) =>
+      [...phrases].reduce((longest, phrase) =>
         phrase.length > longest.length ? phrase : longest,
       ),
     [phrases],
   );
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isSwitching, setIsSwitching] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  // Reset index when language changes
+  useEffect(() => {
+    setPhraseIndex(0);
+    setVisible(true);
+  }, [phrases]);
 
   useEffect(() => {
-    const currentPhrase = phrases[phraseIndex] ?? "";
+    const showTimer = window.setTimeout(() => {
+      setVisible(false);
+    }, phraseDuration);
 
-    if (displayedText === currentPhrase && !isSwitching) {
-      const pauseTimeout = window.setTimeout(() => {
-        setIsSwitching(true);
-      }, phrasePause);
+    return () => window.clearTimeout(showTimer);
+  }, [phraseIndex, phrases]);
 
-      return () => window.clearTimeout(pauseTimeout);
-    }
+  useEffect(() => {
+    if (visible) return;
 
-    if (isSwitching) {
-      const switchTimeout = window.setTimeout(() => {
-        setDisplayedText("");
-        setPhraseIndex((current) => (current + 1) % phrases.length);
-        setIsSwitching(false);
-      }, phraseSwitchDelay);
+    const switchTimer = window.setTimeout(() => {
+      setPhraseIndex((current) => (current + 1) % phrases.length);
+      setVisible(true);
+    }, fadeOutDuration);
 
-      return () => window.clearTimeout(switchTimeout);
-    }
-
-    const timeout = window.setTimeout(
-      () => {
-        setDisplayedText((current) => currentPhrase.slice(0, current.length + 1));
-      },
-      typingDelay,
-    );
-
-    return () => window.clearTimeout(timeout);
-  }, [displayedText, isSwitching, phraseIndex, phrases]);
+    return () => window.clearTimeout(switchTimer);
+  }, [visible, phrases]);
 
   return (
     <div className="mx-auto grid w-full max-w-5xl text-center">
+      {/* Ghost element to reserve height */}
       <h1
         aria-hidden="true"
-        className="pointer-events-none invisible row-start-1 col-start-1 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-4xl lg:text-5xl xl:text-6xl"
+        className="pointer-events-none invisible row-start-1 col-start-1 text-3xl font-semibold leading-[1.15] tracking-[-0.045em] sm:text-4xl lg:text-5xl xl:text-6xl"
       >
         {longestPhrase}
-        <span className="ml-1 inline-block">|</span>
       </h1>
       <h1
-        className={`headline-gradient row-start-1 col-start-1 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] transition-opacity duration-500 sm:text-4xl lg:text-5xl xl:text-6xl ${
-          isSwitching ? "opacity-0" : "opacity-100"
+        className={`headline-gradient row-start-1 col-start-1 text-3xl font-semibold leading-[1.15] tracking-[-0.045em] transition-opacity duration-700 sm:text-4xl lg:text-5xl xl:text-6xl ${
+          visible ? "opacity-100" : "opacity-0"
         }`}
       >
-        {displayedText}
-        <span className="ml-1 inline-block text-white/90">|</span>
+        {phrases[phraseIndex]}
       </h1>
     </div>
   );
 }
+
