@@ -13,16 +13,16 @@ export function HeroNavbar() {
 
   const ctaClassNames = {
     secondary:
-      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
+      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-3 py-2.5 text-xs font-medium uppercase tracking-[0.1em] text-white/78 whitespace-nowrap transition hover:border-white/18 hover:bg-white/10 hover:text-white",
     primary:
-      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
+      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-emerald-100 whitespace-nowrap shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
   } as const;
 
   const mobileCtaClassNames = {
     secondary:
-      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-3 text-center text-xs font-medium uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
+      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-3 text-center text-xs font-medium uppercase tracking-[0.14em] text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
     primary:
-      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
+      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.14em] text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
   } as const;
 
   const navLinks = [
@@ -49,8 +49,8 @@ export function HeroNavbar() {
     <header
       className={`fixed top-4 left-1/2 z-30 flex w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 flex-col border border-white/10 bg-[rgba(16,18,26,0.58)] px-4 py-3 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-[border-radius] duration-200 ease-in-out sm:w-[calc(100%-2rem)] sm:px-5 ${headerShapeClass}`}
     >
-      <div className="flex items-center justify-between gap-x-6">
-        <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between gap-x-3">
+        <div className="flex shrink-0 items-center gap-3">
           {logoElement}
           <div className="hidden sm:block">
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/74">
@@ -62,12 +62,12 @@ export function HeroNavbar() {
           </div>
         </div>
 
-        <nav className="hidden items-center gap-3 sm:flex">
+        <nav className="hidden items-center gap-1 sm:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative inline-flex h-7 items-start overflow-hidden rounded-full px-3 text-xs font-medium uppercase tracking-[0.18em] text-white/74 transition hover:bg-white/6 sm:px-4"
+              className="group relative inline-flex h-7 items-start overflow-hidden rounded-full px-2.5 text-xs font-medium uppercase tracking-[0.1em] whitespace-nowrap text-white/74 transition hover:bg-white/6 sm:px-3"
             >
               <span className="flex h-14 flex-col transition-transform duration-300 ease-out group-hover:-translate-y-7">
                 <span className="flex h-7 items-center text-white/74">
@@ -81,7 +81,7 @@ export function HeroNavbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 sm:flex">
+        <div className="hidden shrink-0 items-center gap-1.5 sm:flex">
           <LanguageSwitcher />
           {ctaLinks.map((link) => (
             <Link
@@ -144,7 +144,7 @@ export function HeroNavbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm uppercase tracking-[0.18em] text-white/74 transition hover:text-white"
+              className="text-sm uppercase tracking-[0.12em] text-white/74 transition hover:text-white"
               onClick={() => setIsOpen(false)}
             >
               {link.label}
