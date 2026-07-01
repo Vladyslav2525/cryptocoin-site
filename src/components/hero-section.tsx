@@ -41,7 +41,7 @@ export function HeroSection() {
                 <div className="relative aspect-video overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/65">
                   {youtubeEmbedUrl ? (
                     <iframe
-                      title="CryptoCoin live reserve stream"
+                      title="AUREUM LINK live reserve stream"
                       src={youtubeEmbedUrl}
                       className="h-full w-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CryptoCoin | Real-world value in motion",
+  title: "AUREUM LINK | Real-world value in motion",
   description:
     "Premium landing page for a real-world asset crypto concept built around live transparency, physical backing, and a long-term value cycle.",
   openGraph: {
-    title: "CryptoCoin | Real-world value in motion",
+    title: "AUREUM LINK | Real-world value in motion",
     description:
       "A premium crypto landing page concept focused on physical backing, live transparency, and a closed-loop value model.",
     type: "website",

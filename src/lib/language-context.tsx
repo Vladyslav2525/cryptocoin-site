@@ -14,7 +14,7 @@ import {
   translations,
 } from "@/lib/i18n";
 
-const STORAGE_KEY = "cryptocoin-site-locale";
+const STORAGE_KEY = "aureum-link-site-locale";
 
 type LanguageContextValue = {
   locale: Locale;

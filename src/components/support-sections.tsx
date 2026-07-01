@@ -115,7 +115,7 @@ export function SupportSections() {
           <div className="mx-auto flex max-w-6xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
-                CryptoCoin
+                AUREUM LINK
               </div>
             </div>
 

@@ -9,9 +9,9 @@ type AccessGateProps = {
 
 const defaultHash =
   "c884b65443bc6255b50a1582a45480f86b393a80d0b01660ba83734eb3bca45b";
-const passwordSalt = "cryptocoin-site";
-const storageKey = "cryptocoin-site-access-granted";
-const accessEventName = "cryptocoin-site-access-change";
+const passwordSalt = "aureum-link-site";
+const storageKey = "aureum-link-site-access-granted";
+const accessEventName = "aureum-link-site-access-change";
 
 async function hashValue(value: string) {
   const encoded = new TextEncoder().encode(value);

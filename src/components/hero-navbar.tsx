@@ -54,7 +54,7 @@ export function HeroNavbar() {
           {logoElement}
           <div className="hidden sm:block">
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/74">
-              CryptoCoin
+              AUREUM LINK
             </div>
             <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/42">
               premium rwa concept

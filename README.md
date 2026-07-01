@@ -1,6 +1,6 @@
-# CryptoCoin Site
+# AUREUM LINK Site
 
-Premium static landing page for the CryptoCoin concept:
+Premium static landing page for the AUREUM LINK concept:
 
 - animated Three.js dotted background,
 - rotating typewriter hero copy,
