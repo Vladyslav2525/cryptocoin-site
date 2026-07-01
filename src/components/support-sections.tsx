@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "@/lib/language-context";
+import { withBasePath } from "@/lib/asset-path";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -117,7 +118,7 @@ export function SupportSections() {
             <div>
               <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
                 <Image
-                  src="/logo.svg"
+                  src={withBasePath("/logo.svg")}
                   alt="AUREUM LINK logo"
                   width={22}
                   height={22}

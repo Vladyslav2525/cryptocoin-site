@@ -1,6 +1,7 @@
 "use client";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { withBasePath } from "@/lib/asset-path";
 import { useLocale, useTranslations } from "@/lib/language-context";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +40,7 @@ export function HeroNavbar() {
 
   const logoElement = (
     <Image
-      src="/logo.svg"
+      src={withBasePath("/logo.svg")}
       alt="AUREUM LINK logo"
       width={28}
       height={28}
