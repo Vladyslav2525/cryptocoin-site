@@ -42,9 +42,9 @@ export function HeroNavbar() {
     <Image
       src={withBasePath("/logo.svg")}
       alt="AUREUM LINK logo"
-      width={28}
-      height={28}
-      className="h-7 w-7 shrink-0"
+      width={44}
+      height={44}
+      className="h-11 w-11 shrink-0"
       priority
     />
   );
