@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "@/lib/language-context";
+import Image from "next/image";
 import Link from "next/link";
 
 export function SupportSections() {
@@ -114,7 +115,14 @@ export function SupportSections() {
         <div className="section-shell">
           <div className="mx-auto flex max-w-6xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
+                <Image
+                  src="/logo.svg"
+                  alt="AUREUM LINK logo"
+                  width={22}
+                  height={22}
+                  className="h-[22px] w-[22px] shrink-0"
+                />
                 AUREUM LINK
               </div>
             </div>

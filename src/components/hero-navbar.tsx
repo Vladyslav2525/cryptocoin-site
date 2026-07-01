@@ -2,6 +2,7 @@
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLocale, useTranslations } from "@/lib/language-context";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -37,12 +38,14 @@ export function HeroNavbar() {
   ];
 
   const logoElement = (
-    <div className="relative flex h-5 w-5 items-center justify-center">
-      <span className="absolute top-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white/85" />
-      <span className="absolute top-1/2 left-0 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/65" />
-      <span className="absolute top-1/2 right-0 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/65" />
-      <span className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white/85" />
-    </div>
+    <Image
+      src="/logo.svg"
+      alt="AUREUM LINK logo"
+      width={28}
+      height={28}
+      className="h-7 w-7 shrink-0"
+      priority
+    />
   );
 
   return (

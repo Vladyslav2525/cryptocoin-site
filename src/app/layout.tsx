@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vladyslav2525.github.io/cryptocoin-site/"),
   title: "AUREUM LINK | Real-world value in motion",
   description:
     "Premium landing page for a real-world asset crypto concept built around live transparency, physical backing, and a long-term value cycle.",
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
     description:
       "A premium crypto landing page concept focused on physical backing, live transparency, and a closed-loop value model.",
     type: "website",
+    images: ["/logo-512.png"],
   },
 };
 
