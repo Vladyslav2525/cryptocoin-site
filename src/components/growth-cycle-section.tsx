@@ -185,6 +185,10 @@ export function GrowthCycleSection() {
               </div>
             ))}
           </div>
+
+          <div className="glass-panel mt-8 rounded-2xl px-6 py-5 text-center text-sm leading-7 text-[var(--gold-bright)] sm:text-base">
+            {t.growthCycle.cycleNote}
+          </div>
         </div>
       </div>
     </section>

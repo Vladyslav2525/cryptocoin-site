@@ -19,6 +19,7 @@ export function SupportSections() {
 
   const navLinks = [
     { label: t.nav.philosophy, href: "#philosophy", variant: "ghost" as const },
+    { label: t.nav.comparison, href: "#comparison", variant: "ghost" as const },
     { label: t.nav.growthCycle, href: "#growth-cycle", variant: "ghost" as const },
     { label: t.nav.faq, href: "#faq", variant: "ghost" as const },
   ];

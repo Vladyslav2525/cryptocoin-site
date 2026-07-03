@@ -29,6 +29,7 @@ export function HeroNavbar() {
 
   const navLinks = [
     { label: t.nav.philosophy, href: "#philosophy" },
+    { label: t.nav.comparison, href: "#comparison" },
     { label: t.nav.growthCycle, href: "#growth-cycle" },
     { label: t.nav.faq, href: "#faq" },
   ];
