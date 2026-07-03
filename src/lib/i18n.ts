@@ -25,6 +25,15 @@ export const translations = {
       contact: "Обратная связь",
       buyToken: "Купить токен",
     },
+    social: {
+      menuTitle: "Мы в сети",
+      menuSubtitle: "Выбери удобный канал связи",
+      twitter: "Twitter / X",
+      telegram: "Telegram-канал",
+      youtube: "Прямой эфир золота",
+      reddit: "Наш Reddit",
+      email: "Написать на почту",
+    },
     hero: {
       description:
         "Концепция проекта строится вокруг физического обеспечения, прямой видимости резервов и экономической модели, которая связывает токен с реальными активами и реальным денежным потоком.",
@@ -222,6 +231,15 @@ export const translations = {
       faq: "FAQ",
       contact: "Contact",
       buyToken: "Buy Token",
+    },
+    social: {
+      menuTitle: "Find Us Online",
+      menuSubtitle: "Pick your preferred channel",
+      twitter: "Twitter / X",
+      telegram: "Telegram Channel",
+      youtube: "Live Gold Stream",
+      reddit: "Our Reddit",
+      email: "Email Us",
     },
     hero: {
       description:

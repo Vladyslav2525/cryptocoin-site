@@ -1,6 +1,8 @@
 "use client";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { SocialLinksRow } from "@/components/social-links-row";
+import { SocialMenu } from "@/components/social-menu";
 import { withBasePath } from "@/lib/asset-path";
 import { useLocale, useTranslations } from "@/lib/language-context";
 import Image from "next/image";
@@ -35,7 +37,6 @@ export function HeroNavbar() {
   ];
 
   const ctaLinks: { label: string; href: string; variant: "secondary" | "primary" }[] = [
-    { label: t.nav.contact, href: "/404", variant: "secondary" },
     { label: t.nav.buyToken, href: "/404", variant: "primary" },
   ];
 
@@ -88,6 +89,7 @@ export function HeroNavbar() {
 
         <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
           <LanguageSwitcher />
+          <SocialMenu triggerClassName={ctaClassNames.secondary} triggerLabel={t.nav.contact} />
           {ctaLinks.map((link) => (
             <Link
               key={link.label}
@@ -157,6 +159,9 @@ export function HeroNavbar() {
           ))}
           <div className="mt-1">
             <LanguageSwitcher />
+          </div>
+          <div className="mt-2 flex flex-col items-center gap-2">
+            <SocialLinksRow />
           </div>
           <div className="mt-1 flex w-full flex-col gap-3">
             {ctaLinks.map((link) => (

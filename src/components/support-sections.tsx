@@ -2,6 +2,7 @@
 
 import { useTranslations } from "@/lib/language-context";
 import { withBasePath } from "@/lib/asset-path";
+import { SocialLinksRow } from "@/components/social-links-row";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +26,6 @@ export function SupportSections() {
   ];
 
   const ctaLinks = [
-    { label: t.nav.contact, href: "/404", variant: "secondary" as const },
     { label: t.nav.buyToken, href: "/404", variant: "primary" as const },
   ];
 
@@ -115,8 +115,8 @@ export function SupportSections() {
 
       <footer id="site-footer" className="relative border-t border-white/8 py-10">
         <div className="section-shell">
-          <div className="mx-auto flex max-w-6xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
+          <div className="mx-auto flex max-w-6xl flex-col gap-6">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
                 <Image
                   src={withBasePath("/logo.svg")}
@@ -127,9 +127,11 @@ export function SupportSections() {
                 />
                 AUREUM LINK
               </div>
+
+              <SocialLinksRow />
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 border-t border-white/8 pt-6">
               {footerLinks.map((link) => (
                 <Link
                   key={link.href + link.label}
