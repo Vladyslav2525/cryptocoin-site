@@ -73,7 +73,7 @@ export function SocialMenu({ triggerClassName, triggerLabel, align = "right" }: 
 
       <div
         role="menu"
-        className={`absolute top-[calc(100%+0.75rem)] z-40 w-72 origin-top rounded-2xl border border-white/10 bg-[rgba(14,16,23,0.92)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-200 ease-out ${
+        className={`absolute top-[calc(100%+0.75rem)] z-40 w-72 origin-top rounded-2xl border border-white/12 bg-[rgba(6,7,11,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl transition-all duration-200 ease-out ${
           align === "right" ? "right-0" : "left-0"
         } ${
           open
@@ -99,12 +99,12 @@ export function SocialMenu({ triggerClassName, triggerLabel, align = "right" }: 
                 rel="noreferrer noopener"
                 role="menuitem"
                 onClick={() => setOpen(false)}
-                className={`group flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2.5 text-sm text-white/78 transition-all duration-200 ${ACCENTS[key]} ${
+                className={`group flex items-center gap-3 rounded-xl border border-white/12 bg-white/[0.07] px-3 py-2.5 text-sm text-white/78 transition-all duration-200 hover:bg-white/[0.12] ${ACCENTS[key]} ${
                   open ? "translate-x-0 opacity-100" : "translate-x-2 opacity-0"
                 }`}
                 style={{ transitionDelay: open ? `${index * 40}ms` : "0ms" }}
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition-transform duration-200 group-hover:scale-110">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/80 transition-transform duration-200 group-hover:scale-110">
                   <Icon className="h-4 w-4" />
                 </span>
                 <span className="font-medium">{t.social[key]}</span>
