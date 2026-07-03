@@ -67,12 +67,12 @@ export function HeroNavbar() {
           </div>
         </div>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 xl:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative inline-flex h-7 items-start overflow-hidden rounded-full px-2 text-xs font-medium uppercase tracking-[0.08em] whitespace-nowrap text-white/74 transition hover:bg-white/6 xl:px-3 xl:tracking-[0.1em]"
+              className="group relative inline-flex h-7 items-start overflow-hidden rounded-full px-2.5 text-xs font-medium uppercase tracking-[0.1em] whitespace-nowrap text-white/74 transition hover:bg-white/6"
             >
               <span className="flex h-14 flex-col transition-transform duration-300 ease-out group-hover:-translate-y-7">
                 <span className="flex h-7 items-center text-white/74">
@@ -86,7 +86,7 @@ export function HeroNavbar() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-1.5 lg:flex">
+        <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
           <LanguageSwitcher />
           {ctaLinks.map((link) => (
             <Link
@@ -100,7 +100,7 @@ export function HeroNavbar() {
         </div>
 
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/74 transition hover:bg-white/6 hover:text-white lg:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/74 transition hover:bg-white/6 hover:text-white xl:hidden"
           onClick={() => setIsOpen((current) => !current)}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           type="button"
@@ -140,7 +140,7 @@ export function HeroNavbar() {
       </div>
 
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${
+        className={`overflow-hidden transition-all duration-300 ease-in-out xl:hidden ${
           isOpen ? "max-h-96 pt-4 opacity-100" : "pointer-events-none max-h-0 pt-0 opacity-0"
         }`}
       >
