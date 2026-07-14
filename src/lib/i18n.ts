@@ -19,8 +19,10 @@ export const translations = {
   ru: {
     nav: {
       philosophy: "Философия",
-      comparison: "Почему мы",
-      growthCycle: "Цикл роста",
+      howTreasuryGrows: "Как растёт казна",
+      treasury: "Казна",
+      token: "Токеномика",
+      manifesto: "Манифест",
       faq: "FAQ",
       contact: "Обратная связь",
       buyToken: "Купить токен",
@@ -34,159 +36,185 @@ export const translations = {
       reddit: "Наш Reddit",
       email: "Написать на почту",
     },
+    disclaimer: {
+      label: "Важно",
+      short:
+        "Токен не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли.",
+    },
     hero: {
+      kicker: "Публичная казна · Радикальная прозрачность · 24/7",
       description:
-        "Концепция проекта строится вокруг физического обеспечения, прямой видимости резервов и экономической модели, которая связывает токен с реальными активами и реальным денежным потоком.",
+        "AUREUM LINK — проект с публичной, проверяемой казной реальных активов. Она начинается с одного золотого слитка, который вы видите в прямом эфире вместе с документами. Никаких обещаний — только то, что можно проверить.",
       phrases: [
-        "Хватит инвестировать в пустоту. Реальное золото 24/7 в прямом эфире.",
-        "Твой портал из крипты в реальный мир. Токен с физическим обеспечением.",
-        "Начинаем с золота. Строим будущее проекта на реальной экономике.",
+        "Публичная казна реальных активов. Начинаем с золотого слитка в прямом эфире.",
+        "Не верьте на слово — проверяйте. Каждый актив с документами, в открытую.",
+        "Я один человек. Я строю прозрачную казну в прямом эфире.",
       ],
+      liveLabel: "Прямой эфир казны",
       videoPlaceholderLabel: "YouTube placeholder",
       videoPlaceholderTitle:
-        "Здесь будет размещено окно прямой трансляции золота и сопутствующих документов",
+        "Здесь будет прямая трансляция золотого слитка и документов казны",
       videoPlaceholderBody:
         "Контейнер уже подготовлен под крупную адаптивную трансляцию практически на всю полезную ширину первого экрана. После добавления YouTube embed URL сюда автоматически встанет живое видео.",
-      explorePhilosophy: "Изучить философию",
-      viewGrowthCycle: "Посмотреть цикл роста",
+      ctaTreasury: "Открыть казну",
+      ctaManifesto: "Читать манифест",
+    },
+    teasers: {
+      treasury: {
+        title: "🏦 Казна",
+        body: "Список реальных активов с фото, серийными номерами и документами. Сейчас — один золотой слиток. Честно про то, чего ещё нет.",
+        cta: "Открыть казну",
+      },
+      token: {
+        title: "🪙 Токеномика",
+        body: "Общая эмиссия, распределение и назначение токена. Платформа — Base (ERC-20). Прозрачно и без обещаний прибыли.",
+        cta: "Смотреть токеномику",
+      },
+      manifesto: {
+        title: "🌍 Манифест",
+        body: "Кто я, что уже есть, чем отличаюсь от PAXG и XAUT и какой план. От первого лица, как человек, а не как биржа.",
+        cta: "Читать манифест",
+      },
     },
     philosophy: {
-      kicker: "🌉 Project philosophy",
-      title: "Наша философия: Мост между двумя мирами",
+      kicker: "🌉 Философия проекта",
+      title: "Радикальная прозрачность вместо обещаний",
       description:
-        "Этот блок объясняет не просто продукт, а логику доверия: почему токен должен быть связан с физической реальностью, а не только с верой рынка.",
+        "Это объяснение логики доверия: почему проект показывает казну открыто и в реальном времени, а не просит верить на слово.",
       blocks: [
         {
           title: "⚠️ Дефицит доверия на крипторынке",
           paragraphs: [
-            "Большинство современных криптовалют обеспечены лишь одной вещью — верой людей. Стоит хайпу утихнуть, и проект превращается в пыль, потому что за ним нет реальной осязаемой ценности. Даже крупные стабильные монеты просят верить им на слово, скрывая свои резервы за закрытыми дверями.",
-            "Мы создали этот проект, чтобы исправить главный дефицит крипторынка — дефицит доверия. Наш токен — это прямой портал между блокчейном и физическими активами. Мы не просим вас верить нам на слово. Мы заявляем об абсолютной открытости и показываем обеспечение здесь и сейчас.",
+            "Большинство токенов держатся только на вере людей. Когда хайп утихает, за проектом не остаётся ничего проверяемого. Даже крупные монеты просят верить им на слово и держат резервы за закрытыми дверями.",
+            "AUREUM LINK устроен наоборот: публичная казна реальных активов, которую видно и можно проверить самому. Главный принцип — не верьте на слово, проверяйте.",
           ],
         },
         {
           title: "🥇 Прозрачный старт: живое золото",
           paragraphs: [
-            "Проект начинается с реального физического обеспечения. Наш золотой слиток и все сопутствующие документы находятся под круглосуточной трансляцией. Сканы документов открыты для изучения, а подлинность подтверждается регулярными публичными тестами.",
-            "Так мы переносим в сайт главный принцип проекта: не обещание в будущем, а видимое и проверяемое обеспечение уже сейчас.",
+            "Проект начинается с одного реального золотого слитка. Слиток и все документы к нему находятся под круглосуточной трансляцией. Сканы открыты для изучения, серийный номер виден, персональные данные скрыты.",
+            "Это не обещание на будущее, а то, что можно проверить прямо сейчас.",
           ],
         },
         {
-          title: "🏗️ Расширение в реальном мире",
+          title: "🏗️ Расширение казны в реальном мире",
           paragraphs: [
-            "По мере роста проект направляет заработанные средства на покупку высоколиквидных активов в физическом мире. Все они юридически оформляются на официальную структуру проекта с публикацией выписок из госреестров.",
-            "Это открывает путь от одного актива к полноценной экосистеме, связанной с реальной экономикой, а не только с биржевым настроением.",
+            "По мере развития проект добавляет в казну новые реальные активы. Каждый оформляется официально, с публикацией документов и выписок.",
+            "Так казна растёт публично — путь от одного слитка к открытому списку реальных активов.",
           ],
         },
         {
-          title: "🌐 Почему это ценно: глобальный тренд RWA",
+          title: "🌐 Почему это важно: тренд RWA",
           paragraphs: [
-            "Токенизация реальных активов — один из ключевых трендов десятилетия. По логике крупнейших финансовых институтов, рынок RWA развивается в сторону многотриллионного масштаба, потому что инвесторы ищут не только ликвидность, но и реальную основу стоимости.",
-            "Вместо скрытых резервов и слепого доверия здесь закладывается принцип Do not trust, verify: открытый стрим, документы и объяснимая модель обратного выкупа.",
+            "Токенизация реальных активов — заметный тренд последних лет. Но большинство проектов по-прежнему прячут активы за отчётами и кастодианами.",
+            "AUREUM LINK делает ставку на другое: принцип Do not trust, verify — открытая трансляция, документы и публичный он-чейн кошелёк казны.",
           ],
         },
       ],
     },
     comparison: {
-      kicker: "🔍 Сравнение доверия",
-      title: "Большинство токенов ничем не обеспечены. Мы решили, что так продолжаться не может",
+      kicker: "🔍 Сравнение прозрачности",
+      title:
+        "Большинство токенов невозможно проверить. Мы решили сделать наоборот",
       description:
-        "Мы открыто заявляем о разнице между 'обещанным обеспечением' и обеспечением, которое можно увидеть и проверить самому — прямо сейчас, а не когда-нибудь потом.",
+        "Разница между «где-то есть резервы» и казной, которую видно и можно проверить самому — прямо сейчас, а не когда-нибудь потом.",
       others: {
         title: "⚠️ Как обычно на рынке",
         items: [
-          "Заявления об обеспечении есть, а публичного доказательства — нет",
-          "Резервы «где-то есть», но проверить их независимо нельзя",
+          "О резервах заявляют, а публичного доказательства нет",
+          "Активы «где-то есть», но проверить их независимо нельзя",
           "Ценность держится только на вере и ожиданиях сообщества",
-          "Даже крупные стейблкоины просто просят поверить им на слово",
+          "Даже крупные монеты просят просто поверить им на слово",
         ],
       },
       us: {
         title: "✅ Как устроено у AUREUM LINK",
         items: [
-          "🥇 Слиток золота показан открыто с первого дня проекта",
-          "📡 Круглосуточная трансляция резерва — без выходных и перерывов",
-          "🧾 Документы и подтверждения доступны для проверки",
-          "🔁 Реальный доход от активов используется на выкуп токена, а не остаётся обещанием",
+          "🥇 Золотой слиток показан открыто с первого дня проекта",
+          "📡 Круглосуточная трансляция казны — без выходных и пауз",
+          "🧾 Документы и серийные номера открыты для проверки",
+          "🔓 Кошелёк казны и контракт — публичные и он-чейн",
         ],
       },
     },
-    growthCycle: {
-      kicker: "🔁 Closed-loop value model",
-      title: "Как это работает: Замкнутый цикл роста",
+    treasuryGrowth: {
+      kicker: "🔁 Как растёт казна",
+      title: "Как казна растёт — на глазах и с документами",
       description:
-        "Схема ниже показывает, как физическое обеспечение, развитие проекта и доход из реального мира формируют цикл, который должен укреплять общую стоимость проекта.",
+        "Схема показывает, как казна пополняется реальными активами. Это про прозрачность процесса, а не про цену токена.",
       steps: [
         {
-          title: "🥇 Старт: Живое Золото",
-          body: "Проект стартует не с обещаний, а с реального физического актива — слитка золота, купленного и показанного публично. Каждый может увидеть трансляцию и убедиться, что обеспечение существует уже на старте, а не когда-то в будущем.",
+          title: "🥇 Слиток в прямом эфире",
+          body: "Всё начинается с одного реального золотого слитка. Он под круглосуточной трансляцией, документы открыты для проверки.",
         },
         {
-          title: "🚀 Развитие Проекта",
-          body: "Доверие, полученное на старте, конвертируется в рост интереса к проекту: расширяется аудитория, укрепляется инфраструктура, растёт цена токена на рынке.",
+          title: "💶 Средства проекта",
+          body: "Проект аккумулирует средства от развития и публичной продажи токена — прозрачно и по частям.",
         },
         {
-          title: "🏠 Покупка Недвижимости / Акций",
-          body: "Заработанные проектом средства направляются на покупку недвижимости, акций, облигаций и драгоценных металлов. Каждая покупка оформляется официально и становится частью публичной истории проекта.",
+          title: "🏦 Покупка реального актива",
+          body: "На эти средства покупается следующий реальный актив и официально оформляется на структуру проекта.",
         },
         {
-          title: "💰 Доход из Реального Мира",
-          body: "Эти активы начинают приносить реальный доход: аренда, дивиденды, рост стоимости. Это доход, который не зависит от настроения крипторынка.",
+          title: "🧾 Документы публикуются",
+          body: "Фото, серийный номер, сертификат и документ покупки выкладываются в раздел «Казна». Персональные данные скрыты.",
         },
         {
-          title: "🔁 Откуп Токенов с Биржи",
-          body: "Доход из реального мира возвращается в проект через обратный выкуп токена с биржи — сокращая предложение и усиливая стоимость. Затем цикл начинается заново, с каждым разом всё крепче.",
+          title: "📈 Казна растёт публично",
+          body: "Список активов в казне становится длиннее — и каждый шаг можно проверить. Никаких обещаний прибыли держателям токена.",
         },
       ],
       cycleNote:
-        "🔄 Цикл повторяется снова и снова: чем больше доверия — тем больше роста, чем больше роста — тем больше реальных активов, чем больше активов — тем больше доверия.",
+        "🔄 Цикл повторяется: больше прозрачности — больше доверия, больше доверия — больше реальных активов в открытой казне. Это про проверяемость казны, а не про цену токена.",
+    },
+    manifesto: {
+      kicker: "🌍 Моя позиция",
+      statement:
+        "Я не строю токен веры. Я строю проект с публичной, проверяемой казной.",
+      description:
+        "Я один человек. У проекта есть казна. Каждый актив вы увидите с документами. Я строю это в прямом эфире.",
+      tags: ["🔓 Открыто", "🧾 Проверяемо", "👤 Один человек"],
+      cta: "Читать полный манифест",
     },
     trust: {
-      kicker: "🛡️ Trust architecture",
-      title: "Почему золото, прозрачность и buyback-модель работают вместе",
+      kicker: "🛡️ Архитектура доверия",
+      title: "Почему золото, прозрачность и открытый кошелёк работают вместе",
       description:
-        "Ниже заложены базовые блоки доверия и объяснения проекта, которые будут служить основой для первого публичного релиза.",
+        "Базовые блоки доверия, на которых держится весь проект.",
       panels: [
         {
           title: "🥇 Почему старт именно с золота",
-          body: "Золото считывается как понятный актив доверия: его ценность исторически укоренена, а физическое наличие можно показать, задокументировать и проверять публично.",
+          body: "Золото считывается как понятный актив доверия: его ценность исторически укоренена, а физическое наличие можно показать, задокументировать и проверить публично.",
         },
         {
           title: "🔍 Прозрачность и подтверждение",
-          body: "Сайт сразу проектируется так, чтобы стрим, документы и описания модели работали как единая зона доверия, а не как разрозненные обещания.",
+          body: "Стрим, документы и он-чейн кошелёк казны работают как единая зона доверия, а не как набор разрозненных обещаний.",
         },
         {
-          title: "⚙️ Преимущества модели",
-          body: "Комбинация live-резерва, реальных активов и buyback-механики создает более осязаемую связь между токеном, денежным потоком и долгосрочным развитием проекта.",
+          title: "⚙️ Честность про недостатки",
+          body: "Мы открыто говорим, чего ещё нет. Честность про недостатки укрепляет доверие сильнее, чем идеальная картинка.",
         },
       ],
     },
-    manifesto: {
-      kicker: "🌍 Наша позиция",
-      statement:
-        "Мы не создаём токен веры. Мы создаём токен, обеспеченный реальностью.",
-      description:
-        "Открытость, доказуемость и реальный круговорот активов — это не маркетинг. Это принцип, на котором построен весь проект.",
-      tags: ["🔓 Открыто", "🧾 Доказуемо", "🔁 Реально работает"],
-    },
     roadmap: {
       kicker: "🗺️ Roadmap",
-      title: "Старт с золота. Дальше — расширение в активы реального мира",
+      title: "Старт с золота. Дальше — рост публичной казны",
       steps: [
         {
-          title: "🥇 Phase 01 — Live reserve launch",
-          body: "Запуск первой версии сайта, трансляции и базовой модели доверия вокруг физического обеспечения.",
+          title: "🥇 Phase 01 — Запуск и живой эфир",
+          body: "Первая версия сайта, трансляция золотого слитка и базовая архитектура доверия.",
         },
         {
-          title: "🧾 Phase 02 — Public proof layer",
-          body: "Добавление документов, публичных тестов и расширенной секции подтверждения обеспечения.",
+          title: "🧾 Phase 02 — Слой доказательств",
+          body: "Публикация документов, серийных номеров и раздела «Казна» с проверяемыми записями.",
         },
         {
-          title: "🏢 Phase 03 — Real-world asset expansion",
-          body: "Переход от одного демонстрационного актива к структуре, которая может включать несколько реальных источников стоимости: недвижимость, акции, облигации, драгоценные металлы.",
+          title: "🏢 Phase 03 — Расширение казны",
+          body: "Переход от одного актива к списку реальных активов: металлы, недвижимость, доли и другое — с документами.",
         },
         {
-          title: "🔁 Phase 04 — Mature buyback economy",
-          body: "Формирование устойчивого цикла дохода, при котором прибыль из реального мира поддерживает токен через регулярный откуп. По мере роста портфеля сообщество сможет видеть полный открытый список активов, обеспечивающих проект — а не абстрактное обещание.",
+          title: "🔁 Phase 04 — Зрелая открытая казна",
+          body: "Полный публичный список активов казны и он-чейн кошелёк. Сообщество видит каждый актив, а не абстрактное обещание.",
         },
       ],
     },
@@ -195,39 +223,246 @@ export const translations = {
       title: "Базовые ответы на ключевые вопросы",
       items: [
         {
-          question: "🎯 Что именно делает этот проект отличным от обычного токена?",
+          question: "🎯 Чем этот проект отличается от обычного токена?",
           answer:
-            "Главное отличие — стремление связать токен не только с рынком ожиданий, но и с физическим обеспечением, документами и доходом из реальных активов.",
+            "Тем, что за ним стоит публичная, проверяемая казна реальных активов, которую видно в прямом эфире, — а не обещания и ожидания.",
         },
         {
           question: "📡 Зачем нужна круглосуточная трансляция?",
           answer:
-            "Трансляция служит не украшением, а частью доверительной модели: пользователь должен видеть актив и понимать, что обеспечение не скрыто за закрытыми дверями.",
+            "Чтобы вы видели актив своими глазами. Казна не спрятана за закрытыми дверями — её можно проверить в любой момент.",
         },
         {
-          question: "🔁 Почему на сайте делается акцент на buyback-модели?",
+          question: "🪙 Что даёт токен?",
           answer:
-            "Потому что обратный выкуп позволяет показать, как доход из реальной экономики может поддерживать проект в криптомире, а не существовать отдельно от него.",
+            "Токен — способ участвовать в проекте и поддерживать его. Он не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли.",
         },
         {
-          question: "💎 Какие активы планируется покупать в будущем?",
+          question: "💎 Какие активы появятся в казне дальше?",
           answer:
-            "Изначально — золото. Далее — недвижимость, акции, облигации и другие драгоценные металлы. Полный портфель активов будет открыто виден сообществу по мере роста проекта.",
+            "Сначала золото. Далее — другие реальные активы с документами. Полный список будет открыто виден по мере роста казны.",
         },
         {
           question: "🧭 Эта версия сайта уже финальная?",
           answer:
-            "Нет. Первая версия создает архитектурную основу: сильный hero-блок, философию проекта, цикл роста и базовые блоки доверия. Дальше можно углублять proof-слой, legal-секции и продуктовые сценарии.",
+            "Нет. Это основа: hero, философия, раздел «Казна», токеномика и манифест. Дальше слой доказательств будет углубляться.",
         },
       ],
+    },
+    treasuryPage: {
+      kicker: "🏦 Дашборд казны",
+      title: "Казна проекта: то, что можно проверить",
+      description:
+        "Публичный список реальных активов проекта. Каждый актив — с фото, серийным номером и документами. Персональные данные в документах скрыты, серийный номер и суть оставлены.",
+      liveLabel: "Обновляется по мере роста казны",
+      status: {
+        now: {
+          title: "✅ Что есть сейчас",
+          items: [
+            "Один реальный золотой слиток",
+            "Круглосуточная трансляция слитка",
+            "Сканы документов с серийным номером",
+          ],
+        },
+        notYet: {
+          title: "🚧 Чего ещё нет",
+          items: [
+            "Он-чейн кошелёк казны пока не опубликован",
+            "Независимого аудита пока не проводилось",
+            "В казне пока только один актив",
+          ],
+        },
+        next: {
+          title: "🎯 Что дальше",
+          items: [
+            "Публикация адреса кошелька казны",
+            "Второй реальный актив с документами",
+            "Регулярные публичные проверки слитка",
+          ],
+        },
+      },
+      assetsTitle: "Активы в казне",
+      fields: {
+        serial: "Серийный номер",
+        certificate: "Сертификат",
+        purchaseDoc: "Документ покупки",
+        purchaseDate: "Дата покупки",
+        purchasePrice: "Цена покупки",
+        currentValue: "Текущая стоимость",
+        currentValueNote: "справочно, по рыночной цене золота",
+        status: "Статус",
+      },
+      statusValues: {
+        owned: "В казне · под трансляцией",
+        pending: "Оформляется",
+      },
+      redactedNote: "Персональные данные скрыты · серийный номер и суть видны",
+      photoPlaceholder: "Фото появится здесь",
+      docPlaceholder: "Документ появится здесь",
+      backHome: "На главную",
+    },
+    tokenPage: {
+      kicker: "🪙 Токеномика",
+      title: "Общая эмиссия, распределение и назначение токена",
+      description:
+        "Токеномика простая и открытая. Ниже — общая эмиссия, как распределяются токены и для чего токен нужен. Проверяйте каждый пункт: обещаний прибыли здесь нет.",
+      supplyLabel: "Общая эмиссия",
+      supplyValue: "100 000 000 AUR",
+      platformLabel: "Платформа",
+      platformValue: "Base · ERC-20",
+      standardNote:
+        "Base — сеть второго уровня Ethereum. Контракт и кошелёк казны можно проверить в обозревателе Basescan.",
+      allocationTitle: "Распределение",
+      allocation: [
+        {
+          label: "Резерв проекта",
+          percent: 40,
+          note: "Финансирование покупок реальных активов в казну. Публичный кошелёк.",
+        },
+        {
+          label: "Публичная продажа",
+          percent: 30,
+          note: "Продаётся траншами. Средства идут в казну и на операционные задачи.",
+        },
+        {
+          label: "Ликвидность",
+          percent: 12,
+          note: "Ликвидность на бирже. Блокируется, чтобы токеном можно было свободно торговать.",
+        },
+        {
+          label: "Основатель",
+          percent: 10,
+          note: "Намеренно скромная доля. Лок и вестинг 4 года, клифф 1 год — сигнал честности.",
+        },
+        {
+          label: "Сообщество / экосистема",
+          percent: 8,
+          note: "Контрибьюторы и небольшие airdrop за участие.",
+        },
+      ],
+      purposeTitle: "Для чего нужен токен",
+      purpose: [
+        "Способ участвовать в проекте и поддерживать его развитие",
+        "Единица, вокруг которой строится публичная история казны",
+        "Инструмент вовлечения сообщества в радикальную прозрачность",
+      ],
+      purposeIsNotTitle: "Чем токен НЕ является",
+      purposeIsNot: [
+        "Не инвестиционный продукт",
+        "Не доля и не право на активы казны",
+        "Не обещание прибыли или дохода",
+      ],
+      contractLabel: "Адрес контракта",
+      contractPlaceholder: "Будет опубликован после запуска в сети Base",
+    },
+    manifestoPage: {
+      kicker: "🌍 Манифест",
+      title: "Один человек, одна казна, полная прозрачность",
+      lead: "Я один человек. У проекта есть казна. Каждый актив вы увидите с документами. Я строю это в прямом эфире.",
+      sections: [
+        {
+          title: "Проблема",
+          paragraphs: [
+            "Крипторынок устал от обещаний. Токены появляются и исчезают, а за большинством из них нет ничего, что можно проверить. Даже крупные проекты просят верить им на слово и держат активы за закрытыми дверями.",
+            "Люди хотят не очередной красивый лендинг, а возможность своими глазами увидеть, что стоит за проектом.",
+          ],
+        },
+        {
+          title: "Что я делаю",
+          paragraphs: [
+            "Я строю AUREUM LINK — проект с публичной, проверяемой казной реальных активов. Казна начинается с одного золотого слитка, который вы видите в прямом эфире вместе с документами.",
+            "Мой принцип простой: не верьте на слово, проверяйте. Я показываю то, что есть, и честно говорю о том, чего ещё нет.",
+          ],
+        },
+        {
+          title: "Что уже есть",
+          paragraphs: [
+            "Реальный золотой слиток под круглосуточной трансляцией. Сканы документов с видимым серийным номером и скрытыми персональными данными. Сайт с разделом «Казна», токеномикой и этим манифестом.",
+            "Дальше — публичный он-чейн кошелёк казны и контракт токена в сети Base.",
+          ],
+        },
+        {
+          title: "Чем я отличаюсь от PAXG и XAUT",
+          paragraphs: [
+            "PAXG (Paxos Gold) и XAUT (Tether Gold) — это токены с привязкой 1:1 к золоту, которое хранят централизованные кастодианы. Держателю нужно доверять эмитенту и аудитору, а погашение идёт через KYC и минимальные суммы.",
+            "У меня иначе: независимый токен без привязки и без права требования на золото, а вместо закрытых кастодианов — радикальная публичная прозрачность казны. Я не обещаю, что токен равен золоту или приносит прибыль. Я обещаю, что казну можно проверить.",
+          ],
+        },
+      ],
+      pullquote: "Не верьте на слово. Проверяйте.",
+      vsTitle: "Слабые места конкурентов и чем мы лучше",
+      them: {
+        title: "⚠️ PAXG / XAUT и подобные",
+        items: [
+          "Золото у централизованных кастодианов — нужно доверять хранителю",
+          "Прозрачность = периодические аттестации выбранного эмитентом аудитора",
+          "Погашение через KYC и минимальные суммы",
+          "Это регулируемое право требования на золото, а не открытый проект",
+        ],
+      },
+      us: {
+        title: "✅ AUREUM LINK",
+        items: [
+          "Актив показан в прямом эфире 24/7 — видно, а не «по отчёту»",
+          "Прозрачность = живой стрим, документы и он-чейн кошелёк казны",
+          "Ничего не нужно погашать: проект открыт, а не является правом требования",
+          "Один автор в открытую, честно про то, чего ещё нет",
+        ],
+      },
+      planTitle: "План",
+      plan: [
+        {
+          title: "Сейчас",
+          body: "Слиток в эфире, сайт с казной, токеномикой и манифестом.",
+        },
+        {
+          title: "Дальше",
+          body: "Публикация кошелька казны и контракта токена в сети Base.",
+        },
+        {
+          title: "Потом",
+          body: "Второй реальный актив с документами и регулярные публичные проверки.",
+        },
+      ],
+      socialTitle: "Короткая версия для соцсетей",
+      socialHint: "Можно скопировать и опубликовать",
+      socialText:
+        "Я один человек. Я строю AUREUM LINK — проект с публичной, проверяемой казной реальных активов. Она начинается с золотого слитка в прямом эфире. Не верьте на слово — проверяйте. Токен не инвестиция и не обещает прибыли. #AUREUMLINK #RWA #прозрачность",
+      copy: "Скопировать текст",
+      copied: "Скопировано",
+      backHome: "На главную",
+    },
+    legalPage: {
+      kicker: "⚖️ Дисклеймер",
+      title: "Что такое токен AUREUM LINK — и чем он не является",
+      intro:
+        "Этот раздел объясняет статус токена простыми словами. Прочитайте его перед любым взаимодействием с проектом.",
+      isNotTitle: "Токен НЕ является",
+      isNot: [
+        "инвестиционным продуктом, ценной бумагой или финансовым инструментом",
+        "долей в проекте и правом на активы казны",
+        "обещанием прибыли, дохода или роста стоимости",
+        "требованием на золото или другой актив казны",
+      ],
+      isTitle: "Проект является",
+      is: [
+        "публичной, проверяемой казной реальных активов",
+        "открытой историей: фото, серийные номера и документы активов",
+        "личным проектом одного человека, который строит его в прямом эфире",
+      ],
+      notAdvice:
+        "Материалы сайта носят информационный характер и не являются инвестиционной, юридической или налоговой консультацией. Взаимодействие с криптоактивами связано с рисками; принимайте решения самостоятельно.",
+      backHome: "На главную",
     },
   },
 
   en: {
     nav: {
       philosophy: "Philosophy",
-      comparison: "Why Us",
-      growthCycle: "Growth Cycle",
+      howTreasuryGrows: "How the treasury grows",
+      treasury: "Treasury",
+      token: "Tokenomics",
+      manifesto: "Manifesto",
       faq: "FAQ",
       contact: "Contact",
       buyToken: "Buy Token",
@@ -241,158 +476,183 @@ export const translations = {
       reddit: "Our Reddit",
       email: "Email Us",
     },
+    disclaimer: {
+      label: "Important",
+      short:
+        "This token is not an investment product, grants no rights to the treasury's assets, and promises no profit.",
+    },
     hero: {
+      kicker: "Public treasury · Radical transparency · 24/7",
       description:
-        "The project concept is built around physical backing, direct reserve visibility, and an economic model that ties the token to real assets and real cash flow.",
+        "AUREUM LINK is a project with a public, verifiable treasury of real assets. It starts with a single gold bar you can watch on a live stream, together with its documents. No promises — only what you can verify.",
       phrases: [
-        "Stop investing in thin air. Real gold — live 24/7.",
-        "Your gateway from crypto to the real world. A token backed by physical assets.",
-        "We start with gold. Building the project's future on a real economy.",
+        "A public treasury of real assets. Starting with a gold bar on a live stream.",
+        "Don't take our word for it — verify. Every asset with documents, in the open.",
+        "I'm one person. I'm building a transparent treasury on a live stream.",
       ],
+      liveLabel: "Live treasury stream",
       videoPlaceholderLabel: "YouTube placeholder",
       videoPlaceholderTitle:
-        "A live gold reserve stream and supporting documents will be placed here",
+        "A live stream of the gold bar and the treasury's documents will be placed here",
       videoPlaceholderBody:
         "The container is already prepared for a large, responsive stream covering nearly the full useful width of the first screen. Once a YouTube embed URL is added, the live video will appear here automatically.",
-      explorePhilosophy: "Explore Philosophy",
-      viewGrowthCycle: "View Growth Cycle",
+      ctaTreasury: "Open the treasury",
+      ctaManifesto: "Read the manifesto",
+    },
+    teasers: {
+      treasury: {
+        title: "🏦 Treasury",
+        body: "A list of real assets with photos, serial numbers, and documents. Right now — a single gold bar. Honest about what isn't there yet.",
+        cta: "Open the treasury",
+      },
+      token: {
+        title: "🪙 Tokenomics",
+        body: "Total supply, distribution, and the token's purpose. Platform — Base (ERC-20). Transparent, with no promise of profit.",
+        cta: "See the tokenomics",
+      },
+      manifesto: {
+        title: "🌍 Manifesto",
+        body: "Who I am, what already exists, how I differ from PAXG and XAUT, and the plan. First person, as a human — not as an exchange.",
+        cta: "Read the manifesto",
+      },
     },
     philosophy: {
       kicker: "🌉 Project philosophy",
-      title: "Our Philosophy: A Bridge Between Two Worlds",
+      title: "Radical transparency instead of promises",
       description:
-        "This section explains not just the product, but the logic of trust: why a token must be tied to physical reality, not just market sentiment.",
+        "This explains the logic of trust: why the project shows its treasury openly and in real time, instead of asking you to take its word for it.",
       blocks: [
         {
           title: "⚠️ The Trust Deficit in Crypto",
           paragraphs: [
-            "Most modern cryptocurrencies are backed by only one thing — people's belief. Once the hype fades, a project crumbles because there is no real, tangible value behind it. Even major stablecoins ask you to trust them on their word, hiding their reserves behind closed doors.",
-            "We built this project to fix the main deficit in the crypto market — the trust deficit. Our token is a direct portal between the blockchain and physical assets. We are not asking you to take our word for it. We commit to absolute transparency and show our backing here and now.",
+            "Most tokens rest on one thing — people's belief. Once the hype fades, nothing verifiable is left behind them. Even major coins ask you to take their word and keep their reserves behind closed doors.",
+            "AUREUM LINK is built the other way around: a public treasury of real assets that you can see and verify yourself. The core principle is simple — don't take our word for it, verify.",
           ],
         },
         {
           title: "🥇 A Transparent Start: Live Gold",
           paragraphs: [
-            "The project starts with real physical backing. Our gold bar and all supporting documents are under 24/7 live surveillance. Document scans are open for review, and authenticity is confirmed through regular public tests.",
-            "This brings the project's core principle to the website: not a promise for the future, but visible and verifiable backing right now.",
+            "The project starts with a single real gold bar. The bar and all its documents are under a 24/7 live stream. Scans are open for review, the serial number is visible, and personal data is hidden.",
+            "This is not a promise for the future, but something you can verify right now.",
           ],
         },
         {
-          title: "🏗️ Expanding into the Real World",
+          title: "🏗️ Growing the Treasury in the Real World",
           paragraphs: [
-            "As the project grows, earned funds are directed toward purchasing highly liquid assets in the physical world. All of them are legally registered under the project's official structure, with extracts from public registries published.",
-            "This opens the path from a single asset to a full ecosystem tied to the real economy — not just to market sentiment.",
+            "As the project develops, it adds new real assets to the treasury. Each one is officially registered, with documents and extracts published.",
+            "That is how the treasury grows in public — a path from a single bar to an open list of real assets.",
           ],
         },
         {
-          title: "🌐 Why This Has Value: The Global RWA Trend",
+          title: "🌐 Why This Matters: The RWA Trend",
           paragraphs: [
-            "Real-world asset tokenization is one of the defining trends of the decade. Leading financial institutions project the RWA market growing to a multi-trillion scale, because investors seek not just liquidity but a real foundation of value.",
-            "Instead of hidden reserves and blind trust, this project is built on the principle of 'Do not trust, verify': an open stream, verifiable documents, and an explainable buyback model.",
+            "Real-world asset tokenization is a notable trend of recent years. But most projects still hide their assets behind reports and custodians.",
+            "AUREUM LINK bets on something else: the 'Do not trust, verify' principle — an open live stream, documents, and a public on-chain treasury wallet.",
           ],
         },
       ],
     },
     comparison: {
-      kicker: "🔍 Trust comparison",
-      title: "Most tokens have nothing real behind them. We decided that had to change",
+      kicker: "🔍 Transparency comparison",
+      title: "Most tokens can't be verified. We decided to do the opposite",
       description:
-        "We openly state the difference between 'promised backing' and backing you can see and verify yourself — right now, not someday.",
+        "The difference between 'reserves are somewhere' and a treasury you can see and verify yourself — right now, not someday.",
       others: {
         title: "⚠️ How it usually works",
         items: [
-          "Claims of backing exist, but public proof does not",
-          "Reserves are 'somewhere', but can't be independently verified",
-          "Value rests purely on belief and community sentiment",
-          "Even major stablecoins simply ask you to trust their word",
+          "Reserves are claimed, but public proof does not exist",
+          "Assets are 'somewhere', but can't be independently verified",
+          "Value rests purely on belief and community expectations",
+          "Even major coins simply ask you to take their word",
         ],
       },
       us: {
         title: "✅ How AUREUM LINK works",
         items: [
-          "🥇 A real gold bar shown openly from day one",
-          "📡 24/7 live reserve stream — no breaks, no exceptions",
-          "🧾 Documents and verifications available for review",
-          "🔁 Real income from assets is used for token buybacks, not left as a promise",
+          "🥇 A gold bar shown openly from day one of the project",
+          "📡 A 24/7 treasury stream — no weekends, no pauses",
+          "🧾 Documents and serial numbers open for verification",
+          "🔓 The treasury wallet and contract — public and on-chain",
         ],
       },
     },
-    growthCycle: {
-      kicker: "🔁 Closed-loop value model",
-      title: "How It Works: A Closed-Loop Growth Cycle",
+    treasuryGrowth: {
+      kicker: "🔁 How the treasury grows",
+      title: "How the treasury grows — in the open, with documents",
       description:
-        "The diagram below shows how physical backing, project development, and real-world income form a cycle designed to strengthen the project's overall value.",
+        "The diagram shows how the treasury is topped up with real assets. It's about the transparency of the process, not about the token's price.",
       steps: [
         {
-          title: "🥇 Launch: Live Gold",
-          body: "The project launches not with promises, but with a real physical asset — a gold bar, purchased and shown publicly. Anyone can watch the stream and confirm that backing exists from day one, not someday in the future.",
+          title: "🥇 A Bar on a Live Stream",
+          body: "It all starts with a single real gold bar. It's under a 24/7 live stream, with documents open for review.",
         },
         {
-          title: "🚀 Project Development",
-          body: "Trust earned at launch converts into growing interest in the project: the audience expands, infrastructure strengthens, and the token's market price grows.",
+          title: "💶 Project Funds",
+          body: "The project accumulates funds from development and the public token sale — transparently and in tranches.",
         },
         {
-          title: "🏠 Acquiring Real Estate / Equities",
-          body: "Funds earned by the project are directed toward purchasing real estate, equities, bonds, and precious metals. Every purchase is officially registered and becomes part of the project's public history.",
+          title: "🏦 Buying a Real Asset",
+          body: "Those funds are used to buy the next real asset, officially registered under the project's structure.",
         },
         {
-          title: "💰 Real-World Income",
-          body: "These assets begin generating real income: rent, dividends, appreciation. This is income that doesn't depend on crypto market sentiment.",
+          title: "🧾 Documents Get Published",
+          body: "Photos, serial number, certificate, and purchase document go into the Treasury section. Personal data is hidden.",
         },
         {
-          title: "🔁 Token Buyback from Exchange",
-          body: "Real-world income flows back into the project through token buybacks on the exchange — shrinking supply and reinforcing value. Then the cycle begins again, each time a little stronger.",
+          title: "📈 The Treasury Grows in Public",
+          body: "The list of assets in the treasury gets longer — and every step can be verified. No promise of profit to token holders.",
         },
       ],
       cycleNote:
-        "🔄 The cycle repeats again and again: more trust drives more growth, more growth funds more real assets, and more real assets build even more trust.",
+        "🔄 The cycle repeats: more transparency builds more trust, and more trust means more real assets in an open treasury. It's about the treasury's verifiability, not the token's price.",
+    },
+    manifesto: {
+      kicker: "🌍 My position",
+      statement:
+        "I'm not building a token of belief. I'm building a project with a public, verifiable treasury.",
+      description:
+        "I'm one person. The project has a treasury. You'll see every asset with documents. I'm building this on a live stream.",
+      tags: ["🔓 Open", "🧾 Verifiable", "👤 One person"],
+      cta: "Read the full manifesto",
     },
     trust: {
       kicker: "🛡️ Trust architecture",
-      title: "Why Gold, Transparency, and the Buyback Model Work Together",
-      description:
-        "Below are the foundational trust and project explanation blocks that will serve as the basis for the first public release.",
+      title: "Why gold, transparency, and an open wallet work together",
+      description: "The foundational trust blocks the whole project stands on.",
       panels: [
         {
           title: "🥇 Why We Start with Gold",
-          body: "Gold is universally recognized as a trust asset: its value is historically established, and its physical presence can be shown, documented, and publicly verified.",
+          body: "Gold reads as a clear trust asset: its value is historically established, and its physical presence can be shown, documented, and publicly verified.",
         },
         {
           title: "🔍 Transparency and Verification",
-          body: "The site is designed from the ground up so that the stream, documents, and model descriptions operate as a unified trust zone — not as scattered promises.",
+          body: "The stream, documents, and on-chain treasury wallet operate as a single trust zone — not as a set of scattered promises.",
         },
         {
-          title: "⚙️ Advantages of the Model",
-          body: "The combination of a live reserve, real-world assets, and a buyback mechanism creates a more tangible link between the token, cash flow, and the project's long-term development.",
+          title: "⚙️ Honesty About Shortcomings",
+          body: "We openly say what isn't there yet. Honesty about shortcomings builds more trust than a perfect picture.",
         },
       ],
     },
-    manifesto: {
-      kicker: "🌍 Our position",
-      statement: "We're not building a token of belief. We're building a token backed by reality.",
-      description:
-        "Openness, provability, and a real asset cycle aren't marketing. They're the principle this entire project is built on.",
-      tags: ["🔓 Open", "🧾 Provable", "🔁 Actually working"],
-    },
     roadmap: {
       kicker: "🗺️ Roadmap",
-      title: "Starting with Gold. Then — Expanding into Real-World Assets",
+      title: "Start with gold. Then — grow the public treasury",
       steps: [
         {
-          title: "🥇 Phase 01 — Live reserve launch",
-          body: "Launching the first version of the site, the live stream, and the foundational trust model around physical backing.",
+          title: "🥇 Phase 01 — Launch & Live Stream",
+          body: "The first version of the site, the gold bar stream, and the foundational trust architecture.",
         },
         {
-          title: "🧾 Phase 02 — Public proof layer",
-          body: "Adding documents, public tests, and an expanded section for confirming reserve backing.",
+          title: "🧾 Phase 02 — Proof Layer",
+          body: "Publishing documents, serial numbers, and the Treasury section with verifiable records.",
         },
         {
-          title: "🏢 Phase 03 — Real-world asset expansion",
-          body: "Moving from a single demonstration asset to a structure that can include multiple real-world sources of value: real estate, equities, bonds, precious metals.",
+          title: "🏢 Phase 03 — Treasury Expansion",
+          body: "Moving from a single asset to a list of real assets: metals, real estate, shares, and more — with documents.",
         },
         {
-          title: "🔁 Phase 04 — Mature buyback economy",
-          body: "Establishing a sustainable income cycle where real-world profits support the token through regular buybacks. As the portfolio grows, the community will be able to see the full, open list of assets backing the project — not an abstract promise.",
+          title: "🔁 Phase 04 — A Mature Open Treasury",
+          body: "A full public list of treasury assets and an on-chain wallet. The community sees every asset, not an abstract promise.",
         },
       ],
     },
@@ -401,31 +661,236 @@ export const translations = {
       title: "Essential Answers to Key Questions",
       items: [
         {
-          question: "🎯 What exactly sets this project apart from a regular token?",
+          question: "🎯 What sets this project apart from a regular token?",
           answer:
-            "The key difference is the commitment to tying the token not just to market expectations, but also to physical backing, verifiable documents, and income from real-world assets.",
+            "There is a public, verifiable treasury of real assets behind it, visible on a live stream — instead of promises and expectations.",
         },
         {
           question: "📡 Why is a 24/7 live stream necessary?",
           answer:
-            "The stream is not decoration — it is part of the trust model: users need to see the asset and understand that the backing is not hidden behind closed doors.",
+            "So you can see the asset with your own eyes. The treasury isn't hidden behind closed doors — it can be verified at any moment.",
         },
         {
-          question: "🔁 Why does the site place such emphasis on the buyback model?",
+          question: "🪙 What does the token do?",
           answer:
-            "Because the buyback mechanism demonstrates how real-economy income can support the project in the crypto world, rather than existing independently from it.",
+            "The token is a way to participate in and support the project. It is not an investment product, grants no rights to the treasury's assets, and promises no profit.",
         },
         {
-          question: "💎 What assets are planned for the future?",
+          question: "💎 What assets will appear in the treasury next?",
           answer:
-            "Initially — gold. Then — real estate, equities, bonds, and other precious metals. The full asset portfolio will be openly visible to the community as the project grows.",
+            "Gold first. Then other real assets with documents. The full list will be openly visible as the treasury grows.",
         },
         {
-          question: "🧭 Is this version of the site already final?",
+          question: "🧭 Is this version of the site final?",
           answer:
-            "No. The first version creates the architectural foundation: a strong hero block, the project's philosophy, the growth cycle, and foundational trust blocks. Future work can deepen the proof layer, legal sections, and product scenarios.",
+            "No. It's the foundation: hero, philosophy, the Treasury section, tokenomics, and the manifesto. The proof layer will keep getting deeper.",
         },
       ],
+    },
+    treasuryPage: {
+      kicker: "🏦 Treasury dashboard",
+      title: "The project's treasury: what you can verify",
+      description:
+        "A public list of the project's real assets. Each asset comes with a photo, serial number, and documents. Personal data in the documents is hidden; the serial number and the essentials are kept.",
+      liveLabel: "Updated as the treasury grows",
+      status: {
+        now: {
+          title: "✅ What exists now",
+          items: [
+            "One real gold bar",
+            "A 24/7 stream of the bar",
+            "Document scans with the serial number",
+          ],
+        },
+        notYet: {
+          title: "🚧 What isn't there yet",
+          items: [
+            "The on-chain treasury wallet isn't published yet",
+            "No independent audit has been done yet",
+            "The treasury holds only one asset so far",
+          ],
+        },
+        next: {
+          title: "🎯 What's next",
+          items: [
+            "Publishing the treasury wallet address",
+            "A second real asset with documents",
+            "Regular public checks of the bar",
+          ],
+        },
+      },
+      assetsTitle: "Assets in the treasury",
+      fields: {
+        serial: "Serial number",
+        certificate: "Certificate",
+        purchaseDoc: "Purchase document",
+        purchaseDate: "Purchase date",
+        purchasePrice: "Purchase price",
+        currentValue: "Current value",
+        currentValueNote: "for reference, at the market price of gold",
+        status: "Status",
+      },
+      statusValues: {
+        owned: "In treasury · on stream",
+        pending: "Being registered",
+      },
+      redactedNote: "Personal data hidden · serial number and essentials visible",
+      photoPlaceholder: "A photo will appear here",
+      docPlaceholder: "A document will appear here",
+      backHome: "Back to home",
+    },
+    tokenPage: {
+      kicker: "🪙 Tokenomics",
+      title: "Total supply, distribution, and the token's purpose",
+      description:
+        "The tokenomics are simple and open. Below are the total supply, how the tokens are distributed, and what the token is for. Verify every point: there are no promises of profit here.",
+      supplyLabel: "Total supply",
+      supplyValue: "100,000,000 AUR",
+      platformLabel: "Platform",
+      platformValue: "Base · ERC-20",
+      standardNote:
+        "Base is an Ethereum Layer 2 network. The contract and the treasury wallet can be verified on the Basescan explorer.",
+      allocationTitle: "Distribution",
+      allocation: [
+        {
+          label: "Project reserve",
+          percent: 40,
+          note: "Funds purchases of real assets for the treasury. A public wallet.",
+        },
+        {
+          label: "Public sale",
+          percent: 30,
+          note: "Sold in tranches. Proceeds go to the treasury and operations.",
+        },
+        {
+          label: "Liquidity",
+          percent: 12,
+          note: "Exchange pool. Locked to enable trading of the token.",
+        },
+        {
+          label: "Founder",
+          percent: 10,
+          note: "A deliberately modest share. Locked with a 4-year vest and a 1-year cliff — a signal of honesty.",
+        },
+        {
+          label: "Community / ecosystem",
+          percent: 8,
+          note: "Contributors and small airdrops for participation.",
+        },
+      ],
+      purposeTitle: "What the token is for",
+      purpose: [
+        "A way to participate in and support the project's development",
+        "The unit the public history of the treasury is built around",
+        "A tool for involving the community in radical transparency",
+      ],
+      purposeIsNotTitle: "What the token is NOT",
+      purposeIsNot: [
+        "Not an investment product",
+        "Not a share or a right to the treasury's assets",
+        "Not a promise of profit or income",
+      ],
+      contractLabel: "Contract address",
+      contractPlaceholder: "Will be published after launch on the Base network",
+    },
+    manifestoPage: {
+      kicker: "🌍 Manifesto",
+      title: "One person, one treasury, full transparency",
+      lead: "I'm one person. The project has a treasury. You'll see every asset with documents. I'm building this on a live stream.",
+      sections: [
+        {
+          title: "The problem",
+          paragraphs: [
+            "Crypto is tired of promises. Tokens appear and vanish, and behind most of them there's nothing you can verify. Even big projects ask you to take their word and keep their assets behind closed doors.",
+            "People don't want another pretty landing page — they want to see, with their own eyes, what stands behind a project.",
+          ],
+        },
+        {
+          title: "What I'm doing",
+          paragraphs: [
+            "I'm building AUREUM LINK — a project with a public, verifiable treasury of real assets. The treasury starts with a single gold bar you can watch on a live stream together with its documents.",
+            "My principle is simple: don't take my word for it, verify. I show what exists, and I'm honest about what isn't there yet.",
+          ],
+        },
+        {
+          title: "What already exists",
+          paragraphs: [
+            "A real gold bar under a 24/7 live stream. Document scans with a visible serial number and hidden personal data. A site with a Treasury section, tokenomics, and this manifesto.",
+            "Next — a public on-chain treasury wallet and the token contract on the Base network.",
+          ],
+        },
+        {
+          title: "How I differ from PAXG and XAUT",
+          paragraphs: [
+            "PAXG (Paxos Gold) and XAUT (Tether Gold) are tokens pegged 1:1 to gold held by centralized custodians. The holder must trust the issuer and the auditor, and redemption goes through KYC and minimum amounts.",
+            "Mine is different: an independent token with no peg and no claim on gold, and instead of closed custodians — radical public transparency of the treasury. I don't promise the token equals gold or generates profit. I promise the treasury can be verified.",
+          ],
+        },
+      ],
+      pullquote: "Don't take my word for it. Verify.",
+      vsTitle: "Competitors' weak spots and how we're better",
+      them: {
+        title: "⚠️ PAXG / XAUT and similar",
+        items: [
+          "Gold sits with centralized custodians — you must trust the keeper",
+          "Transparency = periodic attestations by an issuer-chosen auditor",
+          "Redemption through KYC and minimum amounts",
+          "It's a regulated claim on gold, not an open project",
+        ],
+      },
+      us: {
+        title: "✅ AUREUM LINK",
+        items: [
+          "The asset is shown live 24/7 — seen, not 'per report'",
+          "Transparency = a live stream, documents, and an on-chain treasury wallet",
+          "Nothing to redeem: the project is open, not a claim",
+          "One author in the open, honest about what isn't there yet",
+        ],
+      },
+      planTitle: "The plan",
+      plan: [
+        {
+          title: "Now",
+          body: "The bar on stream; a site with the treasury, tokenomics, and manifesto.",
+        },
+        {
+          title: "Next",
+          body: "Publishing the treasury wallet and the token contract on the Base network.",
+        },
+        {
+          title: "Later",
+          body: "A second real asset with documents and regular public checks.",
+        },
+      ],
+      socialTitle: "Short version for social media",
+      socialHint: "Ready to copy and post",
+      socialText:
+        "I'm one person. I'm building AUREUM LINK — a project with a public, verifiable treasury of real assets. It starts with a gold bar on a live stream. Don't take my word for it — verify. The token is not an investment and promises no profit. #AUREUMLINK #RWA #transparency",
+      copy: "Copy text",
+      copied: "Copied",
+      backHome: "Back to home",
+    },
+    legalPage: {
+      kicker: "⚖️ Disclaimer",
+      title: "What the AUREUM LINK token is — and what it is not",
+      intro:
+        "This section explains the token's status in plain words. Please read it before any interaction with the project.",
+      isNotTitle: "The token is NOT",
+      isNot: [
+        "an investment product, a security, or a financial instrument",
+        "a share in the project or a right to the treasury's assets",
+        "a promise of profit, income, or price growth",
+        "a claim on gold or any other treasury asset",
+      ],
+      isTitle: "The project IS",
+      is: [
+        "a public, verifiable treasury of real assets",
+        "an open history: photos, serial numbers, and documents of the assets",
+        "a personal project by one person, built on a live stream",
+      ],
+      notAdvice:
+        "The materials on this site are informational and do not constitute investment, legal, or tax advice. Interacting with crypto assets involves risk; make your own decisions.",
+      backHome: "Back to home",
     },
   },
 } as const;

@@ -1,35 +1,10 @@
 "use client";
 
 import { useTranslations } from "@/lib/language-context";
-import { withBasePath } from "@/lib/asset-path";
-import { SocialLinksRow } from "@/components/social-links-row";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteFooter } from "@/components/site-footer";
 
 export function SupportSections() {
   const t = useTranslations();
-
-  const footerLinkClassNames = {
-    ghost:
-      "rounded-full border border-white/10 px-4 py-2 text-sm text-white/68 transition hover:bg-white/6 hover:text-white",
-    secondary:
-      "rounded-full border border-white/10 bg-[rgba(255,255,255,0.06)] px-4 py-2 text-sm font-medium text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white",
-    primary:
-      "rounded-full border border-emerald-400/45 bg-[linear-gradient(135deg,rgba(16,185,129,0.22),rgba(52,211,153,0.12))] px-4 py-2 text-sm font-semibold text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)] transition duration-300 hover:border-emerald-300/65 hover:shadow-[0_0_32px_rgba(52,211,153,0.36)]",
-  } as const;
-
-  const navLinks = [
-    { label: t.nav.philosophy, href: "#philosophy", variant: "ghost" as const },
-    { label: t.nav.comparison, href: "#comparison", variant: "ghost" as const },
-    { label: t.nav.growthCycle, href: "#growth-cycle", variant: "ghost" as const },
-    { label: t.nav.faq, href: "#faq", variant: "ghost" as const },
-  ];
-
-  const ctaLinks = [
-    { label: t.nav.buyToken, href: "/404", variant: "primary" as const },
-  ];
-
-  const footerLinks = [...navLinks, ...ctaLinks];
 
   return (
     <>
@@ -113,39 +88,7 @@ export function SupportSections() {
         </div>
       </section>
 
-      <footer id="site-footer" className="relative border-t border-white/8 py-10">
-        <div className="section-shell">
-          <div className="mx-auto flex max-w-6xl flex-col gap-6">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
-                <Image
-                  src={withBasePath("/logo.svg")}
-                  alt="AUREUM LINK logo"
-                  width={22}
-                  height={22}
-                  className="h-[22px] w-[22px] shrink-0"
-                />
-                AUREUM LINK
-              </div>
-
-              <SocialLinksRow />
-            </div>
-
-            <div className="flex flex-wrap gap-3 border-t border-white/8 pt-6">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.href + link.label}
-                  href={link.href}
-                  className={footerLinkClassNames[link.variant]}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
-

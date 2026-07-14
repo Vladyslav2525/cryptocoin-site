@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useTranslations } from "@/lib/language-context";
 
 export function ManifestoSection() {
@@ -28,6 +29,16 @@ export function ManifestoSection() {
                 {tag}
               </span>
             ))}
+          </div>
+
+          <div className="mt-8">
+            <Link
+              href="/manifesto"
+              className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              {t.manifesto.cta}
+              <span aria-hidden>→</span>
+            </Link>
           </div>
         </div>
       </div>

@@ -143,3 +143,90 @@ body {
   }
 }
 
+/* ── Scroll reveal ───────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Shimmer placeholder (photos / documents) ────────────────── */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(243, 217, 161, 0.12),
+    transparent
+  );
+  animation: shimmer-slide 2.6s ease-in-out infinite;
+}
+
+@keyframes shimmer-slide {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ── Redacted document strip (personal data hidden) ──────────── */
+.redacted {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.86) 0,
+    rgba(0, 0, 0, 0.86) 8px,
+    rgba(24, 24, 24, 0.86) 8px,
+    rgba(24, 24, 24, 0.86) 16px
+  );
+  border-radius: 4px;
+  color: transparent;
+  user-select: none;
+}
+
+/* ── Donut draw-in ───────────────────────────────────────────── */
+@keyframes donut-in {
+  from {
+    stroke-dashoffset: var(--dash-len);
+  }
+  to {
+    stroke-dashoffset: var(--dash-off);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .shimmer::after {
+    animation: none;
+  }
+
+  .donut-slice {
+    animation: none !important;
+    stroke-dashoffset: var(--dash-off) !important;
+  }
+}
+

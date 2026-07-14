@@ -6,7 +6,7 @@ import { useTranslations } from "@/lib/language-context";
 
 export function GrowthCycleSection() {
   const t = useTranslations();
-  const steps = t.growthCycle.steps;
+  const steps = t.treasuryGrowth.steps;
   const sectionRef = useRef<HTMLElement>(null);
   const firstRow = steps.slice(0, 2);
   const secondRow = steps.slice(2, 4);
@@ -51,20 +51,20 @@ export function GrowthCycleSection() {
 
   return (
     <section
-      id="growth-cycle"
+      id="how-treasury-grows"
       ref={sectionRef}
       className="relative py-20 sm:py-24 lg:py-28"
     >
       <div className="section-shell">
         <div className="mx-auto max-w-6xl">
-          <span className="section-kicker">{t.growthCycle.kicker}</span>
+          <span className="section-kicker">{t.treasuryGrowth.kicker}</span>
 
           <div className="mb-10 max-w-4xl space-y-5">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
-              {t.growthCycle.title}
+              {t.treasuryGrowth.title}
             </h2>
             <p className="text-base leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
-              {t.growthCycle.description}
+              {t.treasuryGrowth.description}
             </p>
           </div>
 
@@ -187,7 +187,7 @@ export function GrowthCycleSection() {
           </div>
 
           <div className="glass-panel mt-8 rounded-2xl px-6 py-5 text-center text-sm leading-7 text-[var(--gold-bright)] sm:text-base">
-            {t.growthCycle.cycleNote}
+            {t.treasuryGrowth.cycleNote}
           </div>
         </div>
       </div>

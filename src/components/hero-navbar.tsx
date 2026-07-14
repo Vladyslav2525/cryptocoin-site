@@ -1,5 +1,6 @@
 "use client";
 
+import { Disclaimer } from "@/components/disclaimer";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SocialLinksRow } from "@/components/social-links-row";
 import { SocialMenu } from "@/components/social-menu";
@@ -30,10 +31,11 @@ export function HeroNavbar() {
   } as const;
 
   const navLinks = [
-    { label: t.nav.philosophy, href: "#philosophy" },
-    { label: t.nav.comparison, href: "#comparison" },
-    { label: t.nav.growthCycle, href: "#growth-cycle" },
-    { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.philosophy, href: "/#philosophy" },
+    { label: t.nav.treasury, href: "/treasury" },
+    { label: t.nav.token, href: "/token" },
+    { label: t.nav.manifesto, href: "/manifesto" },
+    { label: t.nav.faq, href: "/#faq" },
   ];
 
   const ctaLinks: { label: string; href: string; variant: "secondary" | "primary" }[] = [
@@ -70,7 +72,7 @@ export function HeroNavbar() {
 
         <nav className="hidden items-center gap-1 xl:flex">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="group relative inline-flex h-7 items-start overflow-hidden rounded-full px-2.5 text-xs font-medium uppercase tracking-[0.1em] whitespace-nowrap text-white/74 transition hover:bg-white/6"
@@ -83,7 +85,7 @@ export function HeroNavbar() {
                   {link.label}
                 </span>
               </span>
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -148,14 +150,14 @@ export function HeroNavbar() {
       >
         <nav className="flex flex-col items-center gap-4 border-t border-white/8 pt-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm uppercase tracking-[0.12em] text-white/74 transition hover:text-white"
               onClick={() => setIsOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <div className="mt-1">
             <LanguageSwitcher />
@@ -174,6 +176,7 @@ export function HeroNavbar() {
                 {link.label}
               </Link>
             ))}
+            <Disclaimer compact className="mt-1 px-1 text-center" />
           </div>
         </nav>
       </div>

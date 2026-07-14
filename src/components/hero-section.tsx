@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { HeroNavbar } from "@/components/hero-navbar";
 import { TypewriterHero } from "@/components/typewriter-hero";
 import { useTranslations } from "@/lib/language-context";
@@ -22,16 +23,14 @@ export function HeroSection() {
                 {t.hero.description}
               </p>
 
-              <span className="section-kicker">
-                Real-world asset concept · Live transparency · 24/7
-              </span>
+              <span className="section-kicker">{t.hero.kicker}</span>
 
               <div
                 id="hero-video"
                 className="hero-video-frame glass-panel w-full overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5"
               >
                 <div className="mb-3 flex items-center justify-between gap-3 px-2 py-1 text-left text-xs uppercase tracking-[0.24em] text-white/58 sm:px-3">
-                  <span>Live reserve stream</span>
+                  <span>{t.hero.liveLabel}</span>
                   <span className="inline-flex items-center gap-2 text-white/70">
                     <span className="h-2.5 w-2.5 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.7)]" />
                     Online window
@@ -67,18 +66,18 @@ export function HeroSection() {
               </div>
 
               <div className="flex flex-col items-center gap-3 sm:flex-row">
-                <a
-                  href="#philosophy"
-                  className="rounded-full border border-white/14 bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/92"
+                <Link
+                  href="/treasury"
+                  className="rounded-full border border-[var(--gold-soft)]/50 bg-[linear-gradient(135deg,var(--gold-bright),var(--gold-soft))] px-6 py-3 text-sm font-semibold text-black shadow-[0_0_28px_rgba(212,177,106,0.28)] transition hover:shadow-[0_0_40px_rgba(212,177,106,0.45)]"
                 >
-                  {t.hero.explorePhilosophy}
-                </a>
-                <a
-                  href="#growth-cycle"
+                  {t.hero.ctaTreasury}
+                </Link>
+                <Link
+                  href="/manifesto"
                   className="rounded-full border border-white/14 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
-                  {t.hero.viewGrowthCycle}
-                </a>
+                  {t.hero.ctaManifesto}
+                </Link>
               </div>
             </div>
           </div>
