@@ -21,8 +21,16 @@ export default function TokenPage() {
     <PageShell>
       <section className="section-shell pb-10 pt-14 sm:pt-20">
         <div className="mx-auto max-w-5xl">
-          <span className="section-kicker">{tp.kicker}</span>
-          <h1 className="headline-gradient mt-2 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="section-kicker" style={{ marginBottom: 0 }}>
+              {tp.kicker}
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
+              {tp.liveBadge}
+            </span>
+          </div>
+          <h1 className="headline-gradient mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
             {tp.title}
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-7 text-[var(--muted-foreground)] sm:text-lg">
@@ -118,13 +126,16 @@ export default function TokenPage() {
 
       <section className="section-shell py-10">
         <div className="mx-auto max-w-5xl space-y-6">
-          <div className="glass-panel flex flex-col gap-2 rounded-2xl px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-            <span className="text-[11px] uppercase tracking-[0.2em] text-white/50">
-              {tp.contractLabel}
-            </span>
-            <code className="font-mono text-sm text-white/55">
-              {tp.contractPlaceholder}
-            </code>
+          <div>
+            <div className="glass-panel flex flex-col gap-2 rounded-2xl px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/50">
+                {tp.contractLabel}
+              </span>
+              <code className="font-mono text-sm text-white/55">
+                {tp.contractPlaceholder}
+              </code>
+            </div>
+            <p className="mt-2 px-1 text-xs text-white/45">{tp.explorerNote}</p>
           </div>
 
           <Disclaimer />

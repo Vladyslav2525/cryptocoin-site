@@ -24,7 +24,7 @@ export const translations = {
       token: "Токеномика",
       manifesto: "Манифест",
       faq: "FAQ",
-      contact: "Обратная связь",
+      contact: "Контакты",
       buyToken: "Купить токен",
     },
     social: {
@@ -42,7 +42,7 @@ export const translations = {
         "Токен не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли.",
     },
     hero: {
-      kicker: "Публичная казна · Радикальная прозрачность · 24/7",
+      kicker: "Токен в сети Base · Публичная казна · 24/7",
       description:
         "AUREUM LINK — проект с публичной, проверяемой казной реальных активов. Она начинается с одного золотого слитка, который вы видите в прямом эфире вместе с документами. Никаких обещаний — только то, что можно проверить.",
       phrases: [
@@ -67,7 +67,7 @@ export const translations = {
       },
       token: {
         title: "🪙 Токеномика",
-        body: "Общая эмиссия, распределение и назначение токена. Платформа — Base (ERC-20). Прозрачно и без обещаний прибыли.",
+        body: "Токен выпущен в сети Base (ERC-20). Общая эмиссия, распределение и назначение — прозрачно, без обещаний прибыли.",
         cta: "Смотреть токеномику",
       },
       manifesto: {
@@ -197,24 +197,29 @@ export const translations = {
       ],
     },
     roadmap: {
-      kicker: "🗺️ Roadmap",
-      title: "Старт с золота. Дальше — рост публичной казны",
+      kicker: "🗺️ Дорожная карта",
+      title: "Токен запущен. Дальше — рост публичной казны",
+      statusLabels: { done: "Сделано", now: "Сейчас", next: "Дальше" },
       steps: [
         {
-          title: "🥇 Phase 01 — Запуск и живой эфир",
-          body: "Первая версия сайта, трансляция золотого слитка и базовая архитектура доверия.",
+          status: "done",
+          title: "🥇 Этап 01 — Запуск",
+          body: "Токен выпущен в сети Base, слиток в прямом эфире, сайт с казной, токеномикой и манифестом.",
         },
         {
-          title: "🧾 Phase 02 — Слой доказательств",
-          body: "Публикация документов, серийных номеров и раздела «Казна» с проверяемыми записями.",
+          status: "now",
+          title: "🧾 Этап 02 — Слой доказательств",
+          body: "Публикация адреса кошелька казны, серийного номера и сканов документов слитка.",
         },
         {
-          title: "🏢 Phase 03 — Расширение казны",
-          body: "Переход от одного актива к списку реальных активов: металлы, недвижимость, доли и другое — с документами.",
+          status: "next",
+          title: "🏢 Этап 03 — Расширение казны",
+          body: "Второй реальный актив с документами: металлы, недвижимость, доли и другое — каждый оформлен официально.",
         },
         {
-          title: "🔁 Phase 04 — Зрелая открытая казна",
-          body: "Полный публичный список активов казны и он-чейн кошелёк. Сообщество видит каждый актив, а не абстрактное обещание.",
+          status: "next",
+          title: "🔁 Этап 04 — Зрелая открытая казна",
+          body: "Полный публичный список активов, независимые проверки и он-чейн кошелёк. Каждый актив видно, а не обещано.",
         },
       ],
     },
@@ -259,6 +264,7 @@ export const translations = {
         now: {
           title: "✅ Что есть сейчас",
           items: [
+            "Токен выпущен в сети Base",
             "Один реальный золотой слиток",
             "Круглосуточная трансляция слитка",
             "Сканы документов с серийным номером",
@@ -303,6 +309,7 @@ export const translations = {
     },
     tokenPage: {
       kicker: "🪙 Токеномика",
+      liveBadge: "Токен выпущен · в сети Base",
       title: "Общая эмиссия, распределение и назначение токена",
       description:
         "Токеномика простая и открытая. Ниже — общая эмиссия, как распределяются токены и для чего токен нужен. Проверяйте каждый пункт: обещаний прибыли здесь нет.",
@@ -352,8 +359,9 @@ export const translations = {
         "Не доля и не право на активы казны",
         "Не обещание прибыли или дохода",
       ],
-      contractLabel: "Адрес контракта",
-      contractPlaceholder: "Будет опубликован после запуска в сети Base",
+      contractLabel: "Адрес контракта (Base)",
+      contractPlaceholder: "0x… — вставьте адрес контракта токена",
+      explorerNote: "После вставки адреса его можно проверить в Basescan.",
     },
     manifestoPage: {
       kicker: "🌍 Манифест",
@@ -377,8 +385,8 @@ export const translations = {
         {
           title: "Что уже есть",
           paragraphs: [
-            "Реальный золотой слиток под круглосуточной трансляцией. Сканы документов с видимым серийным номером и скрытыми персональными данными. Сайт с разделом «Казна», токеномикой и этим манифестом.",
-            "Дальше — публичный он-чейн кошелёк казны и контракт токена в сети Base.",
+            "Токен выпущен в сети Base — контракт публичный. Реальный золотой слиток под круглосуточной трансляцией. Сканы документов с видимым серийным номером и скрытыми персональными данными. Сайт с разделом «Казна», токеномикой и этим манифестом.",
+            "Дальше — публикация адреса кошелька казны и рост списка реальных активов.",
           ],
         },
         {
@@ -412,22 +420,24 @@ export const translations = {
       planTitle: "План",
       plan: [
         {
+          title: "Сделано",
+          body: "Токен выпущен в сети Base. Слиток в прямом эфире, сайт с казной, токеномикой и манифестом.",
+        },
+        {
           title: "Сейчас",
-          body: "Слиток в эфире, сайт с казной, токеномикой и манифестом.",
+          body: "Публикация адреса кошелька казны и первых сканов документов.",
         },
         {
           title: "Дальше",
-          body: "Публикация кошелька казны и контракта токена в сети Base.",
-        },
-        {
-          title: "Потом",
-          body: "Второй реальный актив с документами и регулярные публичные проверки.",
+          body: "Второй реальный актив с документами, независимые проверки, рост открытой казны.",
         },
       ],
-      socialTitle: "Короткая версия для соцсетей",
-      socialHint: "Можно скопировать и опубликовать",
+      socialTitle: "Готовый анонс для соцсетей",
+      socialLead:
+        "Это готовый текст-анонс запуска — для тебя. Скопируй его и опубликуй в своих соцсетях (Twitter/X, Telegram и т.д.), чтобы коротко рассказать подписчикам о проекте.",
+      socialHint: "Скопируй и опубликуй у себя",
       socialText:
-        "Я один человек. Я строю AUREUM LINK — проект с публичной, проверяемой казной реальных активов. Она начинается с золотого слитка в прямом эфире. Не верьте на слово — проверяйте. Токен не инвестиция и не обещает прибыли. #AUREUMLINK #RWA #прозрачность",
+        "🚀 AUREUM LINK запущен. Я один человек, и я строю проект с публичной, проверяемой казной реальных активов — она начинается с золотого слитка в прямом эфире. Токен уже в сети Base. Не верьте на слово — проверяйте. Это не инвестиция и не обещание прибыли. #AUREUMLINK #RWA #прозрачность",
       copy: "Скопировать текст",
       copied: "Скопировано",
       backHome: "На главную",
@@ -482,7 +492,7 @@ export const translations = {
         "This token is not an investment product, grants no rights to the treasury's assets, and promises no profit.",
     },
     hero: {
-      kicker: "Public treasury · Radical transparency · 24/7",
+      kicker: "Token is live on Base · Public treasury · 24/7",
       description:
         "AUREUM LINK is a project with a public, verifiable treasury of real assets. It starts with a single gold bar you can watch on a live stream, together with its documents. No promises — only what you can verify.",
       phrases: [
@@ -507,7 +517,7 @@ export const translations = {
       },
       token: {
         title: "🪙 Tokenomics",
-        body: "Total supply, distribution, and the token's purpose. Platform — Base (ERC-20). Transparent, with no promise of profit.",
+        body: "The token is live on Base (ERC-20). Total supply, distribution, and purpose — transparent, with no promise of profit.",
         cta: "See the tokenomics",
       },
       manifesto: {
@@ -636,23 +646,28 @@ export const translations = {
     },
     roadmap: {
       kicker: "🗺️ Roadmap",
-      title: "Start with gold. Then — grow the public treasury",
+      title: "The token is live. Next — growing the public treasury",
+      statusLabels: { done: "Done", now: "Now", next: "Next" },
       steps: [
         {
-          title: "🥇 Phase 01 — Launch & Live Stream",
-          body: "The first version of the site, the gold bar stream, and the foundational trust architecture.",
+          status: "done",
+          title: "🥇 Phase 01 — Launch",
+          body: "The token is live on Base, the gold bar is on a 24/7 stream, and the site has the treasury, tokenomics, and manifesto.",
         },
         {
+          status: "now",
           title: "🧾 Phase 02 — Proof Layer",
-          body: "Publishing documents, serial numbers, and the Treasury section with verifiable records.",
+          body: "Publishing the treasury wallet address, the serial number, and the bar's document scans.",
         },
         {
+          status: "next",
           title: "🏢 Phase 03 — Treasury Expansion",
-          body: "Moving from a single asset to a list of real assets: metals, real estate, shares, and more — with documents.",
+          body: "A second real asset with documents: metals, real estate, shares, and more — each officially registered.",
         },
         {
+          status: "next",
           title: "🔁 Phase 04 — A Mature Open Treasury",
-          body: "A full public list of treasury assets and an on-chain wallet. The community sees every asset, not an abstract promise.",
+          body: "A full public list of assets, independent checks, and an on-chain wallet. Every asset is seen, not promised.",
         },
       ],
     },
@@ -697,6 +712,7 @@ export const translations = {
         now: {
           title: "✅ What exists now",
           items: [
+            "The token is live on Base",
             "One real gold bar",
             "A 24/7 stream of the bar",
             "Document scans with the serial number",
@@ -741,6 +757,7 @@ export const translations = {
     },
     tokenPage: {
       kicker: "🪙 Tokenomics",
+      liveBadge: "Token is live · on Base",
       title: "Total supply, distribution, and the token's purpose",
       description:
         "The tokenomics are simple and open. Below are the total supply, how the tokens are distributed, and what the token is for. Verify every point: there are no promises of profit here.",
@@ -790,8 +807,9 @@ export const translations = {
         "Not a share or a right to the treasury's assets",
         "Not a promise of profit or income",
       ],
-      contractLabel: "Contract address",
-      contractPlaceholder: "Will be published after launch on the Base network",
+      contractLabel: "Contract address (Base)",
+      contractPlaceholder: "0x… — paste the token contract address",
+      explorerNote: "Once the address is added, it can be verified on Basescan.",
     },
     manifestoPage: {
       kicker: "🌍 Manifesto",
@@ -815,8 +833,8 @@ export const translations = {
         {
           title: "What already exists",
           paragraphs: [
-            "A real gold bar under a 24/7 live stream. Document scans with a visible serial number and hidden personal data. A site with a Treasury section, tokenomics, and this manifesto.",
-            "Next — a public on-chain treasury wallet and the token contract on the Base network.",
+            "The token is live on Base — the contract is public. A real gold bar under a 24/7 live stream. Document scans with a visible serial number and hidden personal data. A site with a Treasury section, tokenomics, and this manifesto.",
+            "Next — publishing the treasury wallet address and growing the list of real assets.",
           ],
         },
         {
@@ -850,22 +868,24 @@ export const translations = {
       planTitle: "The plan",
       plan: [
         {
+          title: "Done",
+          body: "The token is live on Base. The bar is on stream; a site with the treasury, tokenomics, and manifesto.",
+        },
+        {
           title: "Now",
-          body: "The bar on stream; a site with the treasury, tokenomics, and manifesto.",
+          body: "Publishing the treasury wallet address and the first document scans.",
         },
         {
           title: "Next",
-          body: "Publishing the treasury wallet and the token contract on the Base network.",
-        },
-        {
-          title: "Later",
-          body: "A second real asset with documents and regular public checks.",
+          body: "A second real asset with documents, independent checks, and a growing open treasury.",
         },
       ],
-      socialTitle: "Short version for social media",
-      socialHint: "Ready to copy and post",
+      socialTitle: "Ready-made announcement for social media",
+      socialLead:
+        "This is a ready-to-post launch announcement — for you. Copy it and post it on your own channels (Twitter/X, Telegram, etc.) to tell your followers about the project.",
+      socialHint: "Copy and post it on your channels",
       socialText:
-        "I'm one person. I'm building AUREUM LINK — a project with a public, verifiable treasury of real assets. It starts with a gold bar on a live stream. Don't take my word for it — verify. The token is not an investment and promises no profit. #AUREUMLINK #RWA #transparency",
+        "🚀 AUREUM LINK is live. I'm one person, and I'm building a project with a public, verifiable treasury of real assets — it starts with a gold bar on a live stream. The token is live on Base. Don't take my word for it — verify. This is not an investment and promises no profit. #AUREUMLINK #RWA #transparency",
       copy: "Copy text",
       copied: "Copied",
       backHome: "Back to home",

@@ -47,17 +47,31 @@ export function SupportSections() {
               </h2>
             </div>
             <div className="grid gap-5 lg:grid-cols-4">
-              {t.roadmap.steps.map((step, index) => (
-                <article key={step.title} className="grid-card">
-                  <div className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--gold-bright)]">
-                    Phase {index + 1}
-                  </div>
-                  <h3 className="mb-3 text-lg font-semibold tracking-[-0.03em] text-white">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm leading-7 text-white/74">{step.body}</p>
-                </article>
-              ))}
+              {t.roadmap.steps.map((step, index) => {
+                const statusStyles = {
+                  done: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
+                  now: "border-[var(--gold-soft)]/40 bg-[var(--gold-soft)]/10 text-[var(--gold-bright)]",
+                  next: "border-white/12 bg-white/5 text-white/55",
+                } as const;
+                return (
+                  <article key={step.title} className="grid-card">
+                    <div className="mb-4 flex items-center gap-2">
+                      <span className="text-xs font-semibold uppercase tracking-[0.24em] text-white/40">
+                        Phase {index + 1}
+                      </span>
+                      <span
+                        className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] ${statusStyles[step.status]}`}
+                      >
+                        {t.roadmap.statusLabels[step.status]}
+                      </span>
+                    </div>
+                    <h3 className="mb-3 text-lg font-semibold tracking-[-0.03em] text-white">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm leading-7 text-white/74">{step.body}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>

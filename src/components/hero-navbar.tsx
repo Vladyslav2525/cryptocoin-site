@@ -55,7 +55,7 @@ export function HeroNavbar() {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 z-30 flex w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 flex-col border border-white/10 bg-[rgba(16,18,26,0.58)] px-4 py-3 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-[border-radius] duration-200 ease-in-out sm:w-[calc(100%-2rem)] sm:px-5 ${headerShapeClass}`}
+      className={`fixed top-4 left-1/2 z-30 flex w-[calc(100%-1.5rem)] max-w-6xl -translate-x-1/2 flex-col border border-white/10 bg-[rgba(16,18,26,0.58)] px-4 py-3 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-[border-radius] duration-200 ease-in-out sm:w-[calc(100%-2rem)] sm:px-5 ${headerShapeClass}`}
     >
       <div className="flex items-center justify-between gap-x-3">
         <div className="flex shrink-0 items-center gap-3">

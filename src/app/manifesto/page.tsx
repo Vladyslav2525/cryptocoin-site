@@ -137,6 +137,7 @@ export default function ManifestoPage() {
               </h2>
               <span className="text-xs text-white/45">{mp.socialHint}</span>
             </div>
+            <p className="mt-3 text-sm leading-6 text-white/60">{mp.socialLead}</p>
             <p className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-5 text-sm leading-7 text-white/78">
               {mp.socialText}
             </p>
