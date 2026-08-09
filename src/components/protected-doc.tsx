@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { withBasePath } from "@/lib/asset-path";
 import { cn } from "@/lib/utils";
 
@@ -144,12 +145,18 @@ export function DocLightbox({
 
   const isTall = doc.height / doc.width > 1.4;
 
-  return (
+  // Rendered into <body>: the page's <main> is `isolate z-10`, which would trap
+  // this overlay inside that stacking context and let the sticky site header
+  // (z-30, a sibling of main) paint over the close button.
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex flex-col bg-black/92 backdrop-blur-sm"
       onContextMenu={(event) => event.preventDefault()}
+      role="dialog"
+      aria-modal="true"
+      aria-label={caption}
     >
-      <div className="flex shrink-0 items-start justify-between gap-4 border-b border-white/10 px-5 py-4">
+      <div className="relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5">
         <div className="min-w-0">
           <div className="truncate text-sm font-semibold text-white">
             {caption}
@@ -163,22 +170,40 @@ export function DocLightbox({
         <button
           type="button"
           onClick={onClose}
-          className="shrink-0 rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+          aria-label={closeLabel}
+          className="flex h-11 shrink-0 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 text-sm font-semibold text-white transition hover:bg-white/20 active:scale-95"
         >
-          ✕ {closeLabel}
+          <span aria-hidden className="text-base leading-none">
+            ✕
+          </span>
+          <span className="hidden sm:inline">{closeLabel}</span>
         </button>
       </div>
 
-      <div className="flex-1 overflow-auto p-4 sm:p-6">
+      {/* clicking the empty space around the document also closes */}
+      <div className="relative flex-1 overflow-auto p-4 sm:p-6" onClick={onClose}>
         <div
           className={cn(
             "mx-auto",
             isTall ? "max-w-[min(520px,92vw)]" : "max-w-[min(1200px,94vw)]",
           )}
+          onClick={(event) => event.stopPropagation()}
         >
           <TileGrid doc={doc} />
         </div>
       </div>
-    </div>
+
+      {/* always-reachable close, even after scrolling a long document */}
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label={closeLabel}
+        className="fixed bottom-6 left-1/2 z-20 flex h-12 -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-black/80 px-6 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur transition hover:bg-white/15 active:scale-95"
+      >
+        <span aria-hidden>✕</span>
+        {closeLabel}
+      </button>
+    </div>,
+    document.body,
   );
 }
