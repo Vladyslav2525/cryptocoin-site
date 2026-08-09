@@ -276,6 +276,7 @@ export const translations = {
             "Он-чейн кошелёк казны пока не опубликован",
             "Независимого аудита пока не проводилось",
             "В казне пока только один актив",
+            "Фото самого слитка ещё не опубликовано",
           ],
         },
         next: {
@@ -290,21 +291,27 @@ export const translations = {
       assetsTitle: "Активы в казне",
       fields: {
         serial: "Серийный номер",
-        certificate: "Сертификат",
-        purchaseDoc: "Документ покупки",
         purchaseDate: "Дата покупки",
         purchasePrice: "Цена покупки",
         currentValue: "Текущая стоимость",
-        currentValueNote: "справочно, по рыночной цене золота",
+        currentValueNote: "не публикую оценку — цена золота меняется",
+        vendor: "Продавец",
         status: "Статус",
       },
       statusValues: {
         owned: "В казне · под трансляцией",
         pending: "Оформляется",
       },
-      redactedNote: "Персональные данные скрыты · серийный номер и суть видны",
+      proofsTitle: "Документы на актив",
+      proofsIntro:
+        "Сертификат аффинажного завода PAMP Suisse, тот же сертификат под УФ-лампой (видны защитные элементы) и документ покупки. Серийный номер C518680 совпадает во всех трёх документах — это можно сверить самому.",
+      zoom: "Открыть крупнее",
+      close: "Закрыть",
+      redactedNote:
+        "Персональные данные скрыты (имя сотрудника, ID клиента, номер платежа, QR-код). Серийный номер, вес, проба, цена, дата и продавец оставлены открытыми.",
+      protectedNote:
+        "Документы опубликованы с водяным знаком, без метаданных и в пониженном разрешении. Это не даёт переиспользовать их как «свои», но любой желающий может всё прочитать и сверить.",
       photoPlaceholder: "Фото появится здесь",
-      docPlaceholder: "Документ появится здесь",
       backHome: "На главную",
     },
     tokenPage: {
@@ -724,6 +731,7 @@ export const translations = {
             "The on-chain treasury wallet isn't published yet",
             "No independent audit has been done yet",
             "The treasury holds only one asset so far",
+            "A photo of the bar itself isn't published yet",
           ],
         },
         next: {
@@ -738,21 +746,27 @@ export const translations = {
       assetsTitle: "Assets in the treasury",
       fields: {
         serial: "Serial number",
-        certificate: "Certificate",
-        purchaseDoc: "Purchase document",
         purchaseDate: "Purchase date",
         purchasePrice: "Purchase price",
         currentValue: "Current value",
-        currentValueNote: "for reference, at the market price of gold",
+        currentValueNote: "no estimate published — the gold price moves",
+        vendor: "Seller",
         status: "Status",
       },
       statusValues: {
         owned: "In treasury · on stream",
         pending: "Being registered",
       },
-      redactedNote: "Personal data hidden · serial number and essentials visible",
+      proofsTitle: "Documents for this asset",
+      proofsIntro:
+        "The PAMP Suisse refinery assay certificate, the same certificate under a UV lamp (security features visible), and the purchase document. Serial number C518680 matches across all three — you can check that yourself.",
+      zoom: "Open larger",
+      close: "Close",
+      redactedNote:
+        "Personal data is hidden (employee name, client ID, payment reference, QR code). The serial number, weight, fineness, price, date and seller are left open.",
+      protectedNote:
+        "The documents are published watermarked, without metadata and at reduced resolution. That stops them being reused as someone else's, while anyone can still read and cross-check everything.",
       photoPlaceholder: "A photo will appear here",
-      docPlaceholder: "A document will appear here",
       backHome: "Back to home",
     },
     tokenPage: {
