@@ -25,7 +25,7 @@ export const translations = {
       manifesto: "Манифест",
       faq: "FAQ",
       contact: "Контакты",
-      buyToken: "Купить токен",
+      buyToken: "Узнать о запуске",
     },
     social: {
       menuTitle: "Мы в сети",
@@ -42,7 +42,7 @@ export const translations = {
         "Токен не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли.",
     },
     hero: {
-      kicker: "Токен в сети Base · Публичная казна · 24/7",
+      kicker: "Публичная казна · Радикальная прозрачность · 24/7",
       description:
         "AUREUM LINK — проект с публичной, проверяемой казной реальных активов. Она начинается с одного золотого слитка, который вы видите в прямом эфире вместе с документами. Никаких обещаний — только то, что можно проверить.",
       phrases: [
@@ -67,7 +67,7 @@ export const translations = {
       },
       token: {
         title: "🪙 Токеномика",
-        body: "Токен выпущен в сети Base (ERC-20). Общая эмиссия, распределение и назначение — прозрачно, без обещаний прибыли.",
+        body: "Общая эмиссия, распределение и назначение токена. Сеть Base (ERC-20). Токен ещё не запущен — прозрачно и без обещаний прибыли.",
         cta: "Смотреть токеномику",
       },
       manifesto: {
@@ -198,28 +198,28 @@ export const translations = {
     },
     roadmap: {
       kicker: "🗺️ Дорожная карта",
-      title: "Токен запущен. Дальше — рост публичной казны",
+      title: "Казна собрана. Дальше — открытость и рост",
       statusLabels: { done: "Сделано", now: "Сейчас", next: "Дальше" },
       steps: [
         {
           status: "done",
-          title: "🥇 Этап 01 — Запуск",
-          body: "Токен выпущен в сети Base, слиток в прямом эфире, сайт с казной, токеномикой и манифестом.",
+          title: "🥇 Этап 01 — Первый актив",
+          body: "Слиток куплен, снят и поставлен в эфир. Сертификат, УФ-проверка и документ покупки опубликованы.",
         },
         {
           status: "now",
-          title: "🧾 Этап 02 — Слой доказательств",
-          body: "Публикация адреса кошелька казны, серийного номера и сканов документов слитка.",
+          title: "📡 Этап 02 — Эфир и открытость",
+          body: "Круглосуточная трансляция, публикация адреса кошелька казны и регулярные публичные проверки слитка.",
         },
         {
           status: "next",
-          title: "🏢 Этап 03 — Расширение казны",
-          body: "Второй реальный актив с документами: металлы, недвижимость, доли и другое — каждый оформлен официально.",
+          title: "🪙 Этап 03 — Запуск токена",
+          body: "Контракт в сети Base с проверяемым исходным кодом. До запуска токена не существует и купить его нельзя.",
         },
         {
           status: "next",
-          title: "🔁 Этап 04 — Зрелая открытая казна",
-          body: "Полный публичный список активов, независимые проверки и он-чейн кошелёк. Каждый актив видно, а не обещано.",
+          title: "🏢 Этап 04 — Рост казны",
+          body: "Второй реальный актив с документами. Полный публичный список — каждый актив видно, а не обещано.",
         },
       ],
     },
@@ -264,10 +264,10 @@ export const translations = {
         now: {
           title: "✅ Что есть сейчас",
           items: [
-            "Токен выпущен в сети Base",
-            "Один реальный золотой слиток",
+            "Один реальный золотой слиток, 1 кг",
+            "Фото слитка с видимым серийным номером",
+            "Сертификат PAMP, проверка в УФ и документ покупки",
             "Круглосуточная трансляция слитка",
-            "Сканы документов с серийным номером",
           ],
         },
         notYet: {
@@ -276,7 +276,7 @@ export const translations = {
             "Он-чейн кошелёк казны пока не опубликован",
             "Независимого аудита пока не проводилось",
             "В казне пока только один актив",
-            "Фото самого слитка ещё не опубликовано",
+            "Токен ещё не запущен — торгов нет",
           ],
         },
         next: {
@@ -304,11 +304,11 @@ export const translations = {
       },
       proofsTitle: "Документы на актив",
       proofsIntro:
-        "Сертификат аффинажного завода PAMP Suisse, тот же сертификат под УФ-лампой (видны защитные элементы) и документ покупки. Серийный номер C518680 совпадает во всех трёх документах — это можно сверить самому.",
+        "Сертификат аффинажного завода PAMP Suisse, тот же сертификат под УФ-лампой (видны защитные элементы) и документ покупки. Серийный номер C518680 выбит на самом слитке и повторяется во всех трёх документах — сверьте сами.",
       zoom: "Открыть крупнее",
       close: "Закрыть",
       redactedNote:
-        "Персональные данные скрыты (имя сотрудника, ID клиента, номер платежа, QR-код). Серийный номер, вес, проба, цена, дата и продавец оставлены открытыми.",
+        "В документе покупки скрыты персональные данные: имя сотрудника, ID клиента и номер платежа. Серийный номер, вес, проба, цена, дата и продавец оставлены открытыми.",
       protectedNote:
         "Документы опубликованы с водяным знаком, без метаданных и в пониженном разрешении. Это не даёт переиспользовать их как «свои», но любой желающий может всё прочитать и сверить.",
       photoPlaceholder: "Фото появится здесь",
@@ -316,7 +316,7 @@ export const translations = {
     },
     tokenPage: {
       kicker: "🪙 Токеномика",
-      liveBadge: "Токен выпущен · в сети Base",
+      liveBadge: "Токен ещё не запущен",
       title: "Общая эмиссия, распределение и назначение токена",
       description:
         "Токеномика простая и открытая. Ниже — общая эмиссия, как распределяются токены и для чего токен нужен. Проверяйте каждый пункт: обещаний прибыли здесь нет.",
@@ -367,8 +367,9 @@ export const translations = {
         "Не обещание прибыли или дохода",
       ],
       contractLabel: "Адрес контракта (Base)",
-      contractPlaceholder: "0x… — вставьте адрес контракта токена",
-      explorerNote: "После вставки адреса его можно проверить в Basescan.",
+      contractPlaceholder: "появится после запуска",
+      explorerNote:
+        "Контракт ещё не задеплоен. Когда он появится, здесь будет адрес — его можно будет проверить в Basescan.",
     },
     manifestoPage: {
       kicker: "🌍 Манифест",
@@ -392,8 +393,8 @@ export const translations = {
         {
           title: "Что уже есть",
           paragraphs: [
-            "Токен выпущен в сети Base — контракт публичный. Реальный золотой слиток под круглосуточной трансляцией. Сканы документов с видимым серийным номером и скрытыми персональными данными. Сайт с разделом «Казна», токеномикой и этим манифестом.",
-            "Дальше — публикация адреса кошелька казны и рост списка реальных активов.",
+            "Реальный золотой слиток, 1 кг, серийный номер C518680 — под круглосуточной трансляцией. Фото слитка, сертификат PAMP, проверка в УФ-свете и документ покупки опубликованы: персональные данные скрыты, суть открыта. Сайт с разделом «Казна», токеномикой и этим манифестом.",
+            "Токен ещё не запущен — купить его пока нельзя. Дальше: публикация адреса кошелька казны и контракт в сети Base.",
           ],
         },
         {
@@ -428,15 +429,15 @@ export const translations = {
       plan: [
         {
           title: "Сделано",
-          body: "Токен выпущен в сети Base. Слиток в прямом эфире, сайт с казной, токеномикой и манифестом.",
+          body: "Слиток куплен и в эфире. Документы опубликованы. Сайт с казной, токеномикой и манифестом.",
         },
         {
           title: "Сейчас",
-          body: "Публикация адреса кошелька казны и первых сканов документов.",
+          body: "Веду эфир, публикую адрес кошелька казны и собираю тех, кому это интересно.",
         },
         {
           title: "Дальше",
-          body: "Второй реальный актив с документами, независимые проверки, рост открытой казны.",
+          body: "Запуск токена в сети Base, затем второй реальный актив с документами.",
         },
       ],
       socialTitle: "Готовый анонс для соцсетей",
@@ -444,7 +445,7 @@ export const translations = {
         "Это готовый текст-анонс запуска — для тебя. Скопируй его и опубликуй в своих соцсетях (Twitter/X, Telegram и т.д.), чтобы коротко рассказать подписчикам о проекте.",
       socialHint: "Скопируй и опубликуй у себя",
       socialText:
-        "🚀 AUREUM LINK запущен. Я один человек, и я строю проект с публичной, проверяемой казной реальных активов — она начинается с золотого слитка в прямом эфире. Токен уже в сети Base. Не верьте на слово — проверяйте. Это не инвестиция и не обещание прибыли. #AUREUMLINK #RWA #прозрачность",
+        "Я один человек. Я купил золотой слиток 1 кг и поставил его в прямой эфир 24/7 — вместе с сертификатом, проверкой в УФ и документом покупки. Серийный номер C518680 сходится везде, сверьте сами. Токен ещё не запущен, и я ничего не продаю. Просто показываю, как строится казна. #AUREUMLINK #RWA #прозрачность",
       copy: "Скопировать текст",
       copied: "Скопировано",
       backHome: "На главную",
@@ -482,7 +483,7 @@ export const translations = {
       manifesto: "Manifesto",
       faq: "FAQ",
       contact: "Contact",
-      buyToken: "Buy Token",
+      buyToken: "Get launch updates",
     },
     social: {
       menuTitle: "Find Us Online",
@@ -499,7 +500,7 @@ export const translations = {
         "This token is not an investment product, grants no rights to the treasury's assets, and promises no profit.",
     },
     hero: {
-      kicker: "Token is live on Base · Public treasury · 24/7",
+      kicker: "Public treasury · Radical transparency · 24/7",
       description:
         "AUREUM LINK is a project with a public, verifiable treasury of real assets. It starts with a single gold bar you can watch on a live stream, together with its documents. No promises — only what you can verify.",
       phrases: [
@@ -524,7 +525,7 @@ export const translations = {
       },
       token: {
         title: "🪙 Tokenomics",
-        body: "The token is live on Base (ERC-20). Total supply, distribution, and purpose — transparent, with no promise of profit.",
+        body: "Total supply, distribution, and the token's purpose. Base network (ERC-20). The token is not launched yet — transparent, with no promise of profit.",
         cta: "See the tokenomics",
       },
       manifesto: {
@@ -653,28 +654,28 @@ export const translations = {
     },
     roadmap: {
       kicker: "🗺️ Roadmap",
-      title: "The token is live. Next — growing the public treasury",
+      title: "The treasury exists. Next — openness and growth",
       statusLabels: { done: "Done", now: "Now", next: "Next" },
       steps: [
         {
           status: "done",
-          title: "🥇 Phase 01 — Launch",
-          body: "The token is live on Base, the gold bar is on a 24/7 stream, and the site has the treasury, tokenomics, and manifesto.",
+          title: "🥇 Phase 01 — First Asset",
+          body: "The bar is bought, photographed and on stream. Certificate, UV check and the purchase document are published.",
         },
         {
           status: "now",
-          title: "🧾 Phase 02 — Proof Layer",
-          body: "Publishing the treasury wallet address, the serial number, and the bar's document scans.",
+          title: "📡 Phase 02 — Stream & Openness",
+          body: "A 24/7 stream, publishing the treasury wallet address, and regular public checks of the bar.",
         },
         {
           status: "next",
-          title: "🏢 Phase 03 — Treasury Expansion",
-          body: "A second real asset with documents: metals, real estate, shares, and more — each officially registered.",
+          title: "🪙 Phase 03 — Token Launch",
+          body: "A contract on Base with verifiable source code. Until then the token does not exist and cannot be bought.",
         },
         {
           status: "next",
-          title: "🔁 Phase 04 — A Mature Open Treasury",
-          body: "A full public list of assets, independent checks, and an on-chain wallet. Every asset is seen, not promised.",
+          title: "🏢 Phase 04 — Treasury Growth",
+          body: "A second real asset with documents. A full public list — every asset is seen, not promised.",
         },
       ],
     },
@@ -719,10 +720,10 @@ export const translations = {
         now: {
           title: "✅ What exists now",
           items: [
-            "The token is live on Base",
-            "One real gold bar",
+            "One real gold bar, 1 kg",
+            "A photo of the bar with a visible serial number",
+            "PAMP certificate, UV check and the purchase document",
             "A 24/7 stream of the bar",
-            "Document scans with the serial number",
           ],
         },
         notYet: {
@@ -731,7 +732,7 @@ export const translations = {
             "The on-chain treasury wallet isn't published yet",
             "No independent audit has been done yet",
             "The treasury holds only one asset so far",
-            "A photo of the bar itself isn't published yet",
+            "The token is not launched yet — there is no trading",
           ],
         },
         next: {
@@ -759,11 +760,11 @@ export const translations = {
       },
       proofsTitle: "Documents for this asset",
       proofsIntro:
-        "The PAMP Suisse refinery assay certificate, the same certificate under a UV lamp (security features visible), and the purchase document. Serial number C518680 matches across all three — you can check that yourself.",
+        "The PAMP Suisse refinery assay certificate, the same certificate under a UV lamp (security features visible), and the purchase document. Serial number C518680 is stamped on the bar itself and repeats across all three — check it yourself.",
       zoom: "Open larger",
       close: "Close",
       redactedNote:
-        "Personal data is hidden (employee name, client ID, payment reference, QR code). The serial number, weight, fineness, price, date and seller are left open.",
+        "Personal data is hidden on the purchase document: employee name, client ID and payment reference. The serial number, weight, fineness, price, date and seller are left open.",
       protectedNote:
         "The documents are published watermarked, without metadata and at reduced resolution. That stops them being reused as someone else's, while anyone can still read and cross-check everything.",
       photoPlaceholder: "A photo will appear here",
@@ -771,7 +772,7 @@ export const translations = {
     },
     tokenPage: {
       kicker: "🪙 Tokenomics",
-      liveBadge: "Token is live · on Base",
+      liveBadge: "Token not launched yet",
       title: "Total supply, distribution, and the token's purpose",
       description:
         "The tokenomics are simple and open. Below are the total supply, how the tokens are distributed, and what the token is for. Verify every point: there are no promises of profit here.",
@@ -822,8 +823,9 @@ export const translations = {
         "Not a promise of profit or income",
       ],
       contractLabel: "Contract address (Base)",
-      contractPlaceholder: "0x… — paste the token contract address",
-      explorerNote: "Once the address is added, it can be verified on Basescan.",
+      contractPlaceholder: "will appear after launch",
+      explorerNote:
+        "The contract is not deployed yet. Once it is, the address will appear here and can be verified on Basescan.",
     },
     manifestoPage: {
       kicker: "🌍 Manifesto",
@@ -847,8 +849,8 @@ export const translations = {
         {
           title: "What already exists",
           paragraphs: [
-            "The token is live on Base — the contract is public. A real gold bar under a 24/7 live stream. Document scans with a visible serial number and hidden personal data. A site with a Treasury section, tokenomics, and this manifesto.",
-            "Next — publishing the treasury wallet address and growing the list of real assets.",
+            "A real 1 kg gold bar, serial C518680, under a 24/7 live stream. A photo of the bar, the PAMP certificate, the UV check and the purchase document are published: personal data hidden, the substance open. A site with a Treasury section, tokenomics, and this manifesto.",
+            "The token is not launched yet — it cannot be bought. Next: publishing the treasury wallet address and the contract on Base.",
           ],
         },
         {
@@ -883,15 +885,15 @@ export const translations = {
       plan: [
         {
           title: "Done",
-          body: "The token is live on Base. The bar is on stream; a site with the treasury, tokenomics, and manifesto.",
+          body: "The bar is bought and on stream. The documents are published. A site with the treasury, tokenomics and manifesto.",
         },
         {
           title: "Now",
-          body: "Publishing the treasury wallet address and the first document scans.",
+          body: "Running the stream, publishing the treasury wallet address, and gathering the people who care.",
         },
         {
           title: "Next",
-          body: "A second real asset with documents, independent checks, and a growing open treasury.",
+          body: "Launching the token on Base, then a second real asset with documents.",
         },
       ],
       socialTitle: "Ready-made announcement for social media",
@@ -899,7 +901,7 @@ export const translations = {
         "This is a ready-to-post launch announcement — for you. Copy it and post it on your own channels (Twitter/X, Telegram, etc.) to tell your followers about the project.",
       socialHint: "Copy and post it on your channels",
       socialText:
-        "🚀 AUREUM LINK is live. I'm one person, and I'm building a project with a public, verifiable treasury of real assets — it starts with a gold bar on a live stream. The token is live on Base. Don't take my word for it — verify. This is not an investment and promises no profit. #AUREUMLINK #RWA #transparency",
+        "I'm one person. I bought a 1 kg gold bar and put it on a 24/7 live stream — together with its certificate, a UV check and the purchase document. Serial C518680 matches everywhere, check it yourself. The token is not launched and I'm selling nothing. I'm just showing how a treasury gets built. #AUREUMLINK #RWA #transparency",
       copy: "Copy text",
       copied: "Copied",
       backHome: "Back to home",

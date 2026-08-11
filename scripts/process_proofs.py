@@ -32,21 +32,27 @@ OUT = REPO / "public" / "proofs"
 
 REDACT_FILL = (26, 26, 26)
 
-# Invoice redactions, in original 2517x10232 coordinates:
-#   employee name, customer ID, bank transaction ref, and the QR code
-#   (its payload could not be verified, so it is covered rather than risked).
+# invoice1.png (1969x7442) already has the sensitive fields physically taped over
+# before being photographed. These two bars only close the small gaps the tape
+# left at the line ends (a first initial, the client-ID prefix letter, the desk
+# number) so the redaction reads as deliberate and complete.
 INVOICE_REDACTIONS = [
-    (790, 2196, 2085, 2290),
-    (790, 2300, 1425, 2396),
-    (1735, 4238, 2460, 4326),
-    (700, 8480, 2010, 9880),
+    (560, 1583, 1570, 1642),   # Cashier   — leftover initial + "Desk #2"
+    (560, 1648, 1010, 1707),   # Client ID — leftover prefix letter
 ]
 
+# The QR is left visible at the owner's request. It could not be decoded here
+# even from the un-watermarked source, so it is very unlikely to be scannable
+# for visitors either — it reads as receipt detail, not as a working link.
+
 # name -> (source file, redactions, target width, tile cols, tile rows)
+SOURCES = Path(r"D:\CryptoCoin\Исходники")
+
 DOCS = {
+    "gold-bar": (SOURCES / "gold.png", [], 900, 3, 6),
     "certificate": ("license_png.png", [], 1440, 4, 3),
     "certificate-uv": ("license_uv_png.png", [], 1440, 4, 3),
-    "invoice": ("invoice.png", INVOICE_REDACTIONS, 1000, 2, 8),
+    "invoice": (SOURCES / "invoice1.png", INVOICE_REDACTIONS, 1000, 2, 8),
 }
 
 
@@ -57,8 +63,10 @@ def strip_metadata(im: Image.Image) -> Image.Image:
     return clean
 
 
-def process(src_dir: Path, name: str, source: str, redactions, target_w, cols, rows):
-    im = Image.open(src_dir / source).convert("RGB")
+def process(src_dir: Path, name: str, source, redactions, target_w, cols, rows):
+    # entries may carry their own absolute path, otherwise resolve against --src
+    path = Path(source)
+    im = Image.open(path if path.is_absolute() else src_dir / path).convert("RGB")
     original = im.size
 
     if redactions:

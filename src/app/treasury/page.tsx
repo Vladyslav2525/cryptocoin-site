@@ -5,7 +5,6 @@ import { useState } from "react";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
 import { DocLightbox, ProtectedDoc } from "@/components/protected-doc";
-import { withBasePath } from "@/lib/asset-path";
 import { TREASURY_ASSETS, type AssetDocument } from "@/lib/treasury";
 import { useLocale, useTranslations } from "@/lib/language-context";
 
@@ -114,25 +113,23 @@ export default function TreasuryPage() {
               return (
                 <Reveal key={asset.id} delay={index * 80}>
                   <article className="grid-card space-y-8">
-                    <div className="grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr]">
-                      <div className="shimmer relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
-                        <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/85 backdrop-blur">
-                          <span className="h-2 w-2 rounded-full bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]" />
-                          LIVE
-                        </div>
-                        {asset.photo ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={withBasePath(asset.photo)}
-                            alt={asset.name[locale]}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : (
+                    <div className="grid gap-6 lg:grid-cols-[minmax(0,300px)_1fr]">
+                      {asset.photoDoc ? (
+                        <ProtectedDoc
+                          doc={asset.photoDoc.doc}
+                          caption={asset.photoDoc.caption[locale]}
+                          meta={asset.photoDoc.meta}
+                          zoomLabel={tp.zoom}
+                          onOpen={() => setOpenDoc(asset.photoDoc!)}
+                          className="mx-auto w-full max-w-[260px] lg:mx-0 lg:max-w-none"
+                        />
+                      ) : (
+                        <div className="shimmer relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
                           <div className="flex h-full items-center justify-center px-4 text-center text-xs text-white/40">
                             {tp.photoPlaceholder}
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      )}
 
                       <div className="flex flex-col gap-5">
                         <div className="flex flex-wrap items-center gap-3">

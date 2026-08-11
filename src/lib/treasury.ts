@@ -11,8 +11,9 @@ export type AssetDocument = {
 };
 
 // A single asset in the public treasury.
-// `photo` stays null until a photo of the bar itself is published; the UI renders
-// an honest placeholder for every null, so filling it in later needs no code change.
+// `photoDoc` is the asset's own photo, served through the same tiled/watermarked
+// pipeline as the documents. It stays null until a photo is published; the UI
+// renders an honest placeholder for every null.
 export type TreasuryAsset = {
   id: string;
   name: Record<Locale, string>;
@@ -23,7 +24,7 @@ export type TreasuryAsset = {
   purchasePrice: string | null;
   currentValue: string | null;
   vendor: string | null;
-  photo: string | null;
+  photoDoc: AssetDocument | null;
   documents: AssetDocument[];
 };
 
@@ -46,7 +47,14 @@ export const TREASURY_ASSETS: TreasuryAsset[] = [
     // stale or invented number would undercut the point of the treasury.
     currentValue: null,
     vendor: "Silver Bullion Pte Ltd, Singapore",
-    photo: null,
+    photoDoc: {
+      doc: { id: "gold-bar", cols: 3, rows: 6, width: 900, height: 1771 },
+      caption: {
+        ru: "Слиток в заводской запайке",
+        en: "The bar in its factory seal",
+      },
+      meta: "C518680 · 1 KILO · 999.9",
+    },
     documents: [
       {
         doc: { id: "certificate", cols: 4, rows: 3, width: 1440, height: 810 },
@@ -71,7 +79,7 @@ export const TREASURY_ASSETS: TreasuryAsset[] = [
         meta: "UV · C518680",
       },
       {
-        doc: { id: "invoice", cols: 2, rows: 8, width: 1000, height: 4065 },
+        doc: { id: "invoice", cols: 2, rows: 8, width: 1000, height: 3780 },
         caption: {
           ru: "Документ покупки (инвойс)",
           en: "Purchase document (invoice)",
