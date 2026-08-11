@@ -39,7 +39,7 @@ export function HeroNavbar() {
   ];
 
   const ctaLinks: { label: string; href: string; variant: "secondary" | "primary" }[] = [
-    { label: t.nav.buyToken, href: "/404", variant: "primary" },
+    { label: t.nav.buyToken, href: "/#subscribe", variant: "primary" },
   ];
 
   const logoElement = (

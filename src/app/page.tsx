@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/hero-section";
 import { ManifestoSection } from "@/components/manifesto-section";
 import { PhilosophySection } from "@/components/philosophy-section";
 import { SupportSections } from "@/components/support-sections";
+import { SubscribeSection } from "@/components/subscribe-section";
 import { TeasersSection } from "@/components/teasers-section";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <GrowthCycleSection />
         <ManifestoSection />
         <TeasersSection />
+        <SubscribeSection />
         <SupportSections />
       </main>
     </>

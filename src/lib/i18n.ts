@@ -41,6 +41,19 @@ export const translations = {
       short:
         "Токен не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли.",
     },
+    subscribe: {
+      kicker: "✉️ Следить за проектом",
+      title: "Хотите знать, что будет дальше?",
+      description:
+        "Оставьте почту — напишу, когда появится контракт токена и когда в казну добавится новый актив. Пишу редко и по делу.",
+      points: [
+        "Сообщу, когда контракт будет опубликован",
+        "Расскажу о каждом новом активе в казне",
+        "Никакого спама — отписка в один клик",
+      ],
+      privacy:
+        "Почта используется только для новостей проекта. Не передаю её третьим лицам.",
+    },
     hero: {
       kicker: "Публичная казна · Радикальная прозрачность · 24/7",
       description:
@@ -498,6 +511,19 @@ export const translations = {
       label: "Important",
       short:
         "This token is not an investment product, grants no rights to the treasury's assets, and promises no profit.",
+    },
+    subscribe: {
+      kicker: "✉️ Follow the project",
+      title: "Want to know what happens next?",
+      description:
+        "Leave your email — I'll write when the token contract goes live and when a new asset joins the treasury. Rarely, and only when there's something to say.",
+      points: [
+        "I'll tell you when the contract is published",
+        "I'll cover every new asset added to the treasury",
+        "No spam — one-click unsubscribe",
+      ],
+      privacy:
+        "Your email is used only for project updates. I don't pass it to third parties.",
     },
     hero: {
       kicker: "Public treasury · Radical transparency · 24/7",
