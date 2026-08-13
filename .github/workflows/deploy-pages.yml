@@ -1,8 +1,9 @@
 name: Deploy GitHub Pages
 
+# Hosting moved to Cloudflare Pages: the GitHub account is locked over billing, so
+# Actions never start and every push produced a failed deploy. Kept as manual-only so
+# the workflow still works if the account is unlocked later.
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
 
 permissions:

@@ -99,7 +99,10 @@ export default function TreasuryPage() {
                   label: tp.fields.purchaseDate,
                   value: asset.purchaseDate?.[locale] ?? null,
                 },
-                { label: tp.fields.purchasePrice, value: asset.purchasePrice },
+                {
+                  label: tp.fields.purchasePrice,
+                  value: asset.purchasePrice?.[locale] ?? null,
+                },
                 {
                   label: tp.fields.currentValue,
                   value: asset.currentValue,

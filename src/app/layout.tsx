@@ -14,8 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// The public address changes with the host (GitHub Pages → Cloudflare Pages → own
+// domain), and it is baked into every Open Graph URL at build time. Keeping it in one
+// env var means a move is a build setting, not a code edit.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  "https://vladyslav2525.github.io/cryptocoin-site/";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vladyslav2525.github.io/cryptocoin-site/"),
+  metadataBase: new URL(siteUrl),
   title: "AUREUM LINK | A public, verifiable treasury of real assets",
   description:
     "AUREUM LINK is a project with a public, verifiable treasury of real assets, starting with a gold bar on a live stream. Not an investment product — no promises, only what you can verify.",

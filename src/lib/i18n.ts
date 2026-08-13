@@ -39,7 +39,7 @@ export const translations = {
     disclaimer: {
       label: "Важно",
       short:
-        "Токен не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли.",
+        "Токен не является инвестиционным продуктом, не даёт прав на активы казны и не обещает прибыли. Участие не приносит дохода, процентов и выплат.",
     },
     subscribe: {
       kicker: "✉️ Следить за проектом",
@@ -165,6 +165,10 @@ export const translations = {
           body: "Проект аккумулирует средства от развития и публичной продажи токена — прозрачно и по частям.",
         },
         {
+          title: "🗳️ Сообщество обсуждает, что дальше",
+          body: "Какой актив покупать следующим — обсуждается открыто, вместе с теми, кто следит за проектом. Механизма голосования пока не существует: это план, а не работающая функция.",
+        },
+        {
           title: "🏦 Покупка реального актива",
           body: "На эти средства покупается следующий реальный актив и официально оформляется на структуру проекта.",
         },
@@ -178,7 +182,7 @@ export const translations = {
         },
       ],
       cycleNote:
-        "🔄 Цикл повторяется: больше прозрачности — больше доверия, больше доверия — больше реальных активов в открытой казне. Это про проверяемость казны, а не про цену токена.",
+        "🔄 Цикл повторяется: больше прозрачности — больше доверия, больше доверия — больше реальных активов в открытой казне. Участие в проекте не даёт дохода, дивидендов, процентов и прав на активы казны. Это про проверяемость казны, а не про цену токена.",
     },
     manifesto: {
       kicker: "🌍 Моя позиция",
@@ -188,6 +192,21 @@ export const translations = {
         "Я один человек. У проекта есть казна. Каждый актив вы увидите с документами. Я строю это в прямом эфире.",
       tags: ["🔓 Открыто", "🧾 Проверяемо", "👤 Один человек"],
       cta: "Читать полный манифест",
+    },
+    ownMoney: {
+      kicker: "💰 Мои деньги в проекте",
+      title: "Слиток куплен на мои деньги, а не на собранные",
+      paragraphs: [
+        "Я заплатил за него 172 020,79 SGD — это примерно 133 000 долларов США. Свои. Сбора средств до этого не было: сначала появился актив и документы к нему, и только потом сайт, на котором вы это читаете.",
+        "Слиток принадлежит проекту, и я показываю его в эфире вместе с документами. Токен не даёт на него прав — ни на слиток, ни на что-либо ещё в казне.",
+      ],
+      facts: [
+        { label: "Заплачено", value: "172 020,79 SGD" },
+        { label: "Это примерно", value: "$133 000 USD" },
+        { label: "Чьи деньги", value: "мои собственные" },
+        { label: "Собрано с людей", value: "0" },
+      ],
+      note: "Сумма в сингапурских долларах — слиток куплен в Сингапуре. Долларовый эквивалент приблизительный, по курсу на дату покупки.",
     },
     trust: {
       kicker: "🛡️ Архитектура доверия",
@@ -474,13 +493,19 @@ export const translations = {
         "долей в проекте и правом на активы казны",
         "обещанием прибыли, дохода или роста стоимости",
         "требованием на золото или другой актив казны",
+        "источником процентов, дивидендов или любых выплат участникам",
+        "вкладом, депозитом или способом «вложиться под замок» на срок",
       ],
       isTitle: "Проект является",
       is: [
         "публичной, проверяемой казной реальных активов",
         "открытой историей: фото, серийные номера и документы активов",
         "личным проектом одного человека, который строит его в прямом эфире",
+        "местом, где обсуждают, какой реальный актив купить следующим",
       ],
+      noFundraisingTitle: "Сбора денег нет",
+      noFundraising:
+        "Проект не собирает средства под будущие токены и не принимает вклады. Первый актив казны — золотой слиток — куплен на личные деньги основателя (172 020,79 SGD, около $133 000) до появления этого сайта. Токен ещё не запущен: контракта не существует, купить его нельзя, и никто не должен ничего переводить. Если вам где-то предлагают «войти пораньше» в AUREUM LINK — это не мы.",
       notAdvice:
         "Материалы сайта носят информационный характер и не являются инвестиционной, юридической или налоговой консультацией. Взаимодействие с криптоактивами связано с рисками; принимайте решения самостоятельно.",
       backHome: "На главную",
@@ -510,7 +535,7 @@ export const translations = {
     disclaimer: {
       label: "Important",
       short:
-        "This token is not an investment product, grants no rights to the treasury's assets, and promises no profit.",
+        "This token is not an investment product, grants no rights to the treasury's assets, and promises no profit. Taking part pays no income, interest or dividends.",
     },
     subscribe: {
       kicker: "✉️ Follow the project",
@@ -635,6 +660,10 @@ export const translations = {
           body: "The project accumulates funds from development and the public token sale — transparently and in tranches.",
         },
         {
+          title: "🗳️ The Community Discusses What's Next",
+          body: "Which asset to buy next is discussed in the open, together with the people following the project. No voting mechanism exists yet: this is the plan, not a working feature.",
+        },
+        {
           title: "🏦 Buying a Real Asset",
           body: "Those funds are used to buy the next real asset, officially registered under the project's structure.",
         },
@@ -648,7 +677,7 @@ export const translations = {
         },
       ],
       cycleNote:
-        "🔄 The cycle repeats: more transparency builds more trust, and more trust means more real assets in an open treasury. It's about the treasury's verifiability, not the token's price.",
+        "🔄 The cycle repeats: more transparency builds more trust, and more trust means more real assets in an open treasury. Taking part gives you no income, no dividends, no interest and no rights to the treasury's assets. It's about the treasury's verifiability, not the token's price.",
     },
     manifesto: {
       kicker: "🌍 My position",
@@ -658,6 +687,21 @@ export const translations = {
         "I'm one person. The project has a treasury. You'll see every asset with documents. I'm building this on a live stream.",
       tags: ["🔓 Open", "🧾 Verifiable", "👤 One person"],
       cta: "Read the full manifesto",
+    },
+    ownMoney: {
+      kicker: "💰 My own money in the project",
+      title: "The bar was bought with my money, not with money raised",
+      paragraphs: [
+        "I paid 172,020.79 SGD for it — roughly 133,000 US dollars. My own. There was no fundraising before that: the asset and its documents came first, and only then the site you're reading this on.",
+        "The bar belongs to the project, and I show it on the stream together with its documents. The token grants no rights to it — not to the bar, and not to anything else in the treasury.",
+      ],
+      facts: [
+        { label: "Paid", value: "172,020.79 SGD" },
+        { label: "That's roughly", value: "$133,000 USD" },
+        { label: "Whose money", value: "my own" },
+        { label: "Raised from others", value: "0" },
+      ],
+      note: "The amount is in Singapore dollars — the bar was bought in Singapore. The US dollar figure is approximate, at the rate on the purchase date.",
     },
     trust: {
       kicker: "🛡️ Trust architecture",
@@ -943,13 +987,19 @@ export const translations = {
         "a share in the project or a right to the treasury's assets",
         "a promise of profit, income, or price growth",
         "a claim on gold or any other treasury asset",
+        "a source of interest, dividends, or any payouts to participants",
+        "a deposit, or a way to 'lock funds in' for a term",
       ],
       isTitle: "The project IS",
       is: [
         "a public, verifiable treasury of real assets",
         "an open history: photos, serial numbers, and documents of the assets",
         "a personal project by one person, built on a live stream",
+        "a place where we discuss which real asset to buy next",
       ],
+      noFundraisingTitle: "There is no fundraising",
+      noFundraising:
+        "The project does not raise money against future tokens and accepts no deposits. The treasury's first asset — the gold bar — was bought with the founder's own money (172,020.79 SGD, about $133,000) before this site existed. The token is not launched: no contract exists, it cannot be bought, and nobody should be sending anything anywhere. If someone offers you an 'early entry' into AUREUM LINK, it is not us.",
       notAdvice:
         "The materials on this site are informational and do not constitute investment, legal, or tax advice. Interacting with crypto assets involves risk; make your own decisions.",
       backHome: "Back to home",

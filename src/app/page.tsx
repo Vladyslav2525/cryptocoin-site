@@ -3,6 +3,7 @@ import { FirstVisitSubscribeModal } from "@/components/first-visit-subscribe-mod
 import { GrowthCycleSection } from "@/components/growth-cycle-section";
 import { HeroSection } from "@/components/hero-section";
 import { ManifestoSection } from "@/components/manifesto-section";
+import { OwnMoneySection } from "@/components/own-money-section";
 import { PhilosophySection } from "@/components/philosophy-section";
 import { SupportSections } from "@/components/support-sections";
 import { SubscribeSection } from "@/components/subscribe-section";
@@ -18,6 +19,7 @@ export default function Home() {
         <ComparisonSection />
         <GrowthCycleSection />
         <ManifestoSection />
+        <OwnMoneySection />
         <TeasersSection />
         <SubscribeSection />
         <SupportSections />

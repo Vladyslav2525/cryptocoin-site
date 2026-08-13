@@ -21,7 +21,10 @@ export type TreasuryAsset = {
   status: "owned" | "pending";
   serialNumber: string | null;
   purchaseDate: Record<Locale, string> | null;
-  purchasePrice: string | null;
+  // Per-locale because the price carries both currencies and their number
+  // formats differ: "172 020,79 SGD (~$133 000)" vs "172,020.79 SGD (~$133,000)".
+  // Both must always appear — "172k" is heard as dollars, and these are Singapore ones.
+  purchasePrice: Record<Locale, string> | null;
   currentValue: string | null;
   vendor: string | null;
   photoDoc: AssetDocument | null;
@@ -42,7 +45,10 @@ export const TREASURY_ASSETS: TreasuryAsset[] = [
     status: "owned",
     serialNumber: "C518680",
     purchaseDate: { ru: "11 июня 2026", en: "11 June 2026" },
-    purchasePrice: "172 020,79 SGD",
+    purchasePrice: {
+      ru: "172 020,79 SGD (~$133 000)",
+      en: "172,020.79 SGD (~$133,000)",
+    },
     // Left null on purpose: the market price of gold moves, and publishing a
     // stale or invented number would undercut the point of the treasury.
     currentValue: null,

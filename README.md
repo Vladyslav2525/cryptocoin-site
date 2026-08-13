@@ -65,4 +65,20 @@ Notes:
 
 ## Deployment
 
-Push to `main` to trigger the GitHub Pages workflow in `.github/workflows/deploy-pages.yml`.
+The site is hosted on **Cloudflare Pages**, built from `main` on every push:
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | None |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+| `NODE_VERSION` | `24` |
+| `NEXT_PUBLIC_SITE_URL` | the site's public address, with trailing slash |
+
+`NEXT_PUBLIC_SITE_URL` only feeds Open Graph metadata. `basePath` needs no setting here:
+`next.config.ts` injects `/cryptocoin-site` only when `GITHUB_ACTIONS === "true"`, so
+anywhere else the site builds for the domain root.
+
+The GitHub Pages workflow in `.github/workflows/deploy-pages.yml` is kept but is
+**manual only** (`workflow_dispatch`) — the account is locked over a billing issue, so
+push-triggered runs only produced failures.

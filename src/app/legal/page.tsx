@@ -71,7 +71,18 @@ export default function LegalPage() {
 
       <section className="section-shell py-8">
         <div className="mx-auto max-w-3xl">
-          <div className="glass-panel rounded-2xl px-6 py-5 text-sm leading-7 text-white/60">
+          <Reveal>
+            <div className="rounded-3xl border border-[var(--gold-soft)]/25 bg-[var(--gold-soft)]/[0.05] p-6 sm:p-7">
+              <h2 className="mb-3 text-lg font-semibold tracking-[-0.02em] text-[var(--gold-bright)]">
+                {lp.noFundraisingTitle}
+              </h2>
+              <p className="text-sm leading-7 text-white/75">
+                {lp.noFundraising}
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="glass-panel mt-8 rounded-2xl px-6 py-5 text-sm leading-7 text-white/60">
             {lp.notAdvice}
           </div>
 
